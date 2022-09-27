@@ -18,11 +18,14 @@ const Navbar = () => {
     top: 0;
     color: white;
     z-index: 999;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.1);
+
   `;
   const Cart = styled.div`
     display: flex;
     align-items: center;
     width: fit-content;
+    
     span {
       font-size: 15px;
       position: relative;

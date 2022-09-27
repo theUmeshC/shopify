@@ -11,6 +11,7 @@ const baseURL =
 function App() {
   const [data, setData] = useState([]);
   const [loadingState, setLoadingState] = useState(true);
+  const [cartData, setCartData] = useState([]);
   useEffect(() => {
     axios.get(`${baseURL}`).then((response) => {
       setTimeout(() => {
@@ -19,16 +20,31 @@ function App() {
       }, 2500);
     });
   }, []);
+  const cartDataHandler = (id) => {
+    const cartItem = data.filter((item) => {
+      return item.id === id;
+    });
+    if(cartData.length >= 1){
+      const quantity = cartItem[0].quantity;
+      console.log(quantity);
+
+    }
+  };
+
   return (
     <Router>
       <div className="App">
         <Navbar />
         <Switch>
           <Route exact path="/">
-            <Home loading={loadingState} data={data} />
+            <Home
+              loading={loadingState}
+              data={data}
+              onItemAddedTOCart={cartDataHandler}
+            />
           </Route>
           <Route path="/cart">
-            <Cart />
+            <Cart data= {cartData} />
           </Route>
         </Switch>
       </div>

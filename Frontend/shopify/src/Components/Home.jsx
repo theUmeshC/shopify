@@ -34,6 +34,9 @@ const Home = (props) => {
   const data = props.data;
   console.log(data);
   const loading = props.loading;
+  const addItemTOCartHandler = (id) => {
+    props.onItemAddedTOCart(id);
+  }
 
   return (
     <Container>
@@ -43,7 +46,7 @@ const Home = (props) => {
           {(loading ? Array.from(new Array(6)) : data).map((item, index) => (
             <Box
               className="card"
-              key={index}
+              key={index++}
               sx={{ width: 210, marginRight: 6, my: 5 }}
             >
               {item ? (
@@ -70,7 +73,7 @@ const Home = (props) => {
                       {item.price}
                     </Typography>
                   </div>
-                  <div>
+                  <div onClick={() => addItemTOCartHandler(item.id)}>
                     <IconButton aria-label="delete" size="small">
                       <ShoppingCartOutlinedIcon className="cart__icon" fontSize="small" />
                     </IconButton>
