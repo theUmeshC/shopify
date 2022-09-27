@@ -2,7 +2,6 @@ import {
   FormControl,
   FormControlLabel,
   FormLabel,
-  ListItem,
   Radio,
   RadioGroup,
 } from "@mui/material";
@@ -49,9 +48,10 @@ const SideBar = (props) => {
           aria-labelledby="demo-radio-buttons-group-label"
           name="radio-buttons-group"
         >
-          {filterColor.map((item) => {
+          {filterColor.map((item, index) => {
             return (
               <FormControlLabel
+                key={index++}
                 value={item}
                 control={<Radio />}
                 label={item}
@@ -77,9 +77,9 @@ const SideBar = (props) => {
           aria-labelledby="demo-radio-buttons-group-label"
           name="radio-buttons-group"
         >
-          {filterType.map((item) => {
+          {filterType.map((item, index) => {
             return (
-              <FormControlLabel value={item} control={<Radio />} label={item} />
+              <FormControlLabel key={index++} value={item} control={<Radio />} label={item} />
             );
           })}
         </RadioGroup>
