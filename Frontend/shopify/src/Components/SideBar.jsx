@@ -2,13 +2,28 @@ import {
   FormControl,
   FormControlLabel,
   FormLabel,
+  ListItem,
   Radio,
   RadioGroup,
 } from "@mui/material";
 import React from "react";
 import styled from "styled-components";
 
-const SideBar = () => {
+const SideBar = (props) => {
+  const filterColor = [
+    ...new Set(
+      props.data.map((item) => {
+        return item.color;
+      })
+    ),
+  ];
+  const filterType = [
+    ...new Set(
+      props.data.map((item) => {
+        return item.type;
+      })
+    ),
+  ];
   const SideBar = styled.div`
     height: 90vh;
     min-width: 180px;
@@ -21,8 +36,8 @@ const SideBar = () => {
     padding-left: 15px;
     box-sizing: border-box;
     overflow-y: scroll;
-    ::-webkit-scrollbar{
-        display: none;
+    ::-webkit-scrollbar {
+      display: none;
     }
   `;
 
@@ -34,9 +49,15 @@ const SideBar = () => {
           aria-labelledby="demo-radio-buttons-group-label"
           name="radio-buttons-group"
         >
-          <FormControlLabel value="female" control={<Radio />} label="Red" />
-          <FormControlLabel value="male" control={<Radio />} label="Blue" />
-          <FormControlLabel value="other" control={<Radio />} label="Other" />
+          {filterColor.map((item) => {
+            return (
+              <FormControlLabel
+                value={item}
+                control={<Radio />}
+                label={item}
+              />
+            );
+          })}
         </RadioGroup>
       </FormControl>
       <FormControl>
@@ -45,18 +66,9 @@ const SideBar = () => {
           aria-labelledby="demo-radio-buttons-group-label"
           name="radio-buttons-group"
         >
-          <FormControlLabel value="female" control={<Radio />} label="0-123" />
-          <FormControlLabel value="male" control={<Radio />} label="123-234" />
-        </RadioGroup>
-      </FormControl>
-      <FormControl>
-        <FormLabel id="demo-radio-buttons-group-label">Gender</FormLabel>
-        <RadioGroup
-          aria-labelledby="demo-radio-buttons-group-label"
-          name="radio-buttons-group"
-        >
-          <FormControlLabel value="female" control={<Radio />} label="Female" />
-          <FormControlLabel value="male" control={<Radio />} label="Male" />
+          <FormControlLabel value="250" control={<Radio />} label="0-250" />
+          <FormControlLabel value="300" control={<Radio />} label="250-450" />
+          <FormControlLabel value="500" control={<Radio />} label="500-All" />
         </RadioGroup>
       </FormControl>
       <FormControl>
@@ -65,9 +77,21 @@ const SideBar = () => {
           aria-labelledby="demo-radio-buttons-group-label"
           name="radio-buttons-group"
         >
-          <FormControlLabel value="Polo" control={<Radio />} label="Polo" />
-          <FormControlLabel value="Hoodie" control={<Radio />} label="Hoodie" />
-          <FormControlLabel value="Basic" control={<Radio />} label="Basic" />
+          {filterType.map((item) => {
+            return (
+              <FormControlLabel value={item} control={<Radio />} label={item} />
+            );
+          })}
+        </RadioGroup>
+      </FormControl>
+      <FormControl>
+        <FormLabel id="demo-radio-buttons-group-label">Gender</FormLabel>
+        <RadioGroup
+          aria-labelledby="demo-radio-buttons-group-label"
+          name="radio-buttons-group"
+        >
+          <FormControlLabel value="Male" control={<Radio />} label="Male" />
+          <FormControlLabel value="Female" control={<Radio />} label="Female" />
         </RadioGroup>
       </FormControl>
     </SideBar>

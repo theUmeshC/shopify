@@ -37,7 +37,7 @@ const Home = (props) => {
 
   return (
     <Container>
-      <SideBar />
+      <SideBar data ={props.data} />
       <HomeContainer>
         <Grid container wrap="wrap">
           {(loading ? Array.from(new Array(6)) : data).map((item, index) => (
