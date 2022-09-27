@@ -16,6 +16,7 @@ const Navbar = () => {
     position: sticky;
     top: 0;
     color: white;
+    z-index: 999;
   `;
   const Cart = styled.div`
     display: flex;
@@ -33,6 +34,7 @@ const Navbar = () => {
     align-items: center;
     h1{
         font-size: 20px;
+        color: black;
     }
   `;
   const Logo = styled.h1`

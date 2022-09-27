@@ -1,104 +1,91 @@
-import { Grid, Skeleton, Typography } from "@mui/material";
+import { Grid, IconButton, Skeleton, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 import styled from "styled-components";
 import SideBar from "./SideBar";
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 
 const Home = (props) => {
   const Container = styled.div`
-    display: flex;  
-    background-image: linear-gradient(to right, #2cd4d9, #5333ed );
+    display: flex;
+    background-image: linear-gradient(to right, #2cd4d9, #5333ed);
   `;
   const HomeContainer = styled.div`
-    width:70vw;
+    width: 70vw;
     margin: auto;
-  `
-  const data = [
-    {
-        src: 'https://i.ytimg.com/vi/pLqipJNItIo/hqdefault.jpg?sqp=-oaymwEYCNIBEHZIVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLBkklsyaw9FxDmMKapyBYCn9tbPNQ',
-        title: 'Don Diablo @ Tomorrowland Main Stage 2019 | Official…',
-        channel: 'Don Diablo',
-        views: '396k views',
-        createdAt: 'a week ago',
-      },
-      {
-        src: 'https://i.ytimg.com/vi/_Uu12zY01ts/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLCpX6Jan2rxrCAZxJYDXppTP4MoQA',
-        title: 'Queen - Greatest Hits',
-        channel: 'Queen Official',
-        views: '40M views',
-        createdAt: '3 years ago',
-      },
-      {
-        src: 'https://i.ytimg.com/vi/kkLk2XWMBf8/hqdefault.jpg?sqp=-oaymwEYCNIBEHZIVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLB4GZTFu1Ju2EPPPXnhMZtFVvYBaw',
-        title: 'Calvin Harris, Sam Smith - Promises (Official Video)',
-        channel: 'Calvin Harris',
-        views: '130M views',
-        createdAt: '10 months ago',
-      },{
-        src: 'https://i.ytimg.com/vi/pLqipJNItIo/hqdefault.jpg?sqp=-oaymwEYCNIBEHZIVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLBkklsyaw9FxDmMKapyBYCn9tbPNQ',
-        title: 'Don Diablo @ Tomorrowland Main Stage 2019 | Official…',
-        channel: 'Don Diablo',
-        views: '396k views',
-        createdAt: 'a week ago',
-      },
-      {
-        src: 'https://i.ytimg.com/vi/_Uu12zY01ts/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLCpX6Jan2rxrCAZxJYDXppTP4MoQA',
-        title: 'Queen - Greatest Hits',
-        channel: 'Queen Official',
-        views: '40M views',
-        createdAt: '3 years ago',
-      },
-      {
-        src: 'https://i.ytimg.com/vi/kkLk2XWMBf8/hqdefault.jpg?sqp=-oaymwEYCNIBEHZIVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLB4GZTFu1Ju2EPPPXnhMZtFVvYBaw',
-        title: 'Calvin Harris, Sam Smith - Promises (Official Video)',
-        channel: 'Calvin Harris',
-        views: '130M views',
-        createdAt: '10 months ago',
-      } 
-   ];
-  const  loading = props.loading  ;
-  
-  
+    .card {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      transition: 0.3s;
+      border-radius: 5px;
+    }
+
+    .card:hover {
+      box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.7);
+    }
+    img {
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+    }
+    .card__details{
+        display: flex;
+        justify-content: space-between;
+    }
+  `;
+  const data = props.data;
+  console.log(data);
+  const loading = props.loading;
+
   return (
     <Container>
-      <SideBar />      
+      <SideBar />
       <HomeContainer>
-      <Grid container wrap="wrap">
-      {(loading ? Array.from(new Array(3)) : data).map((item, index) => (
-        <Box key={index} sx={{ width: 210, marginRight: 6, my: 5 }}>
-          {item ? (
-            <img
-              style={{ width: 210, height: 118 }}
-              alt={item.title}
-              src={item.src}
-            />
-          ) : (
-            <Skeleton variant="rectangular" width={210} height={118} />
-          )}
+        <Grid container wrap="wrap">
+          {(loading ? Array.from(new Array(6)) : data).map((item, index) => (
+            <Box
+              className="card"
+              key={index}
+              sx={{ width: 210, marginRight: 6, my: 5 }}
+            >
+              {item ? (
+                <img
+                  style={{ width: 210, height: 118 }}
+                  alt={item.title}
+                  src={item.imageURL}
+                />
+              ) : (
+                <Skeleton animation="wave"  variant="rectangular" width={210} height={118} />
+              )}
 
-          {item ? (
-            <Box sx={{ pr: 2 }}>
-              <Typography gutterBottom variant="body2">
-                {item.title}
-              </Typography>
-              <Typography display="block" variant="caption" color="text.secondary">
-                {item.channel}
-              </Typography>
-              <Typography variant="caption" color="text.secondary">
-                {`${item.views} • ${item.createdAt}`}
-              </Typography>
+              {item ? (
+                <Box sx={{ pl: 1 }} className='card__details'>
+                  <div>
+                    <Typography gutterBottom variant="body2">
+                      {item.name}
+                    </Typography>
+                    <Typography
+                      display="block"
+                      variant="caption"
+                      color="text.secondary"
+                    >
+                      {item.price}
+                    </Typography>
+                  </div>
+                  <div>
+                    <IconButton aria-label="delete" size="small">
+                      <ShoppingCartOutlinedIcon className="cart__icon" fontSize="small" />
+                    </IconButton>
+                  </div>
+                </Box>
+              ) : (
+                <Box sx={{ pt: 0.5 }}>
+                  <Skeleton />
+                  <Skeleton width="60%" />
+                </Box>
+              )}
             </Box>
-          ) : (
-            <Box sx={{ pt: 0.5 }}>
-              <Skeleton />
-              <Skeleton width="60%" />
-            </Box>
-          )}
-        </Box>
-      ))}
-      </Grid>
+          ))}
+        </Grid>
       </HomeContainer>
-      
     </Container>
   );
 };
