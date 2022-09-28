@@ -32,15 +32,20 @@ const Home = (props) => {
     }
   `;
   const data = props.data;
-  console.log(data);
   const loading = props.loading;
   const addItemTOCartHandler = (id) => {
     props.onItemAddedTOCart(id);
   }
+  const onFilterChange = (filterData) => {
+    console.log(filterData);
+    const filterFromData = data.filter(item => {
+    
+    })
+  }
 
   return (
     <Container>
-      <SideBar data ={props.data} />
+      <SideBar data ={props.data} filterDataHandler={onFilterChange} />
       <HomeContainer>
         <Grid container wrap="wrap">
           {(loading ? Array.from(new Array(6)) : data).map((item, index) => (

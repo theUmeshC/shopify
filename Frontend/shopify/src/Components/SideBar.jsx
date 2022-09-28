@@ -5,7 +5,7 @@ import {
   Radio,
   RadioGroup,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const SideBar = (props) => {
@@ -39,6 +39,33 @@ const SideBar = (props) => {
       display: none;
     }
   `;
+  const [filterData, setFilterData] =useState({
+    color : '',
+    price : '',
+    type : '',
+    gender : ''
+  })
+  const onColorChange = (e) => {
+    console.log(e.target.value);
+    setFilterData(filterData => {
+      filterData.color = e.target.value
+    })
+    console.log(filterData);
+  }
+  const onPriceChange = (e) => {
+    console.log(e.target.value);
+    setFilterData(filterData => {
+      filterData.price = e.target.value
+    })
+    console.log(filterData);
+  }
+  const onTypeChange = (e) => {
+    console.log(e.target.value);
+    setFilterData(filterData => {
+      filterData.type = e.target.value
+    })
+    console.log(filterData);
+  }
 
   return (
     <SideBar>
@@ -47,6 +74,7 @@ const SideBar = (props) => {
         <RadioGroup
           aria-labelledby="demo-radio-buttons-group-label"
           name="radio-buttons-group"
+          onChange={onColorChange}
         >
           {filterColor.map((item, index) => {
             return (
@@ -65,10 +93,11 @@ const SideBar = (props) => {
         <RadioGroup
           aria-labelledby="demo-radio-buttons-group-label"
           name="radio-buttons-group"
+          onClick={onPriceChange}
         >
-          <FormControlLabel value="250" control={<Radio />} label="0-250" />
-          <FormControlLabel value="300" control={<Radio />} label="250-450" />
-          <FormControlLabel value="500" control={<Radio />} label="500-All" />
+          <FormControlLabel key={342131} value={250} control={<Radio />} label="0-250" />
+          <FormControlLabel key={342142431} value={300} control={<Radio />} label="250-450" />
+          <FormControlLabel key={3421433531} value={500} control={<Radio />} label="500-All" />
         </RadioGroup>
       </FormControl>
       <FormControl>
@@ -76,10 +105,11 @@ const SideBar = (props) => {
         <RadioGroup
           aria-labelledby="demo-radio-buttons-group-label"
           name="radio-buttons-group"
+          onClick={onTypeChange}
         >
           {filterType.map((item, index) => {
             return (
-              <FormControlLabel key={index++} value={item} control={<Radio />} label={item} />
+              <FormControlLabel key={index+=20} value={item} control={<Radio />} label={item} />
             );
           })}
         </RadioGroup>
