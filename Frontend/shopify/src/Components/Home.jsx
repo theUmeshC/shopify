@@ -38,9 +38,9 @@ const Home = (props) => {
   }
   const onFilterChange = (filterData) => {
     console.log(filterData);
-    const filterFromData = data.filter(item => {
+    // const filterFromData = data.filter(item => {
     
-    })
+    // })
   }
 
   return (
