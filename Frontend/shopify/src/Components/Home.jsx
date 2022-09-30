@@ -8,7 +8,6 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 const Home = (props) => {
   const Container = styled.div`
     display: flex;
-    background-image: linear-gradient(to right, #2cd4d9, #5333ed);
   `;
   const HomeContainer = styled.div`
     width: 70vw;
@@ -32,15 +31,14 @@ const Home = (props) => {
     }
   `;
   const data = props.data;
+  const cloneData = props.cloneData;
   const loading = props.loading;
   const addItemTOCartHandler = (id) => {
     props.onItemAddedTOCart(id);
   }
   const onFilterChange = (filterData) => {
     console.log(filterData);
-    // const filterFromData = data.filter(item => {
-    
-    // })
+    props.updateData(filterData);
   }
 
   return (
@@ -48,7 +46,7 @@ const Home = (props) => {
       <SideBar data ={props.data} filterDataHandler={onFilterChange} />
       <HomeContainer>
         <Grid container wrap="wrap">
-          {(loading ? Array.from(new Array(6)) : data).map((item, index) => (
+          {(loading ? Array.from(new Array(6)) : cloneData).map((item, index) => (
             <Box
               className="card"
               key={index++}
