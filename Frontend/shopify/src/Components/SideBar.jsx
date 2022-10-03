@@ -13,7 +13,7 @@ const SideBarContainer = styled.div`
   position: sticky;
   top: 10vh;
   /* background-color: #5333ed; */
-  border-right: 2px solid blue;
+  border-right: 2px solid #5233edab;;
   display: flex;
   flex-direction: column;
   padding-left: 15px;

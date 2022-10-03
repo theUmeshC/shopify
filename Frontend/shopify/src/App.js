@@ -49,6 +49,7 @@ function App() {
         }
       });
       if (selectedItemQuantity > updatingCount) {
+        console.log(updatingCount);
         setCartData((prevData) => [...prevData, selectedItem[0]]);
       } else {
         toast.error("🦄 Out of Stock!");
@@ -72,10 +73,13 @@ function App() {
     // console.log(newData);
   };
   const navSearchHandle = (input) => {
-  //  console.log(input);
-   if(input!==''){
-    updateData(input);
-   }
+    //  console.log(input);
+    if (input !== "") {
+      updateData(input);
+    }
+    if (input === " ") {
+      setCloneData(data);
+    }
   };
   return (
     <Router>

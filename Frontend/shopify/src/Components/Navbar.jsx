@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import SearchIcon from "@mui/icons-material/Search";
-import { Input } from "@mui/material";
 import { Link } from "react-router-dom";
 import { DebounceInput } from "react-debounce-input";
 
@@ -63,6 +62,9 @@ const SearchInput = styled.div`
     padding-bottom: 20px;
   }
 `;
+
+
+
 const Navbar = (props) => {
   const seacrchInput = props.searchInput; 
   const [searchTerm, setSearchTerm] = useState("");

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -7,9 +7,9 @@ const Container = styled.div`
   width: 70vw;
   margin: auto;
   gap: 2px;
-  height:80vh ;
+  height: 80vh;
   overflow-y: scroll;
-  ::-webkit-scrollbar{
+  ::-webkit-scrollbar {
     display: none;
   }
 `;
@@ -41,16 +41,21 @@ const Basket = styled.div`
 `;
 const Cart = (props) => {
   const data = props.data;
-  const [cloneData, setCloneData] = useState([...data]);
-  const total = cloneData.length;
-  const totalSum = cloneData
+  // const cartLoaclStorage = localStorage.getItem('cartData');
+
+  const [cloneData, setCloneData] = useState([]);
+  const total = data.length;
+  const totalSum = data
     .map((value) => {
       return value.price;
     })
     .reduce((acc, a) => {
       return acc + a;
     }, 0);
-    const map = new Map(
+
+  useEffect(() => {
+    let cartArray = [];
+    const mapData = new Map(
       Object.entries(
         data.reduce((acc, curr) => {
           const str = JSON.stringify(curr);
@@ -59,33 +64,56 @@ const Cart = (props) => {
         }, {})
       )
     );
-    const cartData = data.reduce((acc, curr) => {
-      const str = JSON.stringify(curr);
-      acc[str] = (acc[str] || 0) + 1;
-      return acc;
-    }, []);
-    const buttonClick = () => {
-      console.log(data);
-      console.log(cartData);
-      console.log(map);
-      console.log(Object.keys(map));
-    }  
+    for (let [key, value] of mapData) {
+      let element = JSON.parse(key);
+      element.cartQuantity = value;
+      cartArray.push(element);
+      console.log(cartArray);
+      localStorage.setItem("cartData", JSON.stringify(cartArray));
+    }
+    console.log(localStorage.getItem("cartData"));
+    setCloneData(JSON.parse(localStorage.getItem("cartData")));
+  }, [data]);
+  // const cartData = data.reduce((acc, curr) => {
+  //   const str = JSON.stringify(curr);
+  //   acc[str] = (acc[str] || 0) + 1;
+  //   return acc;
+  // }, []);
+  // const buttonClick = () => {
+  //   console.log(data);
+  //   // console.log(cartData);
+  //   console.log(map);
+  //   console.log(Object.keys(map));
+  //   let cartArray = [];
+
+  //   for (let [key, value] of map){
+  //     console.log(key);
+  //     let element = JSON.parse(key);
+  //     element.cartQuantity = value;
+  //     console.log(element);
+  //     cartArray.push(element);
+  //     console.log(value);
+  //     console.log(cartArray);
+  //   }
+  // }
   return (
     <Wrapper>
       <Container>
-      <button onClick={buttonClick}>hello</button>
-        {cloneData.map((value, i) => {
-          return (
-            <Cards key={i}>
-              <img src={value.imageURL} alt="" />
-              <div className="details">
-                <h4>{value.name}</h4>
-                <h5>{value.price}</h5>
-              </div>
-              {/* <button onClick={removeItem}>delete</button> */}
-            </Cards>
-          );
-        })}
+        {/* <button onClick={buttonClick}>hello</button> */}
+        {cloneData &&
+          cloneData.map((value, i) => {
+            return (
+              <Cards key={i}>
+                <img src={value.imageURL} alt="" />
+                <div className="details">
+                  <h4>{value.name}</h4>
+                  <h5>{value.price}</h5>
+                  <h5>{value.cartQuantity}</h5>
+                </div>
+                {/* <button onClick={removeItem}>delete</button> */}
+              </Cards>
+            );
+          })}
       </Container>
       <Basket>
         <h1>Total Quantity:{total}</h1>
