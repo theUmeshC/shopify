@@ -19,6 +19,7 @@ const Wrapper = styled.div`
 const Cards = styled.div`
   height: 100px;
   display: flex;
+  justify-content: space-around;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   align-items: center;
   gap: 10px;
@@ -39,10 +40,9 @@ const Basket = styled.div`
     font-size: 20px;
   }
 `;
+
 const Cart = (props) => {
   const data = props.data;
-  // const cartLoaclStorage = localStorage.getItem('cartData');
-
   const [cloneData, setCloneData] = useState([]);
   const total = data.length;
   const totalSum = data
@@ -52,6 +52,7 @@ const Cart = (props) => {
     .reduce((acc, a) => {
       return acc + a;
     }, 0);
+  props.searchDisplay(false);
 
   useEffect(() => {
     let cartArray = [];
@@ -69,37 +70,13 @@ const Cart = (props) => {
       element.cartQuantity = value;
       cartArray.push(element);
       console.log(cartArray);
-      localStorage.setItem("cartData", JSON.stringify(cartArray));
     }
-    console.log(localStorage.getItem("cartData"));
-    setCloneData(JSON.parse(localStorage.getItem("cartData")));
+    setCloneData(cartArray);
   }, [data]);
-  // const cartData = data.reduce((acc, curr) => {
-  //   const str = JSON.stringify(curr);
-  //   acc[str] = (acc[str] || 0) + 1;
-  //   return acc;
-  // }, []);
-  // const buttonClick = () => {
-  //   console.log(data);
-  //   // console.log(cartData);
-  //   console.log(map);
-  //   console.log(Object.keys(map));
-  //   let cartArray = [];
 
-  //   for (let [key, value] of map){
-  //     console.log(key);
-  //     let element = JSON.parse(key);
-  //     element.cartQuantity = value;
-  //     console.log(element);
-  //     cartArray.push(element);
-  //     console.log(value);
-  //     console.log(cartArray);
-  //   }
-  // }
   return (
     <Wrapper>
       <Container>
-        {/* <button onClick={buttonClick}>hello</button> */}
         {cloneData &&
           cloneData.map((value, i) => {
             return (
@@ -107,10 +84,11 @@ const Cart = (props) => {
                 <img src={value.imageURL} alt="" />
                 <div className="details">
                   <h4>{value.name}</h4>
-                  <h5>{value.price}</h5>
-                  <h5>{value.cartQuantity}</h5>
+                  <h5>Price:{value.price}</h5>
                 </div>
-                {/* <button onClick={removeItem}>delete</button> */}
+                <div className="quantity">
+                  <h3>{value.cartQuantity}</h3>
+                </div>
               </Cards>
             );
           })}

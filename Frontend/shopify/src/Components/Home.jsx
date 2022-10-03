@@ -2,14 +2,12 @@ import { Grid, IconButton, Skeleton, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 import styled from "styled-components";
-import SideBar from "./SideBar";
+// import SideBar from "./SideBar";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 
-const Home = (props) => {
-  const Container = styled.div`
-    display: flex;
-  `;
   const HomeContainer = styled.div`
+    flex-wrap: wrap;
+    display: flex;
     width: 70vw;
     margin: auto;
     .card {
@@ -30,20 +28,17 @@ const Home = (props) => {
         justify-content: space-between;
     }
   `;
-  const data = props.data;
+
+const Home = (props) => {
+  props.searchDisplay(true);
+  // const data = props.data;
   const cloneData = props.cloneData;
   const loading = props.loading;
   const addItemTOCartHandler = (id) => {
     props.onItemAddedTOCart(id);
   }
-  const onFilterChange = (filterData) => {
-    console.log(filterData);
-    props.updateData(filterData);
-  }
-
+  
   return (
-    <Container>
-      <SideBar data ={props.data} filterDataHandler={onFilterChange} />
       <HomeContainer>
         <Grid container wrap="wrap">
           {(loading ? Array.from(new Array(6)) : cloneData).map((item, index) => (
@@ -92,7 +87,6 @@ const Home = (props) => {
           ))}
         </Grid>
       </HomeContainer>
-    </Container>
   );
 };
 

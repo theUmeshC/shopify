@@ -18,6 +18,15 @@ const Nav = styled.div`
   color: white;
   z-index: 999;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.1);
+  .searchBar {
+    background-color: transparent;
+    height: 20px;
+    border: solid black;
+    border-bottom-width: 1px;
+    border-top-width: 0px;
+    border-left-width: 0px;
+    border-right-width: 0px;
+  }
 `;
 const Cart = styled.div`
   display: flex;
@@ -63,36 +72,31 @@ const SearchInput = styled.div`
   }
 `;
 
-
-
 const Navbar = (props) => {
-  const seacrchInput = props.searchInput; 
+  const seacrchInput = props.searchInput;
   const [searchTerm, setSearchTerm] = useState("");
   const searchHandle = (e) => {
     setSearchTerm(e.target.value);
   };
   useEffect(() => {
     seacrchInput(searchTerm);
-  }, [seacrchInput,searchTerm]);
+  }, [seacrchInput, searchTerm]);
   return (
     <Nav>
       <Link to="/" className="cart__icon">
         <Logo>Shopify</Logo>
       </Link>
-      <SearchInput>
-        {/* <Input
-          placeholder="Search"
-          sx={{ color: "white" }}
-          value={searchTerm}
-          onChange={searchHandle}
-        /> */}
-        <DebounceInput
-          debounceTimeout={500}
-          value={searchTerm}
-          onChange={searchHandle}
-        />
-        <SearchIcon />
-      </SearchInput>
+      {props.searchDisplay && (
+        <SearchInput>
+          <DebounceInput
+            debounceTimeout={500}
+            value={searchTerm}
+            onChange={searchHandle}
+            className="searchBar"
+          />
+          <SearchIcon />
+        </SearchInput>
+      )}
       <RightContainer>
         <Link to="/" className="cart__icon">
           <h1>Products</h1>

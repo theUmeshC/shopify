@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Cart from "./Components/Cart";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import SideBar from "./Components/SideBar";
 
 const baseURL =
   "https://geektrust.s3.ap-southeast-1.amazonaws.com/coding-problems/shopping-cart/catalogue.json";
@@ -17,6 +18,7 @@ function App() {
   const [count, setCount] = useState([]);
   const [navBarCount, setNavBarCount] = useState(0);
   const [cloneData, setCloneData] = useState([]);
+  const [searchDisplay, setSearchDisplay] = useState(true);
   // const [stockControl, setStockControl] = useState(true);
   useEffect(() => {
     axios.get(`${baseURL}`).then((response) => {
@@ -81,6 +83,15 @@ function App() {
       setCloneData(data);
     }
   };
+  const onFilterChange = (filterData) => {
+    console.log(filterData);
+    updateData(filterData);
+  };
+
+  const changeSearchDisplay = (value) => {
+    setSearchDisplay(value)
+  }
+
   return (
     <Router>
       <div className="App">
@@ -89,6 +100,7 @@ function App() {
           data={data}
           uptadeData={updateData}
           searchInput={navSearchHandle}
+          searchDisplay = {searchDisplay}
         />
         <Switch>
           <Route exact path="/">
@@ -105,17 +117,22 @@ function App() {
             />
             {/* Same as */}
             <ToastContainer />
-            <Home
-              loading={loadingState}
-              data={data}
-              // stockControl={stockControl}
-              onItemAddedTOCart={cartDataHandler}
-              updateData={updateData}
-              cloneData={cloneData}
-            />
+            <div className="wrapper">
+              <SideBar data={data} filterDataHandler={onFilterChange} />
+
+              <Home
+                loading={loadingState}
+                data={data}
+                // stockControl={stockControl}
+                onItemAddedTOCart={cartDataHandler}
+                updateData={updateData}
+                cloneData={cloneData}
+                searchDisplay= {changeSearchDisplay}
+              />
+            </div>
           </Route>
           <Route path="/cart">
-            <Cart data={cartData} countData={count} />
+            <Cart data={cartData} countData={count} searchDisplay= {changeSearchDisplay} />
           </Route>
         </Switch>
         {/* <button onClick={hello} >hello</button> */}
