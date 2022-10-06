@@ -12,13 +12,13 @@ body::-webkit-scrollbar{
     width: 100vw;
     /* overflow-x: hidden; */
 }
-@media (min-width: 250px) and (max-width: 400px) {
+@media (min-width: 250px) and (max-width: 415px) {
     .hamburger{
         display: none;
     }
 }
 
-@media (min-width: 400px) {
+@media (min-width: 415px) {
    .hamburger{
     display: flex;
    }

@@ -24,7 +24,7 @@ const Container = styled.div`
     height: 100%;
   }
   .cart__items::-webkit-scrollbar-track {
-    background-color: #d6e9f9;
+    background-color: white;
   }
   .cart__items::-webkit-scrollbar-thumb {
     background-color: #597ef7;
@@ -47,7 +47,6 @@ const Container = styled.div`
     }
   }
 `;
-
 const Cards = styled.div`
   height: 90px;
   display: flex;

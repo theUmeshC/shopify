@@ -19,7 +19,6 @@ function App() {
   const [navBarCount, setNavBarCount] = useState(0);
   const [cloneData, setCloneData] = useState([]);
   const [searchDisplay, setSearchDisplay] = useState(true);
-  // const [stockControl, setStockControl] = useState(true);
   useEffect(() => {
     axios.get(`${baseURL}`).then((response) => {
       setTimeout(() => {
@@ -30,7 +29,6 @@ function App() {
           return arr.push({ id: value.id, initialCount: 0 });
         });
         setCount(arr);
-        // console.log(count);
         setLoadingState(false);
       }, 2500);
     });
@@ -53,13 +51,14 @@ function App() {
       if (selectedItemQuantity > updatingCount) {
         console.log(updatingCount);
         setCartData((prevData) => [...prevData, selectedItem[0]]);
+        setNavBarCount(cartData.length + 1);
       } else {
         toast.error("🦄 Out of Stock!");
       }
     } else {
       setCartData(selectedItem);
+      setNavBarCount(cartData.length + 1);
     }
-    setNavBarCount(cartData.length + 1);
   };
 
   const updateData = (newData) => {
@@ -72,10 +71,8 @@ function App() {
       );
     });
     setCloneData(filterData);
-    // console.log(newData);
   };
   const navSearchHandle = (input) => {
-    //  console.log(input);
     if (input !== "") {
       updateData(input);
     }
@@ -89,8 +86,8 @@ function App() {
   };
 
   const changeSearchDisplay = (value) => {
-    setSearchDisplay(value)
-  }
+    setSearchDisplay(value);
+  };
 
   return (
     <Router>
@@ -100,7 +97,7 @@ function App() {
           data={data}
           updateData={updateData}
           searchInput={navSearchHandle}
-          searchDisplay = {searchDisplay}
+          searchDisplay={searchDisplay}
         />
         <Switch>
           <Route exact path="/">
@@ -115,26 +112,27 @@ function App() {
               draggable
               pauseOnHover
             />
-            {/* Same as */}
             <ToastContainer />
             <div className="wrapper">
               <SideBar data={data} filterDataHandler={onFilterChange} />
-
               <Home
-                className=''
+                className=""
                 loading={loadingState}
                 onItemAddedTOCart={cartDataHandler}
                 updateData={updateData}
                 cloneData={cloneData}
-                searchDisplay= {changeSearchDisplay}
+                searchDisplay={changeSearchDisplay}
               />
             </div>
           </Route>
           <Route path="/cart">
-            <Cart data={cartData} countData={count} searchDisplay= {changeSearchDisplay} />
+            <Cart
+              data={cartData}
+              countData={count}
+              searchDisplay={changeSearchDisplay}
+            />
           </Route>
         </Switch>
-        {/* <button onClick={hello} >hello</button> */}
       </div>
     </Router>
   );

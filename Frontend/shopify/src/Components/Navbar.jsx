@@ -33,6 +33,7 @@ const Cart = styled.div`
   .cart__icon:hover {
     text-decoration: none;
     cursor: pointer;
+    color: gold;
   }
 `;
 const RightContainer = styled.div`
@@ -40,14 +41,15 @@ const RightContainer = styled.div`
   gap: 10px;
   align-items: center;
   h1 {
+    color: white;
     font-size: 15px;
   }
-  .cart__icon {
-    color: white;
+  h1:hover {
+    text-decoration: none;
+    cursor: pointer;
+    color: #3ee83e;
   }
-  .cart__icon:hover {
-    text-decoration: underline;
-  }
+
 `;
 const Logo = styled.h1`
   font-size: 25px;
