@@ -4,25 +4,55 @@ import styled from "styled-components";
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  width: 70vw;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  width: 550px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 390px;
   margin: auto;
-  gap: 2px;
-  height: 80vh;
-  overflow-y: scroll;
-  ::-webkit-scrollbar {
-    display: none;
+
+  .cart__items {
+    overflow-y: scroll;
+  }
+  .cart__items::-webkit-scrollbar {
+    width: 16px;
+    border-radius: 10px;
+    height: 100%;
+  }
+  .cart__items::-webkit-scrollbar-track {
+    background-color: #d6e9f9;
+  }
+  .cart__items::-webkit-scrollbar-thumb {
+    background-color: #597ef7;
+    border-radius: 10px;
+    border: 3px solid #ffffff;
+  }
+  .title {
+    position: sticky;
+    padding: 10px 0px;
+    top: 0;
+    z-index: 1;
+    background-color: #c2e2fe;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    h1 {
+      font-size: 15px;
+      font-weight: bold;
+      margin-left: 50px;
+    }
   }
 `;
-const Wrapper = styled.div`
-  height: 90vh;
-`;
+
 const Cards = styled.div`
-  height: 100px;
+  height: 90px;
   display: flex;
   justify-content: space-around;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   align-items: center;
-  gap: 10px;
   img {
     /* width: 90px; */
     width: 90px;
@@ -75,29 +105,36 @@ const Cart = (props) => {
   }, [data]);
 
   return (
-    <Wrapper>
+    <div>
       <Container>
-        {cloneData &&
-          cloneData.map((value, i) => {
-            return (
-              <Cards key={i}>
-                <img src={value.imageURL} alt="" />
-                <div className="details">
-                  <h4>{value.name}</h4>
-                  <h5>Price:{value.price}</h5>
-                </div>
-                <div className="quantity">
-                  <h3>{value.cartQuantity}</h3>
-                </div>
-              </Cards>
-            );
-          })}
+        <div className="title">
+          <h1>Products</h1>
+          <h1>Details</h1>
+          <h1>Quantity</h1>
+        </div>
+        <div className="cart__items">
+          {cloneData &&
+            cloneData.map((value, i) => {
+              return (
+                <Cards key={i}>
+                  <img src={value.imageURL} alt="" />
+                  <div className="details">
+                    <h4>{value.name}</h4>
+                    <h5>Price:{value.price}</h5>
+                  </div>
+                  <div className="quantity">
+                    <h3>{value.cartQuantity}</h3>
+                  </div>
+                </Cards>
+              );
+            })}
+        </div>
       </Container>
       <Basket>
         <h1>Total Quantity:{total}</h1>
         <h1>Total Amount :{totalSum}</h1>
       </Basket>
-    </Wrapper>
+    </div>
   );
 };
 

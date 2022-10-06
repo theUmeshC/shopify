@@ -10,12 +10,11 @@ import styled from "styled-components";
 
 const SideBarContainer = styled.div`
   height: 90vh;
-  width: 180px;
+  min-width: 160px;
   position: sticky;
   top: 10vh;
-  /* background-color: #5333ed; */
+  background-color: #bed5f1;
   border-right: 2px solid #5233edab;
-  display: flex;
   flex-direction: column;
   padding-left: 15px;
   box-sizing: border-box;
@@ -42,30 +41,14 @@ const SideBar = (props) => {
     ),
   ];
 
-  const onColorChangeHandler = (e) => {
+  const filterChangeHandler = (e) => {
     console.log(e.target.checked);
     setCheckedRadio(e.target.value);
     e.preventDefault();
     props.filterDataHandler(e.target.value);
   };
-  const onTypeChangeHandler = (e) => {
-    setCheckedRadio(e.target.value);
-    e.preventDefault();
-    props.filterDataHandler(e.target.value);
-  };
-  const onGenderChangeHandler = (e) => {
-    setCheckedRadio(e.target.value);
-    e.preventDefault();
-    props.filterDataHandler(e.target.value);
-  };
-  const onPriceChangeHandler = (e) => {
-    setCheckedRadio(e.target.value);
-    e.preventDefault();
-    props.filterDataHandler(e.target.value);
-  };
-  console.log(checkedRadio);
   return (
-    <SideBarContainer>
+    <SideBarContainer className="hamburger" >
       <FormControl>
         <FormLabel id="demo-radio-buttons-group-label">Color</FormLabel>
         <RadioGroup
@@ -80,51 +63,13 @@ const SideBar = (props) => {
                 control={
                   <Radio
                     checked={checkedRadio === item}
-                    onClick={onColorChangeHandler}
+                    onClick={filterChangeHandler}
                   />
                 }
                 label={item}
               />
             );
           })}
-        </RadioGroup>
-      </FormControl>
-      <FormControl>
-        <FormLabel id="demo-radio-buttons-group-label">Price</FormLabel>
-        <RadioGroup
-          aria-labelledby="demo-radio-buttons-group-label"
-          name="radio-buttons-group"
-        >
-          <FormControlLabel
-            value="250"
-            control={
-              <Radio
-                checked={checkedRadio === "250"}
-                onClick={onPriceChangeHandler}
-              />
-            }
-            label="0-250"
-          />
-          <FormControlLabel
-            value="300"
-            control={
-              <Radio
-                checked={checkedRadio === "300"}
-                onClick={onPriceChangeHandler}
-              />
-            }
-            label="250-450"
-          />
-          <FormControlLabel
-            value="500"
-            control={
-              <Radio
-                checked={checkedRadio === "500"}
-                onClick={onPriceChangeHandler}
-              />
-            }
-            label="500-All"
-          />
         </RadioGroup>
       </FormControl>
       <FormControl>
@@ -141,7 +86,7 @@ const SideBar = (props) => {
                 control={
                   <Radio
                     checked={checkedRadio === item}
-                    onClick={onTypeChangeHandler}
+                    onClick={filterChangeHandler}
                   />
                 }
                 label={item}
@@ -161,7 +106,7 @@ const SideBar = (props) => {
             control={
               <Radio
                 checked={checkedRadio === "Men"}
-                onClick={onGenderChangeHandler}
+                onClick={filterChangeHandler}
               />
             }
             label="Male"
@@ -171,10 +116,48 @@ const SideBar = (props) => {
             control={
               <Radio
                 checked={checkedRadio === "Women"}
-                onClick={onGenderChangeHandler}
+                onClick={filterChangeHandler}
               />
             }
             label="Female"
+          />
+        </RadioGroup>
+      </FormControl>
+      <FormControl>
+        <FormLabel id="demo-radio-buttons-group-label">Price</FormLabel>
+        <RadioGroup
+          aria-labelledby="demo-radio-buttons-group-label"
+          name="radio-buttons-group"
+        >
+          <FormControlLabel
+            value="250"
+            control={
+              <Radio
+                checked={checkedRadio === "250"}
+                onClick={filterChangeHandler}
+              />
+            }
+            label="0-250"
+          />
+          <FormControlLabel
+            value="300"
+            control={
+              <Radio
+                checked={checkedRadio === "300"}
+                onClick={filterChangeHandler}
+              />
+            }
+            label="250-450"
+          />
+          <FormControlLabel
+            value="500"
+            control={
+              <Radio
+                checked={checkedRadio === "500"}
+                onClick={filterChangeHandler}
+              />
+            }
+            label="500-All"
           />
         </RadioGroup>
       </FormControl>

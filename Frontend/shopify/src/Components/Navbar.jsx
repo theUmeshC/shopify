@@ -6,43 +6,33 @@ import { Link } from "react-router-dom";
 import { DebounceInput } from "react-debounce-input";
 
 const Nav = styled.div`
+  position: sticky;
+  top: 0;
+  width: 100vw;
   height: 10vh;
   display: flex;
   box-sizing: border-box;
   justify-content: space-between;
   padding: 1px 15px;
   align-items: center;
-  background-image: linear-gradient(to right, #2cd4d9, #5333ed);
-  position: sticky;
-  top: 0;
+  /* background-image: linear-gradient(to right, #2cd4d9, #5333ed); */
+  background-color: #5333ed;
   color: white;
   z-index: 999;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.1);
-  .searchBar {
-    background-color: transparent;
-    height: 20px;
-    border: solid black;
-    border-bottom-width: 1px;
-    border-top-width: 0px;
-    border-left-width: 0px;
-    border-right-width: 0px;
-  }
+
 `;
 const Cart = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
   width: fit-content;
-
-  span {
-    font-size: 15px;
-    position: relative;
-    top: -9px;
-  }
   .cart__icon {
     color: white;
   }
   .cart__icon:hover {
-    text-decoration: underline;
+    text-decoration: none;
+    cursor: pointer;
   }
 `;
 const RightContainer = styled.div`
@@ -60,27 +50,37 @@ const RightContainer = styled.div`
   }
 `;
 const Logo = styled.h1`
-  font-size: 30px;
-  color: #5333ed;
+  font-size: 25px;
+  color: white;
 `;
 const SearchInput = styled.div`
-  /* padding-bottom: 20px; */
   display: flex;
+  min-width:80px;
   align-items: center;
   .input {
     padding-bottom: 20px;
   }
+  .searchBar {
+    min-width:80px;
+    background-color: transparent;
+    height: 20px;
+    border: solid white;
+    border-bottom-width: 1px;
+    border-top-width: 0px;
+    border-left-width: 0px;
+    border-right-width: 0px;
+  }
 `;
 
 const Navbar = (props) => {
-  const seacrchInput = props.searchInput;
+  const searchInput = props.searchInput;
   const [searchTerm, setSearchTerm] = useState("");
   const searchHandle = (e) => {
     setSearchTerm(e.target.value);
   };
   useEffect(() => {
-    seacrchInput(searchTerm);
-  }, [seacrchInput, searchTerm]);
+    searchInput(searchTerm);
+  }, [searchInput, searchTerm]);
   return (
     <Nav>
       <Link to="/" className="cart__icon">
@@ -104,8 +104,8 @@ const Navbar = (props) => {
         <Cart>
           <Link to="/cart" className="cart__icon">
             <ShoppingCartOutlinedIcon />
-            <span>{props.count}</span>
           </Link>
+          <span>{props.count}</span>
         </Cart>
       </RightContainer>
     </Nav>

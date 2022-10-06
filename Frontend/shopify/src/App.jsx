@@ -98,7 +98,7 @@ function App() {
         <Navbar
           count={navBarCount}
           data={data}
-          uptadeData={updateData}
+          updateData={updateData}
           searchInput={navSearchHandle}
           searchDisplay = {searchDisplay}
         />
@@ -121,9 +121,8 @@ function App() {
               <SideBar data={data} filterDataHandler={onFilterChange} />
 
               <Home
+                className=''
                 loading={loadingState}
-                data={data}
-                // stockControl={stockControl}
                 onItemAddedTOCart={cartDataHandler}
                 updateData={updateData}
                 cloneData={cloneData}

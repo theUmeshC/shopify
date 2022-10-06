@@ -8,6 +8,19 @@ body::-webkit-scrollbar{
 }
 .wrapper{
     display: flex;
-    
-    /* align-items: center; */
+    /* gap: 120px; */
+    width: 100vw;
+    /* overflow-x: hidden; */
 }
+@media (min-width: 250px) and (max-width: 400px) {
+    .hamburger{
+        display: none;
+    }
+}
+
+@media (min-width: 400px) {
+   .hamburger{
+    display: flex;
+   }
+}
+
