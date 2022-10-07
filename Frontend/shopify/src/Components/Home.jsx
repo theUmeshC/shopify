@@ -9,13 +9,12 @@ const HomeContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: 80vw;
-  overflow-x: hidden;
   margin: auto;
   align-items: center;
   justify-content: center;
   .card {
     margin:20px auto;
-    padding: 35px;
+    padding: 25px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     border-radius: 5px;
   }

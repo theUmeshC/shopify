@@ -20,7 +20,6 @@ const Nav = styled.div`
   color: white;
   z-index: 999;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.1);
-
 `;
 const Cart = styled.div`
   display: flex;
@@ -49,7 +48,6 @@ const RightContainer = styled.div`
     cursor: pointer;
     color: #3ee83e;
   }
-
 `;
 const Logo = styled.h1`
   font-size: 25px;
@@ -57,13 +55,13 @@ const Logo = styled.h1`
 `;
 const SearchInput = styled.div`
   display: flex;
-  min-width:80px;
+  min-width: 80px;
   align-items: center;
   .input {
     padding-bottom: 20px;
   }
   .searchBar {
-    min-width:80px;
+    min-width: 80px;
     background-color: transparent;
     height: 20px;
     border: solid white;
@@ -71,6 +69,9 @@ const SearchInput = styled.div`
     border-top-width: 0px;
     border-left-width: 0px;
     border-right-width: 0px;
+  }
+  .searchBar:focus {
+    color:white;
   }
 `;
 

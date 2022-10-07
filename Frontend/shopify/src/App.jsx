@@ -12,7 +12,7 @@ const baseURL =
   "https://geektrust.s3.ap-southeast-1.amazonaws.com/coding-problems/shopping-cart/catalogue.json";
 
 function App() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState();
   const [loadingState, setLoadingState] = useState(true);
   const [cartData, setCartData] = useState([]);
   const [count, setCount] = useState([]);
@@ -114,7 +114,10 @@ function App() {
             />
             <ToastContainer />
             <div className="wrapper">
-              <SideBar data={data} filterDataHandler={onFilterChange} />
+             {
+              data &&
+             <SideBar data={data} filterDataHandler={onFilterChange} />
+             } 
               <Home
                 className=""
                 loading={loadingState}
