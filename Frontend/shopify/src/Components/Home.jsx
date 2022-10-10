@@ -2,7 +2,6 @@ import { Grid, IconButton, Skeleton, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useEffect } from "react";
 import styled from "styled-components";
-// import SideBar from "./SideBar";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 
 const HomeContainer = styled.div`

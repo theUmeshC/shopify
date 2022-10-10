@@ -25,7 +25,6 @@ const SideBarContainer = styled.div`
 `;
 const SideBar = (props) => {
   const [checkedRadio, setCheckedRadio] = useState("");
-
   const filterColor = [
     ...new Set(
       props.data.map((item) => {
@@ -40,7 +39,6 @@ const SideBar = (props) => {
       })
     ),
   ];
-
   const filterChangeHandler = (e) => {
     console.log(e.target.checked);
     setCheckedRadio(e.target.value);
