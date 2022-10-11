@@ -5,7 +5,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  width: 550px;
+  width: 60vw;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   position: absolute;
@@ -13,8 +13,6 @@ const Container = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   height: 390px;
-  margin: auto;
-
   .cart__items {
     overflow-y: scroll;
   }
@@ -31,6 +29,11 @@ const Container = styled.div`
     border-radius: 10px;
     border: 3px solid #ffffff;
   }
+  
+  .cart__items::-webkit-scrollbar-thumb:hover {
+    background-color: #3766ff;
+  }
+
   .title {
     position: sticky;
     padding: 10px 0px;
@@ -40,10 +43,10 @@ const Container = styled.div`
     display: flex;
     justify-content: space-around;
     align-items: center;
+    
     h1 {
       font-size: 15px;
       font-weight: bold;
-      margin-left: 50px;
     }
   }
 `;
@@ -53,8 +56,7 @@ const Cards = styled.div`
   justify-content: space-around;
   align-items: center;
   img {
-    /* width: 90px; */
-    width: 90px;
+    width: 70px;
     border-radius: 50%;
   }
 `;
@@ -98,13 +100,12 @@ const Cart = (props) => {
       let element = JSON.parse(key);
       element.cartQuantity = value;
       cartArray.push(element);
-      console.log(cartArray);
     }
     setCloneData(cartArray);
   }, [data]);
 
   return (
-    <div>
+    <>
       <Container>
         <div className="title">
           <h1>Products</h1>
@@ -133,7 +134,7 @@ const Cart = (props) => {
         <h1>Total Quantity:{total}</h1>
         <h1>Total Amount :{totalSum}</h1>
       </Basket>
-    </div>
+    </>
   );
 };
 

@@ -49,7 +49,6 @@ function App() {
         }
       });
       if (selectedItemQuantity > updatingCount) {
-        console.log(updatingCount);
         setCartData((prevData) => [...prevData, selectedItem[0]]);
         setNavBarCount(cartData.length + 1);
       } else {
@@ -114,10 +113,9 @@ function App() {
             />
             <ToastContainer />
             <div className="wrapper">
-             {
-              data &&
-             <SideBar data={data} filterDataHandler={onFilterChange} />
-             } 
+              {data && (
+                <SideBar data={data} filterDataHandler={onFilterChange} />
+              )}
               <Home
                 className=""
                 loading={loadingState}
