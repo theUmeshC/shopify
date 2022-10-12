@@ -1,12 +1,14 @@
 import Home from "./Components/Home";
 import Navbar from "./Components/Navbar";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Cart from "./Components/Cart";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SideBar from "./Components/SideBar";
+import { CartState } from "./Context/context";
+import { addCart } from "./Context/cartHandler";
 
 const baseURL =
   "https://geektrust.s3.ap-southeast-1.amazonaws.com/coding-problems/shopping-cart/catalogue.json";
@@ -14,9 +16,7 @@ const baseURL =
 function App() {
   const [data, setData] = useState();
   const [loadingState, setLoadingState] = useState(true);
-  const [cartData, setCartData] = useState([]);
   const [count, setCount] = useState([]);
-  const [navBarCount, setNavBarCount] = useState(0);
   const [cloneData, setCloneData] = useState([]);
   const [searchDisplay, setSearchDisplay] = useState(true);
   useEffect(() => {
@@ -34,7 +34,14 @@ function App() {
     });
   }, []);
 
-  const cartDataHandler = (id) => {
+  const {
+    state: { cart },
+    dispatch,
+  } = CartState();
+  console.log(cart);
+
+  const cartDataHandler = (id, product) => {
+    console.log(product);
     const countClone = [...count];
     const selectedItem = data.filter((item) => {
       return item.id === id;
@@ -42,21 +49,25 @@ function App() {
     let selectedItemQuantity = selectedItem[0].quantity;
     let initialCountElement = countClone.filter((value) => value.id === id);
     let updatingCount = initialCountElement[0].initialCount;
-    if (cartData.length > 0) {
-      cartData.forEach((item) => {
+    if (cart.length > 0) {
+      cart.forEach((item) => {
         if (item.id === id) {
-          updatingCount++;
+          updatingCount= item.qty;
         }
       });
       if (selectedItemQuantity > updatingCount) {
-        setCartData((prevData) => [...prevData, selectedItem[0]]);
-        setNavBarCount(cartData.length + 1);
+        dispatch({
+          type: "ADD_TO_CART",
+          payload: product,
+        });
       } else {
         toast.error("🦄 Out of Stock!");
       }
     } else {
-      setCartData(selectedItem);
-      setNavBarCount(cartData.length + 1);
+      dispatch({
+        type: "ADD_TO_CART",
+        payload: product,
+      });
     }
   };
 
@@ -92,8 +103,6 @@ function App() {
     <Router>
       <div className="App">
         <Navbar
-          count={navBarCount}
-          data={data}
           updateData={updateData}
           searchInput={navSearchHandle}
           searchDisplay={searchDisplay}
@@ -128,7 +137,6 @@ function App() {
           </Route>
           <Route path="/cart">
             <Cart
-              data={cartData}
               countData={count}
               searchDisplay={changeSearchDisplay}
             />

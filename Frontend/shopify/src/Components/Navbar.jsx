@@ -4,6 +4,7 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import SearchIcon from "@mui/icons-material/Search";
 import { Link } from "react-router-dom";
 import { DebounceInput } from "react-debounce-input";
+import { CartState } from "../Context/context";
 
 const Nav = styled.div`
   position: sticky;
@@ -15,7 +16,6 @@ const Nav = styled.div`
   justify-content: space-between;
   padding: 1px 15px;
   align-items: center;
-  /* background-image: linear-gradient(to right, #2cd4d9, #5333ed); */
   background-color: #5333ed;
   color: white;
   z-index: 999;
@@ -50,8 +50,9 @@ const RightContainer = styled.div`
   }
 `;
 const Logo = styled.h1`
-  font-size: 25px;
+  font-size: 20px;
   color: white;
+  font-family: "Sofia", serif;
 `;
 const SearchInput = styled.div`
   display: flex;
@@ -84,6 +85,11 @@ const Navbar = (props) => {
   useEffect(() => {
     searchInput(searchTerm);
   }, [searchInput, searchTerm]);
+  const {state:{cart}} = CartState();
+  let total = 0;
+  cart.map((value) => {
+    return (total += value.qty);
+  });
   return (
     <Nav>
       <Link to="/" className="cart__icon">
@@ -108,7 +114,7 @@ const Navbar = (props) => {
           <Link to="/cart" className="cart__icon">
             <ShoppingCartOutlinedIcon />
           </Link>
-          <span>{props.count}</span>
+          <span>{total}</span>
         </Cart>
       </RightContainer>
     </Nav>

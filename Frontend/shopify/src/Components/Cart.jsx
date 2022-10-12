@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { CartState } from "../Context/context";
 
 const Container = styled.div`
   display: flex;
@@ -14,7 +15,7 @@ const Container = styled.div`
   transform: translate(-50%, -50%);
   height: 390px;
   .cart__items {
-    overflow-y: scroll;
+    overflow-y: auto;
   }
   .cart__items::-webkit-scrollbar {
     width: 16px;
@@ -29,7 +30,7 @@ const Container = styled.div`
     border-radius: 10px;
     border: 3px solid #ffffff;
   }
-  
+
   .cart__items::-webkit-scrollbar-thumb:hover {
     background-color: #3766ff;
   }
@@ -43,7 +44,7 @@ const Container = styled.div`
     display: flex;
     justify-content: space-around;
     align-items: center;
-    
+
     h1 {
       font-size: 15px;
       font-weight: bold;
@@ -72,37 +73,18 @@ const Basket = styled.div`
   }
 `;
 
-const Cart = (props) => {
-  const data = props.data;
-  const [cloneData, setCloneData] = useState([]);
-  const total = data.length;
-  const totalSum = data
-    .map((value) => {
-      return value.price;
-    })
-    .reduce((acc, a) => {
-      return acc + a;
-    }, 0);
-  props.searchDisplay(false);
-
-  useEffect(() => {
-    let cartArray = [];
-    const mapData = new Map(
-      Object.entries(
-        data.reduce((acc, curr) => {
-          const str = JSON.stringify(curr);
-          acc[str] = (acc[str] || 0) + 1;
-          return acc;
-        }, {})
-      )
-    );
-    for (let [key, value] of mapData) {
-      let element = JSON.parse(key);
-      element.cartQuantity = value;
-      cartArray.push(element);
-    }
-    setCloneData(cartArray);
-  }, [data]);
+const Cart = () => {
+  const {
+    state: { cart },
+  } = CartState();
+  let totalSum = 0;
+  cart.map((value) => {
+    return (totalSum += value.price * value.qty);
+  });
+  let total = 0;
+  cart.map((value) => {
+    return (total += value.qty);
+  });
 
   return (
     <>
@@ -113,8 +95,8 @@ const Cart = (props) => {
           <h1>Quantity</h1>
         </div>
         <div className="cart__items">
-          {cloneData &&
-            cloneData.map((value, i) => {
+          {cart &&
+            cart.map((value, i) => {
               return (
                 <Cards key={i}>
                   <img src={value.imageURL} alt="" />
@@ -123,7 +105,7 @@ const Cart = (props) => {
                     <h5>Price:{value.price}</h5>
                   </div>
                   <div className="quantity">
-                    <h3>{value.cartQuantity}</h3>
+                    <h3>{value.qty}</h3>
                   </div>
                 </Cards>
               );

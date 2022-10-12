@@ -59,8 +59,8 @@ const Home = (props) => {
   }, [props]);
   const cloneData = props.cloneData;
   const loading = props.loading;
-  const addItemTOCartHandler = (id) => {
-    props.onItemAddedTOCart(id);
+  const addItemTOCartHandler = (id, product) => {
+    props.onItemAddedTOCart(id, product);
   };
 
   return (
@@ -101,7 +101,7 @@ const Home = (props) => {
                     {item.price}
                   </Typography>
                 </div>
-                <div onClick={() => addItemTOCartHandler(item.id)}>
+                <div onClick={() => addItemTOCartHandler(item.id, item)}>
                   <IconButton aria-label="delete" size="small">
                     <ShoppingCartOutlinedIcon
                       className="cart__icon"
