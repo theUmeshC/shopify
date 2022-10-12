@@ -1,7 +1,7 @@
 import Home from "./Components/Home";
 import Navbar from "./Components/Navbar";
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Cart from "./Components/Cart";
 import { ToastContainer, toast } from "react-toastify";
@@ -52,7 +52,7 @@ function App() {
     if (cart.length > 0) {
       cart.forEach((item) => {
         if (item.id === id) {
-          updatingCount= item.qty;
+          updatingCount = item.qty;
         }
       });
       if (selectedItemQuantity > updatingCount) {
@@ -130,10 +130,7 @@ function App() {
             </div>
           </Route>
           <Route path="/cart">
-            <Cart
-              countData={count}
-              searchDisplay={changeSearchDisplay}
-            />
+            <Cart countData={count} searchDisplay={changeSearchDisplay} />
           </Route>
         </Switch>
       </div>
