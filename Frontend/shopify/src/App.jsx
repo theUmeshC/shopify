@@ -38,10 +38,7 @@ function App() {
     state: { cart },
     dispatch,
   } = CartState();
-  console.log(cart);
-
   const cartDataHandler = (id, product) => {
-    console.log(product);
     let selectedItemQuantity = product.quantity;
     let [initialCountElement] = count.filter((value) => value.id === id);
     let updatingCount = initialCountElement.initialCount;
@@ -101,7 +98,7 @@ function App() {
           <Route exact path="/">
             <ToastContainer
               position="top-right"
-              autoClose={500}
+              autoClose={0.1}
               hideProgressBar={false}
               newestOnTop={false}
               closeOnClick
