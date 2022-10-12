@@ -42,13 +42,9 @@ function App() {
 
   const cartDataHandler = (id, product) => {
     console.log(product);
-    const countClone = [...count];
-    const selectedItem = data.filter((item) => {
-      return item.id === id;
-    });
-    let selectedItemQuantity = selectedItem[0].quantity;
-    let initialCountElement = countClone.filter((value) => value.id === id);
-    let updatingCount = initialCountElement[0].initialCount;
+    let selectedItemQuantity = product.quantity;
+    let [initialCountElement] = count.filter((value) => value.id === id);
+    let updatingCount = initialCountElement.initialCount;
     if (cart.length > 0) {
       cart.forEach((item) => {
         if (item.id === id) {
