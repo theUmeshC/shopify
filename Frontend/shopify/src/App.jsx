@@ -56,18 +56,12 @@ function App() {
         }
       });
       if (selectedItemQuantity > updatingCount) {
-        dispatch({
-          type: "ADD_TO_CART",
-          payload: product,
-        });
+        dispatch(addCart(product));
       } else {
         toast.error("🦄 Out of Stock!");
       }
     } else {
-      dispatch({
-        type: "ADD_TO_CART",
-        payload: product,
-      });
+      dispatch(addCart(product));
     }
   };
 
