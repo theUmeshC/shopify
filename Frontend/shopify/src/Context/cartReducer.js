@@ -10,19 +10,11 @@ export const cartReducer = (state, action) => {
               x.id === product.id ? { ...x, qty: x.qty + 1 } : x
             )
         }
-        // state.cart.map((x) =>
-        //   x.id === product.id ? { ...x, qty: x.qty + 1 } : x
-        // );
+
       } else {
         const product = action.payload;
         return {
-        //     [
-        //   ...state,
-        //   {
-        //     ...product,
-        //     qty: 1,
-        //   }
-        // ]
+
         cart : [
             ...state.cart,
             {

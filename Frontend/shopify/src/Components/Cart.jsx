@@ -8,7 +8,7 @@ const Container = styled.div`
   width: 60vw;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 5px;
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
