@@ -6,9 +6,9 @@ import { removeFromCart } from "../Context/cartHandler";
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  width: 60vw;
+  width: 90vw;
   border-radius: 15px;
-    background: linear-gradient(145deg, #e6e6e6, #ffffff);
+    background: #f8f6f6;
     box-shadow: 18px 18px 14px #cfcfcf, -18px -18px 14px #ffffff;
   position: fixed;
   top: 50%;
@@ -20,7 +20,7 @@ const Container = styled.div`
   }
   .cart__items::-webkit-scrollbar {
     width: 16px;
-    border-radius: 10px;
+    border-radius: 15px;
     height: 100%;
   }
   .cart__items::-webkit-scrollbar-track {
@@ -28,7 +28,7 @@ const Container = styled.div`
   }
   .cart__items::-webkit-scrollbar-thumb {
     background-color: #597ef7;
-    border-radius: 10px;
+    border-radius: 15px;
     border: 3px solid #ffffff;
   }
 
