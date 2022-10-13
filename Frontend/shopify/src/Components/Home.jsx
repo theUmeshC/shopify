@@ -2,7 +2,7 @@ import { Grid, IconButton, Skeleton, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
 const HomeContainer = styled.div`
   display: flex;
@@ -11,11 +11,13 @@ const HomeContainer = styled.div`
   margin: auto;
   align-items: center;
   justify-content: center;
+
   .card {
-    margin:20px auto;
+    margin: 20px auto;
     padding: 25px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
+    border-radius: 6px;
+    background: linear-gradient(145deg, #e6e6e6, #ffffff);
+    box-shadow: 18px 18px 14px #cfcfcf, -18px -18px 14px #ffffff;
   }
   img {
     border-top-left-radius: 5px;
@@ -27,30 +29,28 @@ const HomeContainer = styled.div`
     justify-content: space-between;
     background-color: #cfe6fa;
   }
-  .grid__wrapper{
+  .grid__wrapper {
     justify-content: center;
     align-items: center;
   }
-  .cart__icon{
+  .cart__icon {
     background-color: #eb8d12;
-    padding:5px;
+    padding: 5px;
     border-radius: 50%;
     color: white;
     transition: 0.3s;
     box-sizing: border-box;
     font-size: 30px;
-    
   }
-  .cart__icon:hover{
+  .cart__icon:hover {
     background-color: #db7e05;
     scale: 1.2;
   }
-  .cart__icon:active{
+  .cart__icon:active {
     background-color: white;
-    color:#eb8d12;
-    border:1px solid #eb8d12;
+    color: #eb8d12;
+    border: 1px solid #eb8d12;
   }
-
 `;
 
 const Home = (props) => {
@@ -65,7 +65,7 @@ const Home = (props) => {
 
   return (
     <HomeContainer>
-      <Grid container wrap="wrap" className="grid__wrapper" >
+      <Grid container wrap="wrap" className="grid__wrapper">
         {(loading ? Array.from(new Array(6)) : cloneData).map((item, index) => (
           <Box
             className="card"
@@ -103,7 +103,7 @@ const Home = (props) => {
                 </div>
                 <div onClick={() => addItemTOCartHandler(item.id, item)}>
                   <IconButton aria-label="delete" size="small">
-                  <AddShoppingCartIcon className="cart__icon" />
+                    <AddShoppingCartIcon className="cart__icon" />
                   </IconButton>
                 </div>
               </Box>

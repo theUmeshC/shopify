@@ -13,8 +13,11 @@ const SideBarContainer = styled.div`
   min-width: 160px;
   position: sticky;
   top: 10vh;
-  background-color: #bed5f1;
-  border-right: 2px solid #5233edab;
+  /* background-color: #bed5f1;
+  border-right: 2px solid #5233edab; */
+  border-radius: 4px;
+  background: linear-gradient(145deg, #f0f0f0, #cacaca);
+  box-shadow: 50px 50px 100px #ebe9e9, -50px -50px 100px #ffffff;
   flex-direction: column;
   padding-left: 15px;
   box-sizing: border-box;
@@ -46,7 +49,7 @@ const SideBar = (props) => {
     props.filterDataHandler(e.target.value);
   };
   return (
-    <SideBarContainer className="hamburger" >
+    <SideBarContainer className="hamburger">
       <FormControl>
         <FormLabel id="demo-radio-buttons-group-label">Color</FormLabel>
         <RadioGroup

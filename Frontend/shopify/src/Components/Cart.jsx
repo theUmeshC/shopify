@@ -6,10 +6,10 @@ import { removeFromCart } from "../Context/cartHandler";
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   width: 60vw;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 5px;
+  border-radius: 15px;
+    background: linear-gradient(145deg, #e6e6e6, #ffffff);
+    box-shadow: 18px 18px 14px #cfcfcf, -18px -18px 14px #ffffff;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -37,6 +37,7 @@ const Container = styled.div`
   }
 
   .title {
+    border-radius: 15px;
     position: sticky;
     padding: 10px 0px;
     top: 0;
