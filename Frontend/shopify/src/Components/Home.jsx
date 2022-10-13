@@ -98,7 +98,7 @@ const Home = (props) => {
                     variant="caption"
                     color="text.secondary"
                   >
-                    {item.price}
+                    {`₹${item.price}`}
                   </Typography>
                 </div>
                 <div onClick={() => addItemTOCartHandler(item.id, item)}>

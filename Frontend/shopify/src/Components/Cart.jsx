@@ -113,7 +113,7 @@ const Cart = () => {
       </Container>
       <Basket>
         <h1>Total Quantity:{total}</h1>
-        <h1>Total Amount :{totalSum}</h1>
+        <h1>Total Amount :{`₹${totalSum}`}</h1>
       </Basket>
     </>
   );
