@@ -2,7 +2,7 @@ import { Grid, IconButton, Skeleton, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
 const HomeContainer = styled.div`
   display: flex;
@@ -103,10 +103,7 @@ const Home = (props) => {
                 </div>
                 <div onClick={() => addItemTOCartHandler(item.id, item)}>
                   <IconButton aria-label="delete" size="small">
-                    <ShoppingCartOutlinedIcon
-                      className="cart__icon"
-                      fontSize="small"
-                    />
+                  <AddShoppingCartIcon className="cart__icon" />
                   </IconButton>
                 </div>
               </Box>

@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { CartState } from "../Context/context";
+import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
+import { removeFromCart } from "../Context/cartHandler";
 
 const Container = styled.div`
   display: flex;
@@ -59,6 +61,24 @@ const Cards = styled.div`
     width: 70px;
     border-radius: 50%;
   }
+  .cart__icon {
+    background-color: #ff5709;
+    padding: 5px;
+    border-radius: 50%;
+    color: white;
+    transition: 0.3s;
+    box-sizing: border-box;
+    font-size: 30px;
+  }
+  .cart__icon:hover {
+    background-color: #ff0000;
+    scale: 1.2;
+  }
+  .cart__icon:active {
+    background-color: white;
+    color: #ebae12;
+    border: 1px solid #ebae12;
+  }
 `;
 const Basket = styled.div`
   position: absolute;
@@ -75,6 +95,7 @@ const Basket = styled.div`
 const Cart = () => {
   const {
     state: { cart },
+    dispatch,
   } = CartState();
   let totalSum = 0;
   cart.map((value) => {
@@ -85,6 +106,10 @@ const Cart = () => {
     return (total += value.qty);
   });
 
+  const removeItemHandler = (item) => {
+    dispatch(removeFromCart(item));
+  };
+
   return (
     <>
       <Container>
@@ -92,6 +117,7 @@ const Cart = () => {
           <h1>Products</h1>
           <h1>Details</h1>
           <h1>Quantity</h1>
+          <h1>Remove</h1>
         </div>
         <div className="cart__items">
           {cart &&
@@ -106,6 +132,12 @@ const Cart = () => {
                   <div className="quantity">
                     <h3>{value.qty}</h3>
                   </div>
+                  <RemoveShoppingCartIcon
+                    className="cart__icon"
+                    onClick={() => {
+                      removeItemHandler(value);
+                    }}
+                  />
                 </Cards>
               );
             })}
