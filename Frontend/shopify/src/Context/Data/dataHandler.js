@@ -4,3 +4,10 @@ export const dataLoad = (data) => {
       payload: data,
     };
   };
+
+  export const addQuantity = (product) => {
+    return {
+      type: "REMOVE_FROM_CART",
+      payload: product,
+    };
+  };

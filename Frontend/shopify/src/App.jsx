@@ -21,10 +21,7 @@ function App() {
   const [cloneData, setCloneData] = useState([]);
   const [searchDisplay, setSearchDisplay] = useState(true);
 
-  const {
-    dataState: { productData },
-    dispatchData,
-  } = DataState();
+  const { dispatchData } = DataState();
 
   useEffect(() => {
     axios.get(`${baseURL}`).then((response) => {
@@ -41,6 +38,7 @@ function App() {
     state: { cart },
     dispatch,
   } = CartState();
+  
   const cartDataHandler = (id, product) => {
     let selectedItemQuantity = product.quantity;
     if (cart.length > 0) {
@@ -119,7 +117,7 @@ function App() {
             </div>
           </Route>
           <Route path="/cart">
-            <Cart  searchDisplay={changeSearchDisplay} />
+            <Cart searchDisplay={changeSearchDisplay} />
           </Route>
         </Switch>
       </div>
