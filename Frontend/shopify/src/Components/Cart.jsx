@@ -1,9 +1,9 @@
-import { CartState } from "../Context/context";
 import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
-import { removeFromCart } from "../Context/cartHandler";
 import { Container, Cards, Basket} from '../UI/Cart'
 import { DataState } from "../Context/Data/dataContext";
+import { CartState } from "../Context/CartContext/context";
 import { addQuantity } from "../Context/Data/dataHandler";
+import { removeFromCart } from "../Context/CartContext/cartHandler";
 
 const Cart = () => {
   const {
@@ -11,7 +11,6 @@ const Cart = () => {
     dispatch,
   } = CartState();
   const { dispatchData } = DataState();
-
   let totalSum = 0;
   cart.map((value) => {
     return (totalSum += value.price * value.qty);
@@ -20,7 +19,6 @@ const Cart = () => {
   cart.map((value) => {
     return (total += value.qty);
   });
-
   const removeItemHandler = (item) => {
     dispatch(removeFromCart(item));
     dispatchData(addQuantity(item));

@@ -7,10 +7,10 @@ import Cart from "./Components/Cart";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SideBar from "./Components/SideBar";
-import { CartState } from "./Context/context";
-import { addCart } from "./Context/cartHandler";
 import { DataState } from "./Context/Data/dataContext";
 import { dataLoad } from "./Context/Data/dataHandler";
+import { CartState } from "./Context/CartContext/context";
+import { addCart } from "./Context/CartContext/cartHandler";
 
 const baseURL =
   "https://geektrust.s3.ap-southeast-1.amazonaws.com/coding-problems/shopping-cart/catalogue.json";

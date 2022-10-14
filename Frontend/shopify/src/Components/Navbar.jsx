@@ -3,7 +3,7 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import SearchIcon from "@mui/icons-material/Search";
 import { Link } from "react-router-dom";
 import { DebounceInput } from "react-debounce-input";
-import { CartState } from "../Context/context";
+import { CartState } from "../Context/CartContext/context";
 import {Nav, Cart, RightContainer, Logo, SearchInput} from '../UI/NavBar'
 
 const Navbar = (props) => {

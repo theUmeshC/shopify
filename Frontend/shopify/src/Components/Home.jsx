@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { HomeContainer } from "../UI/HomeContainer";
 import { DataState } from "../Context/Data/dataContext";
-import { addCart } from "../Context/cartHandler";
+import { addCart } from "../Context/CartContext/cartHandler";
 
 const Home = (props) => {
   useEffect(() => {
