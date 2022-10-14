@@ -1,57 +1,8 @@
 import { Grid, IconButton, Skeleton, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useEffect } from "react";
-import styled from "styled-components";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-
-const HomeContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  width: 80vw;
-  margin: auto;
-  align-items: center;
-  justify-content: center;
-
-  .card {
-    margin: 20px auto;
-    padding: 25px;
-    border-radius: 6px;
-    background: linear-gradient(145deg, #e6e6e6, #ffffff);
-    box-shadow: 18px 18px 14px #cfcfcf, -18px -18px 14px #ffffff;
-  }
-  img {
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-  }
-  .card__details {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #cfe6fa;
-  }
-  .grid__wrapper {
-    justify-content: center;
-    align-items: center;
-  }
-  .cart__icon {
-    background-color: #eb8d12;
-    padding: 5px;
-    border-radius: 50%;
-    color: white;
-    transition: 0.3s;
-    box-sizing: border-box;
-    font-size: 30px;
-  }
-  .cart__icon:hover {
-    background-color: #db7e05;
-    scale: 1.2;
-  }
-  .cart__icon:active {
-    background-color: white;
-    color: #eb8d12;
-    border: 1px solid #eb8d12;
-  }
-`;
+import { HomeContainer } from "../UI/HomeContainer";
 
 const Home = (props) => {
   useEffect(() => {
@@ -66,55 +17,83 @@ const Home = (props) => {
   return (
     <HomeContainer>
       <Grid container wrap="wrap" className="grid__wrapper">
-        {(loading ? Array.from(new Array(6)) : cloneData).map((item, index) => (
-          <Box
-            className="card"
-            key={index++}
-            sx={{ width: 210, marginRight: 6, my: 5 }}
-          >
-            {item ? (
-              <img
-                style={{ width: 210, height: 118 }}
-                alt={item.title}
-                src={item.imageURL}
-              />
-            ) : (
-              <Skeleton
-                animation="wave"
-                variant="rectangular"
-                width={210}
-                height={118}
-              />
-            )}
+        {(loading ? Array.from(new Array(6)) : cloneData).map((item, index) => {
+          return (
+            <Box
+              className="card1"
+              key={index}
+              sx={{ width: 210, marginRight: 6, my: 5 }}
+            >
+              {item ? (
+                <img
+                  alt={item.title}
+                  src={item.imageURL}
+                  className="card-img"
+                />
+              ) : (
+                <Skeleton
+                  animation="wave"
+                  variant="rectangular"
+                  className="card-img"
+                />
+              )}
 
-            {item ? (
-              <Box sx={{ pl: 1 }} className="card__details">
-                <div>
-                  <Typography gutterBottom variant="body2">
-                    {item.name}
-                  </Typography>
-                  <Typography
-                    display="block"
-                    variant="caption"
-                    color="text.secondary"
+              {item ? (
+                <Box sx={{ pl: 1 }} className="card-info">
+                  <div>
+                    <Typography
+                      gutterBottom
+                      variant="body2"
+                      className="text-title"
+                    >
+                      {item.name}
+                    </Typography>
+                    <div className="text-details">
+                      <Typography
+                        display="block"
+                        variant="caption"
+                        color="text.secondary"
+                        className="text-detail"
+                      >
+                        {`${item.gender}`}
+                      </Typography>
+                      <Typography
+                        display="block"
+                        variant="caption"
+                        color="text.secondary"
+                        className="text-detail"
+                      >
+                        {`₹${item.price}`}
+                      </Typography>
+                    </div>
+                  </div>
+                  <div
+                    className="card-footer"
+                    onClick={() => addItemTOCartHandler(item.id, item)}
                   >
-                    {`₹${item.price}`}
-                  </Typography>
-                </div>
-                <div onClick={() => addItemTOCartHandler(item.id, item)}>
-                  <IconButton aria-label="delete" size="small">
-                    <AddShoppingCartIcon className="cart__icon" />
-                  </IconButton>
-                </div>
-              </Box>
-            ) : (
-              <Box sx={{ pt: 0.5 }}>
-                <Skeleton />
-                <Skeleton width="60%" />
-              </Box>
-            )}
-          </Box>
-        ))}
+                    <Typography
+                      gutterBottom
+                      variant="body2"
+                      color="text.secondary"
+                    >
+                      {`Qty:${item.quantity}`}
+                    </Typography>
+                    <IconButton aria-label="delete" size="small">
+                      <AddShoppingCartIcon className="cart__icon" />
+                    </IconButton>
+                  </div>
+                </Box>
+              ) : (
+                <Box sx={{ pt: 0.5 }}>
+                  <Skeleton width="60%" />
+                  <Skeleton/>
+                  <Skeleton/>
+                  <Skeleton/>
+                </Box>
+              )}
+            </Box>
+          );
+        })}
       </Grid>
     </HomeContainer>
   );
