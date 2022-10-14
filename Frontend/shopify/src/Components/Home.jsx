@@ -3,21 +3,28 @@ import { Box } from "@mui/system";
 import React, { useEffect } from "react";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { HomeContainer } from "../UI/HomeContainer";
+import { DataState } from "../Context/Data/dataContext";
+import { addCart } from "../Context/cartHandler";
 
 const Home = (props) => {
   useEffect(() => {
     props.searchDisplay(true);
   }, [props]);
-  const cloneData = props.cloneData;
+  const {
+    dataState: { productData },
+    dispatchData,
+  } = DataState();
+
   const loading = props.loading;
   const addItemTOCartHandler = (id, product) => {
     props.onItemAddedTOCart(id, product);
+    dispatchData(addCart(product));
   };
 
   return (
     <HomeContainer>
       <Grid container wrap="wrap" className="grid__wrapper">
-        {(loading ? Array.from(new Array(6)) : cloneData).map((item, index) => {
+        {(loading ? Array.from(new Array(6)) : productData).map((item, index) => {
           return (
             <Box
               className="card1"
@@ -55,7 +62,7 @@ const Home = (props) => {
                         color="text.secondary"
                         className="text-detail"
                       >
-                        {`${item.gender}`}
+                        {`${item.gender}|${item.type}`}
                       </Typography>
                       <Typography
                         display="block"

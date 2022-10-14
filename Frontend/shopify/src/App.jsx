@@ -9,6 +9,8 @@ import "react-toastify/dist/ReactToastify.css";
 import SideBar from "./Components/SideBar";
 import { CartState } from "./Context/context";
 import { addCart } from "./Context/cartHandler";
+import { DataState } from "./Context/Data/dataContext";
+import { dataLoad } from "./Context/Data/dataHandler";
 
 const baseURL =
   "https://geektrust.s3.ap-southeast-1.amazonaws.com/coding-problems/shopping-cart/catalogue.json";
@@ -16,23 +18,24 @@ const baseURL =
 function App() {
   const [data, setData] = useState();
   const [loadingState, setLoadingState] = useState(true);
-  const [count, setCount] = useState([]);
   const [cloneData, setCloneData] = useState([]);
   const [searchDisplay, setSearchDisplay] = useState(true);
+
+  const {
+    dataState: { productData },
+    dispatchData,
+  } = DataState();
+
   useEffect(() => {
     axios.get(`${baseURL}`).then((response) => {
       setTimeout(() => {
         setData(response.data);
+        dispatchData(dataLoad(response.data));
         setCloneData(response.data);
-        let arr = [];
-        response.data.map((value) => {
-          return arr.push({ id: value.id, initialCount: 0 });
-        });
-        setCount(arr);
         setLoadingState(false);
       }, 2500);
     });
-  }, []);
+  }, [dispatchData]);
 
   const {
     state: { cart },
@@ -40,15 +43,8 @@ function App() {
   } = CartState();
   const cartDataHandler = (id, product) => {
     let selectedItemQuantity = product.quantity;
-    let [initialCountElement] = count.filter((value) => value.id === id);
-    let updatingCount = initialCountElement.initialCount;
     if (cart.length > 0) {
-      cart.forEach((item) => {
-        if (item.id === id) {
-          updatingCount = item.qty;
-        }
-      });
-      if (selectedItemQuantity > updatingCount) {
+      if (selectedItemQuantity > 0) {
         dispatch(addCart(product));
       } else {
         toast.error("🦄 Out of Stock!");
@@ -123,7 +119,7 @@ function App() {
             </div>
           </Route>
           <Route path="/cart">
-            <Cart countData={count} searchDisplay={changeSearchDisplay} />
+            <Cart  searchDisplay={changeSearchDisplay} />
           </Route>
         </Switch>
       </div>
