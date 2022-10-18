@@ -1,5 +1,5 @@
 import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
-import { Container, Cards, Basket} from '../UI/Cart'
+import { Container, Cards, Basket } from "../UI/Cart";
 import { DataState } from "../Context/Data/dataContext";
 import { CartState } from "../Context/CartContext/context";
 import { addQuantity } from "../Context/Data/dataHandler";

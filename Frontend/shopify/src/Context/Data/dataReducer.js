@@ -7,24 +7,24 @@ export const dataReducer = (state, action) => {
         filteredData: data1,
       };
     case "ADD_TO_CART":
-      const existingDataItemIndex = state.productData.findIndex(
+      const existingDataItemIndex = state.filteredData.findIndex(
         (c) => c.id === data1.id
       );
-      const existingItem = state.productData[existingDataItemIndex];
+      const existingItem = state.filteredData[existingDataItemIndex];
       let updatedItems;
       if (existingItem.quantity >= 1) {
         const updatedItem = {
           ...existingItem,
           quantity: existingItem.quantity - 1,
         };
-        updatedItems = [...state.productData];
+        updatedItems = [...state.filteredData];
         updatedItems[existingDataItemIndex] = updatedItem;
       } else {
         const updatedItem = {
           ...existingItem,
           quantity: 0,
         };
-        updatedItems = [...state.productData];
+        updatedItems = [...state.filteredData];
         updatedItems[existingDataItemIndex] = updatedItem;
       }
       return {

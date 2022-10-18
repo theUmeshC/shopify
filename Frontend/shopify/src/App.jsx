@@ -38,8 +38,9 @@ function App() {
     dispatch,
   } = CartState();
   
-  const cartDataHandler = (product) => {
+  const cartDataHandler = (id,product) => {
     let selectedItemQuantity = product.quantity;
+    console.log(product);
     if (cart.length > 0) {
       if (selectedItemQuantity > 0) {
         dispatch(addCart(product));

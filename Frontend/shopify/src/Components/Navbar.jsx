@@ -4,14 +4,16 @@ import SearchIcon from "@mui/icons-material/Search";
 import { Link } from "react-router-dom";
 import { DebounceInput } from "react-debounce-input";
 import { CartState } from "../Context/CartContext/context";
-import {Nav, Cart, RightContainer, Logo, SearchInput} from '../UI/NavBar'
+import { Nav, Cart, RightContainer, Logo, SearchInput } from "../UI/NavBar";
 
 const Navbar = (props) => {
   const [searchTerm, setSearchTerm] = useState("");
   const searchHandle = (e) => {
     setSearchTerm(e.target.value);
   };
-  const {state:{cart}} = CartState();
+  const {
+    state: { cart },
+  } = CartState();
   let total = 0;
   cart.map((value) => {
     return (total += value.qty);
