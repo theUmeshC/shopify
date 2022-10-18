@@ -1,39 +1,16 @@
-import Home from "./Components/Home";
 import Navbar from "./Components/Navbar";
 import { useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Cart from "./Components/Cart";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import SideBar from "./Components/SideBar";
-import { CartState } from "./Context/CartContext/context";
-import { addCart } from "./Context/CartContext/cartHandler";
-import useAxios from "./Helper/useAxios";
+import Home from "./Components/Home";
 
 const baseURL =
   "https://geektrust.s3.ap-southeast-1.amazonaws.com/coding-problems/shopping-cart/catalogue.json";
 
 function App() {
   const [searchDisplay, setSearchDisplay] = useState(true);
-  const {
-    state: { cart },
-    dispatch,
-  } = CartState();
-  const { data, loadingState, cloneData } = useAxios(baseURL);
-  
-  const cartDataHandler = (product) => {
-    let selectedItemQuantity = product.quantity;
-    if (cart.length > 0) {
-      if (selectedItemQuantity > 0) {
-        dispatch(addCart(product));
-      } else {
-        toast.error("🦄 Out of Stock!");
-      }
-    } else {
-      dispatch(addCart(product));
-    }
-  };
-
   const changeSearchDisplay = (value) => {
     setSearchDisplay(value);
   };
@@ -46,7 +23,7 @@ function App() {
           <Route exact path="/">
             <ToastContainer
               position="top-right"
-              autoClose={0.1}
+              autoClose={1500}
               hideProgressBar={false}
               newestOnTop={false}
               closeOnClick
@@ -55,17 +32,7 @@ function App() {
               draggable
               pauseOnHover
             />
-            <ToastContainer />
-            <div className="wrapper">
-              {data && <SideBar data={data} />}
-              <Home
-                className=""
-                loading={loadingState}
-                onItemAddedTOCart={cartDataHandler}
-                cloneData={cloneData}
-                searchDisplay={changeSearchDisplay}
-              />
-            </div>
+            <Home searchDisplay={changeSearchDisplay} baseURL={baseURL} />
           </Route>
           <Route path="/cart">
             <Cart searchDisplay={changeSearchDisplay} />
