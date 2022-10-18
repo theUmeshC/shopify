@@ -1,18 +1,20 @@
-import React, { useState } from "react";
-import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import SearchIcon from "@mui/icons-material/Search";
-import { Link } from "react-router-dom";
-import { DebounceInput } from "react-debounce-input";
-import { CartState } from "../Context/CartContext/context";
-import { Nav, Cart, RightContainer, Logo, SearchInput } from "../UI/NavBar";
-import { DataState } from "../Context/Data/dataContext";
-import { searchData } from "../Context/Data/dataHandler";
+/* eslint-disable prettier/prettier */
+/* eslint-disable react/prop-types */
+import React, { useState } from 'react';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import SearchIcon from '@mui/icons-material/Search';
+import { Link } from 'react-router-dom';
+import { DebounceInput } from 'react-debounce-input';
+import { CartState } from '../Context/CartContext/context';
+import { Nav, Cart, RightContainer, Logo, SearchInput } from '../UI/NavBar';
+import { DataState } from '../Context/Data/dataContext';
+import { searchData } from '../Context/Data/dataHandler';
 
 const Navbar = (props) => {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState('');
   const { dispatchData } = DataState();
   const {
-    state: { cart },
+    state: { cart }
   } = CartState();
   let total = 0;
   cart.map((value) => {

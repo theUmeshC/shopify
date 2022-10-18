@@ -1,12 +1,9 @@
-import {
-  FormControl,
-  FormControlLabel,
-  FormLabel,
-  Checkbox,
-} from "@mui/material";
-import { useEffect, useState } from "react";
-import { DataState } from "../Context/Data/dataContext";
-import { SideBarContainer } from "../UI/SideBarContainer";
+/* eslint-disable prettier/prettier */
+/* eslint-disable react/prop-types */
+import { FormControl, FormControlLabel, FormLabel, Checkbox } from '@mui/material';
+import { useEffect, useState } from 'react';
+import { DataState } from '../Context/Data/dataContext';
+import { SideBarContainer } from '../UI/SideBarContainer';
 
 const SideBar = (props) => {
   const [Checked, setChecked] = useState([]);
@@ -17,14 +14,14 @@ const SideBar = (props) => {
       props.data.map((item) => {
         return item.color;
       })
-    ),
+    )
   ];
   const filterType = [
     ...new Set(
       props.data.map((item) => {
         return item.type;
       })
-    ),
+    )
   ];
   const handleCheck = (item) => {
     const currentIndex = Checked.indexOf(item);
@@ -37,7 +34,7 @@ const SideBar = (props) => {
     setChecked(newChecked);
   };
   useEffect(() => {
-    dispatchData({ type: "FILTER-DATA", payload: Checked });
+    dispatchData({ type: 'FILTER-DATA', payload: Checked });
   }, [dispatchData, Checked]);
   return (
     <SideBarContainer className="hamburger">
@@ -87,9 +84,9 @@ const SideBar = (props) => {
           value="Men"
           control={
             <Checkbox
-              checked={Checked.indexOf("Men") === -1 ? false : true}
+              checked={Checked.indexOf('Men') === -1 ? false : true}
               onChange={() => {
-                handleCheck("Men");
+                handleCheck('Men');
               }}
             />
           }
@@ -99,9 +96,9 @@ const SideBar = (props) => {
           value="Women"
           control={
             <Checkbox
-              checked={Checked.indexOf("Women") === -1 ? false : true}
+              checked={Checked.indexOf('Women') === -1 ? false : true}
               onChange={() => {
-                handleCheck("Women");
+                handleCheck('Women');
               }}
             />
           }
@@ -114,9 +111,9 @@ const SideBar = (props) => {
           value="250"
           control={
             <Checkbox
-              checked={Checked.indexOf("250") === -1 ? false : true}
+              checked={Checked.indexOf('250') === -1 ? false : true}
               onChange={() => {
-                handleCheck("250");
+                handleCheck('250');
               }}
             />
           }
@@ -126,9 +123,9 @@ const SideBar = (props) => {
           value="300"
           control={
             <Checkbox
-              checked={Checked.indexOf("300") === -1 ? false : true}
+              checked={Checked.indexOf('300') === -1 ? false : true}
               onChange={() => {
-                handleCheck("300");
+                handleCheck('300');
               }}
             />
           }
@@ -138,9 +135,9 @@ const SideBar = (props) => {
           value="500"
           control={
             <Checkbox
-              checked={Checked.indexOf("500") === -1 ? false : true}
+              checked={Checked.indexOf('500') === -1 ? false : true}
               onChange={() => {
-                handleCheck("500");
+                handleCheck('500');
               }}
             />
           }

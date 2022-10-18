@@ -1,17 +1,19 @@
-import React from "react";
-import { toast } from "react-toastify";
-import { addCart } from "../Context/CartContext/cartHandler";
-import { CartState } from "../Context/CartContext/context";
-import { baseURL } from "../Helper/httpSupplier";
-import useAxios from "../Helper/useAxios";
-import Dashboard from "./DashBoard";
-import SideBar from "./SideBar";
+/* eslint-disable prettier/prettier */
+/* eslint-disable react/prop-types */
+import React from 'react';
+import { toast } from 'react-toastify';
+import { addCart } from '../Context/CartContext/cartHandler';
+import { CartState } from '../Context/CartContext/context';
+import { baseURL } from '../Helper/httpSupplier';
+import useAxios from '../Helper/useAxios';
+import Dashboard from './DashBoard';
+import SideBar from './SideBar';
 
 const Home = (props) => {
   const baseUrl = baseURL;
   const {
     state: { cart },
-    dispatch,
+    dispatch
   } = CartState();
   const { data, loadingState, cloneData } = useAxios(baseUrl);
 
@@ -21,7 +23,7 @@ const Home = (props) => {
       if (selectedItemQuantity > 0) {
         dispatch(addCart(product));
       } else {
-        toast.error("🦄 Out of Stock!");
+        toast.error('🦄 Out of Stock!');
       }
     } else {
       dispatch(addCart(product));
