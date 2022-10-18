@@ -16,7 +16,6 @@ const Home = (props) => {
   } = DataState();
   const loading = props.loading;
   const addItemTOCartHandler = (id, product) => {
-    console.log(product);
     props.onItemAddedTOCart(id, product);
     dispatchData(addCart(product));
   };
