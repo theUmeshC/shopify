@@ -1,4 +1,5 @@
-import styled from "styled-components";
+/* eslint-disable prettier/prettier */
+import styled from 'styled-components';
 
 export const SideBarContainer = styled.div`
   height: 90vh;

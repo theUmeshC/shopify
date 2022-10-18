@@ -1,4 +1,5 @@
-import styled from "styled-components";
+/* eslint-disable prettier/prettier */
+import styled from 'styled-components';
 
 export const HomeContainer = styled.div`
   display: flex;
@@ -49,7 +50,7 @@ export const HomeContainer = styled.div`
     border-top: 1px solid #ddd;
   }
   .grid__wrapper {
-    margin:auto;
+    margin: auto;
     justify-content: center;
     align-items: center;
   }

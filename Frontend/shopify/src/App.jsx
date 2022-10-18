@@ -1,10 +1,10 @@
-import Navbar from "./Components/Navbar";
-import { useState } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Cart from "./Components/Cart";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import Home from "./Components/Home";
+import Navbar from './Components/Navbar';
+import { useState } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Cart from './Components/Cart';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Home from './Components/Home';
 
 function App() {
   const [searchDisplay, setSearchDisplay] = useState(true);
