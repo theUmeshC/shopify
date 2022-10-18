@@ -57,11 +57,33 @@ export const dataReducer = (state, action) => {
               item.color.toLowerCase() === element.toLowerCase() ||
               item.type.toLowerCase() === element.toLowerCase() ||
               item.price.toString() === element ||
-              item.gender.toLowerCase() === element.toLowerCase() 
+              item.gender.toLowerCase() === element.toLowerCase()
             );
           });
           filteredItems.push(...filterItem);
         });
+        return {
+          productData: state.productData,
+          filteredData: filteredItems,
+        };
+      } else {
+        return {
+          productData: state.productData,
+          filteredData: state.productData,
+        };
+      }
+    case "SEARCH_DATA":
+      if (data1.length > 0) {
+        let filteredItems = [];
+        const filterItem = state.productData.filter((item) => {
+          return (
+            item.color.toLowerCase() === data1.toLowerCase() ||
+            item.type.toLowerCase() === data1.toLowerCase() ||
+            item.price.toString() === data1 ||
+            item.gender.toLowerCase() === data1.toLowerCase()
+          );
+        });
+        filteredItems.push(...filterItem);
         return {
           productData: state.productData,
           filteredData: filteredItems,

@@ -5,12 +5,12 @@ import { Link } from "react-router-dom";
 import { DebounceInput } from "react-debounce-input";
 import { CartState } from "../Context/CartContext/context";
 import { Nav, Cart, RightContainer, Logo, SearchInput } from "../UI/NavBar";
+import { DataState } from "../Context/Data/dataContext";
+import { searchData } from "../Context/Data/dataHandler";
 
 const Navbar = (props) => {
   const [searchTerm, setSearchTerm] = useState("");
-  const searchHandle = (e) => {
-    setSearchTerm(e.target.value);
-  };
+  const { dispatchData } = DataState();
   const {
     state: { cart },
   } = CartState();
@@ -18,6 +18,10 @@ const Navbar = (props) => {
   cart.map((value) => {
     return (total += value.qty);
   });
+  const searchHandle = (e) => {
+    setSearchTerm(e.target.value);
+    dispatchData(searchData(e.target.value));
+  };
   return (
     <Nav>
       <Link to="/" className="cart__icon">
