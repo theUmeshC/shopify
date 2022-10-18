@@ -6,9 +6,6 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Home from "./Components/Home";
 
-const baseURL =
-  "https://geektrust.s3.ap-southeast-1.amazonaws.com/coding-problems/shopping-cart/catalogue.json";
-
 function App() {
   const [searchDisplay, setSearchDisplay] = useState(true);
   const changeSearchDisplay = (value) => {
@@ -32,7 +29,7 @@ function App() {
               draggable
               pauseOnHover
             />
-            <Home searchDisplay={changeSearchDisplay} baseURL={baseURL} />
+            <Home searchDisplay={changeSearchDisplay} />
           </Route>
           <Route path="/cart">
             <Cart searchDisplay={changeSearchDisplay} />
