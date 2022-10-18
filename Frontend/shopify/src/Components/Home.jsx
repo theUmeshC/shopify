@@ -16,10 +16,10 @@ const Home = (props) => {
   } = DataState();
   const loading = props.loading;
   const addItemTOCartHandler = (id, product) => {
-    props.onItemAddedTOCart(id, product);
+    props.onItemAddedTOCart(product);
     dispatchData(addCart(product));
   };
-
+  
   return (
     <HomeContainer>
       <Grid container wrap="wrap" className="grid__wrapper">
