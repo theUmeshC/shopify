@@ -13,8 +13,7 @@ const Home = (props) => {
   const {
     dataState: { productData },
     dispatchData,
-  } = DataState();
-
+  } = DataState();  
   const loading = props.loading;
   const addItemTOCartHandler = (id, product) => {
     props.onItemAddedTOCart(id, product);
@@ -44,7 +43,6 @@ const Home = (props) => {
                   className="card-img"
                 />
               )}
-
               {item ? (
                 <Box sx={{ pl: 1 }} className="card-info">
                   <div>
