@@ -20,7 +20,6 @@ function App() {
   const [loadingState, setLoadingState] = useState(true);
   const [cloneData, setCloneData] = useState([]);
   const [searchDisplay, setSearchDisplay] = useState(true);
-
   const { dispatchData } = DataState();
 
   useEffect(() => {
@@ -39,7 +38,7 @@ function App() {
     dispatch,
   } = CartState();
   
-  const cartDataHandler = (id, product) => {
+  const cartDataHandler = (product) => {
     let selectedItemQuantity = product.quantity;
     if (cart.length > 0) {
       if (selectedItemQuantity > 0) {
@@ -52,30 +51,6 @@ function App() {
     }
   };
 
-  const updateData = (newData) => {
-    const filterData = data.filter((value) => {
-      return (
-        value.color.toLowerCase() === newData.toLowerCase() ||
-        value.type.toLowerCase() === newData.toLowerCase() ||
-        value.price.toString() === newData.toLowerCase() ||
-        value.gender.toLowerCase() === newData.toLowerCase()
-      );
-    });
-    setCloneData(filterData);
-  };
-  const navSearchHandle = (input) => {
-    if (input !== "") {
-      updateData(input);
-    }
-    if (input === " ") {
-      setCloneData(data);
-    }
-  };
-  const onFilterChange = (filterData) => {
-    console.log(filterData);
-    updateData(filterData);
-  };
-
   const changeSearchDisplay = (value) => {
     setSearchDisplay(value);
   };
@@ -84,8 +59,6 @@ function App() {
     <Router>
       <div className="App">
         <Navbar
-          updateData={updateData}
-          searchInput={navSearchHandle}
           searchDisplay={searchDisplay}
         />
         <Switch>
@@ -104,13 +77,12 @@ function App() {
             <ToastContainer />
             <div className="wrapper">
               {data && (
-                <SideBar data={data} filterDataHandler={onFilterChange} />
+                <SideBar data={data} />
               )}
               <Home
                 className=""
                 loading={loadingState}
                 onItemAddedTOCart={cartDataHandler}
-                updateData={updateData}
                 cloneData={cloneData}
                 searchDisplay={changeSearchDisplay}
               />

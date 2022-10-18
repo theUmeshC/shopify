@@ -5,8 +5,7 @@ export const SideBarContainer = styled.div`
   min-width: 160px;
   position: sticky;
   top: 10vh;
-  border-radius: 4px;
-  background: linear-gradient(145deg, #f0f0f0, #cacaca);
+  background: #cacaca;
   box-shadow: 50px 50px 100px #ebe9e9, -50px -50px 100px #ffffff;
   flex-direction: column;
   padding-left: 15px;

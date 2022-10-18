@@ -4,11 +4,14 @@ import {
   FormLabel,
   Checkbox,
 } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { DataState } from "../Context/Data/dataContext";
 import { SideBarContainer } from "../UI/SideBarContainer";
 
 const SideBar = (props) => {
   const [Checked, setChecked] = useState([]);
+  const { dispatchData } = DataState();
+
   const filterColor = [
     ...new Set(
       props.data.map((item) => {
@@ -32,8 +35,10 @@ const SideBar = (props) => {
       newChecked.splice(currentIndex, 1);
     }
     setChecked(newChecked);
-    console.log(Checked);
   };
+  useEffect(() => {
+    dispatchData({ type: "FILTER-DATA", payload: Checked });
+  }, [dispatchData, Checked]);
   return (
     <SideBarContainer className="hamburger">
       <FormControl>
@@ -61,7 +66,7 @@ const SideBar = (props) => {
         {filterType.map((item, index) => {
           return (
             <FormControlLabel
-              key={(index += 20)}
+              key={index}
               value={item}
               control={
                 <Checkbox

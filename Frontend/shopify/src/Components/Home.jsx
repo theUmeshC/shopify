@@ -11,7 +11,7 @@ const Home = (props) => {
     props.searchDisplay(true);
   }, [props]);
   const {
-    dataState: { productData },
+    dataState: { filteredData },
     dispatchData,
   } = DataState();  
   const loading = props.loading;
@@ -23,7 +23,7 @@ const Home = (props) => {
   return (
     <HomeContainer>
       <Grid container wrap="wrap" className="grid__wrapper">
-        {(loading ? Array.from(new Array(6)) : productData).map((item, index) => {
+        {(loading ? Array.from(new Array(6)) : filteredData).map((item, index) => {
           return (
             <Box
               className="card1"

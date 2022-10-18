@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import SearchIcon from "@mui/icons-material/Search";
 import { Link } from "react-router-dom";
@@ -7,14 +7,10 @@ import { CartState } from "../Context/CartContext/context";
 import {Nav, Cart, RightContainer, Logo, SearchInput} from '../UI/NavBar'
 
 const Navbar = (props) => {
-  const searchInput = props.searchInput;
   const [searchTerm, setSearchTerm] = useState("");
   const searchHandle = (e) => {
     setSearchTerm(e.target.value);
   };
-  useEffect(() => {
-    searchInput(searchTerm);
-  }, [searchInput, searchTerm]);
   const {state:{cart}} = CartState();
   let total = 0;
   cart.map((value) => {

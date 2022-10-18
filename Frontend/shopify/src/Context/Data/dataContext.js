@@ -6,6 +6,7 @@ const productData = createContext();
 const DataContext = ({ children }) => {
   const [dataState, dispatchData] = useReducer(dataReducer, {
     productData: [],
+    filteredData : []
   })
   return <productData.Provider value={{dataState,dispatchData}}>
       {children}
