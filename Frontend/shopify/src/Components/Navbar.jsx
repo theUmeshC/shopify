@@ -13,11 +13,9 @@ import { searchData } from '../Context/Data/dataHandler';
 const Navbar = (props) => {
   const [searchTerm, setSearchTerm] = useState('');
   const { dispatchData } = DataState();
-  const {
-    state: { cart }
-  } = CartState();
+  const [cartState] = CartState();
   let total = 0;
-  cart.map((value) => {
+  cartState.map((value) => {
     return (total += value.qty);
   });
   const searchHandle = (e) => {

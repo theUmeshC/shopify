@@ -2,7 +2,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { toast } from 'react-toastify';
-import { addCart } from '../Context/CartContext/cartHandler';
 import { CartState } from '../Context/CartContext/context';
 import { baseURL } from '../Helper/httpSupplier';
 import useAxios from '../Helper/useAxios';
@@ -11,22 +10,39 @@ import SideBar from './SideBar';
 
 const Home = (props) => {
   const baseUrl = baseURL;
-  const {
-    state: { cart },
-    dispatch
-  } = CartState();
+  const [cartState, setCartState] = CartState();
   const { data, loadingState, cloneData } = useAxios(baseUrl);
 
   const cartDataHandler = (product) => {
     let selectedItemQuantity = product.quantity;
-    if (cart.length > 0) {
+    if (cartState.length > 0) {
       if (selectedItemQuantity > 0) {
-        dispatch(addCart(product));
+        const exist = cartState.find((x) => x.id === product.id);
+        if (exist) {
+          const cartData = cartState.map((x) =>
+            x.id === product.id ? { ...x, qty: x.qty + 1 } : x
+          );
+          console.log(cartData);
+          setCartState(cartData);
+        } else {
+          const cartData = [
+            ...cartState,
+            {
+              ...product,
+              qty: 1
+            }
+          ];
+          setCartState(cartData);
+        }
       } else {
         toast.error('🦄 Out of Stock!');
       }
     } else {
-      dispatch(addCart(product));
+      const cartData = {
+        ...product,
+        qty: 1
+      };
+      setCartState([cartData]);
     }
   };
   return (

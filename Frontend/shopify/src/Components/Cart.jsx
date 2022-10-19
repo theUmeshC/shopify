@@ -4,25 +4,32 @@ import { Container, Cards, Basket } from '../UI/Cart';
 import { DataState } from '../Context/Data/dataContext';
 import { CartState } from '../Context/CartContext/context';
 import { addQuantity } from '../Context/Data/dataHandler';
-import { removeFromCart } from '../Context/CartContext/cartHandler';
 
 const Cart = () => {
-  const {
-    state: { cart },
-    dispatch
-  } = CartState();
+  const [cartState, setCartState] = CartState();
   const { dispatchData } = DataState();
   let totalSum = 0;
-  cart.map((value) => {
+  cartState.map((value) => {
     return (totalSum += value.price * value.qty);
   });
   let total = 0;
-  cart.map((value) => {
+  cartState.map((value) => {
     return (total += value.qty);
   });
-  const removeItemHandler = (item) => {
-    dispatch(removeFromCart(item));
-    dispatchData(addQuantity(item));
+  const removeItemHandler = (product) => {
+    const existingCartItemIndex = cartState.findIndex((c) => c.id === product.id);
+    const existingItem = cartState[existingCartItemIndex];
+    let updatedItems;
+    if (existingItem.qty === 1) {
+      updatedItems = cartState.filter((item) => item.id !== product.id);
+    } else {
+      const updatedItem = { ...existingItem, qty: existingItem.qty - 1 };
+      updatedItems = [...cartState];
+      updatedItems[existingCartItemIndex] = updatedItem;
+    }
+    const cartData = updatedItems;
+    setCartState(cartData);
+    dispatchData(addQuantity(product));
   };
 
   return (
@@ -35,8 +42,8 @@ const Cart = () => {
           <h1>Remove</h1>
         </div>
         <div className="cart__items">
-          {cart &&
-            cart.map((value, i) => {
+          {cartState &&
+            cartState.map((value, i) => {
               return (
                 <Cards key={i}>
                   <img src={value.imageURL} alt="" />

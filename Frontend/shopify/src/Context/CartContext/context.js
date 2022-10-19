@@ -1,15 +1,16 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react/prop-types */
-import { createContext, useContext, useReducer } from 'react';
-import { cartReducer } from './cartReducer';
+import { createContext, useContext, useState } from 'react';
+// import { cartReducer } from './cartReducer';
 
 const cart = createContext();
 
 const Context = ({ children }) => {
-  const [state, dispatch] = useReducer(cartReducer, {
-    cart: []
-  });
-  return <cart.Provider value={{ state, dispatch }}>{children}</cart.Provider>;
+  // const [state, dispatch] = useReducer(cartReducer, {
+  //   cart: []
+  // });
+  const [cartState, setCartState] = useState([]);
+  return <cart.Provider value={[cartState, setCartState]}>{children}</cart.Provider>;
 };
 
 export default Context;
