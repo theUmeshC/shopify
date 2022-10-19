@@ -6,7 +6,6 @@ import React, { useEffect } from 'react';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { HomeContainer } from '../UI/HomeContainer';
 import { DataState } from '../Context/Data/dataContext';
-import { addCart } from '../Context/CartContext/cartHandler';
 
 const Dashboard = (props) => {
   useEffect(() => {
@@ -19,7 +18,10 @@ const Dashboard = (props) => {
   const loading = props.loading;
   const addItemTOCartHandler = (id, product) => {
     props.onItemAddedTOCart(product);
-    dispatchData(addCart(product));
+    dispatchData({
+      type: 'ADD_TO_CART',
+      payload: product
+    });
   };
 
   return (
