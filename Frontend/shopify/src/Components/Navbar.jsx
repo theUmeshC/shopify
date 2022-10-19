@@ -7,8 +7,8 @@ import { Link } from 'react-router-dom';
 import { DebounceInput } from 'react-debounce-input';
 import { CartState } from '../Context/CartContext/context';
 import { Nav, Cart, RightContainer, Logo, SearchInput } from '../UI/NavBar';
-import { DataState } from '../Context/Data/dataContext';
-import { searchData } from '../Context/Data/dataHandler';
+import { DataState } from '../Context/DataContext/dataContext';
+import { searchData } from '../Context/DataContext/dataHandler';
 
 const Navbar = (props) => {
   const [searchTerm, setSearchTerm] = useState('');

@@ -1,9 +1,9 @@
 /* eslint-disable prettier/prettier */
 import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
 import { Container, Cards, Basket } from '../UI/Cart';
-import { DataState } from '../Context/Data/dataContext';
+import { DataState } from '../Context/DataContext/dataContext';
 import { CartState } from '../Context/CartContext/context';
-import { addQuantity } from '../Context/Data/dataHandler';
+import { addQuantity } from '../Context/DataContext/dataHandler';
 
 const Cart = () => {
   const [cartState, setCartState] = CartState();

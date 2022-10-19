@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 import { FormControl, FormControlLabel, FormLabel, Checkbox } from '@mui/material';
 import { useEffect, useState } from 'react';
-import { DataState } from '../Context/Data/dataContext';
+import { DataState } from '../Context/DataContext/dataContext';
 import { SideBarContainer } from '../UI/SideBarContainer';
 
 const SideBar = (props) => {

@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import DataContext from './Context/Data/dataContext';
 import Context from './Context/CartContext/context';
+import DataContext from './Context/DataContext/dataContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

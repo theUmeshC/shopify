@@ -1,8 +1,8 @@
 /* eslint-disable prettier/prettier */
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { DataState } from '../Context/Data/dataContext';
-import { dataLoad } from '../Context/Data/dataHandler';
+import { DataState } from '../Context/DataContext/dataContext';
+import { dataLoad } from '../Context/DataContext/dataHandler';
 
 const useAxios = (baseURL) => {
   const { dispatchData } = DataState();

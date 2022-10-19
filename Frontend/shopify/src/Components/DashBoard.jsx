@@ -5,7 +5,7 @@ import { Box } from '@mui/system';
 import React, { useEffect } from 'react';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { HomeContainer } from '../UI/HomeContainer';
-import { DataState } from '../Context/Data/dataContext';
+import { DataState } from '../Context/DataContext/dataContext';
 
 const Dashboard = (props) => {
   useEffect(() => {
