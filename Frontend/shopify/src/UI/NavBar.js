@@ -29,6 +29,9 @@ export const Cart = styled.div`
     cursor: pointer;
     color: gold;
   }
+  span{
+    width: 5px;
+  }
 `;
 export const RightContainer = styled.div`
   display: flex;
