@@ -31,16 +31,16 @@ const Cart = () => {
     const cartData = updatedItems;
     setCartState(cartData);
     const existingRemoveItemIndex = productData.findIndex((c) => c.id === product.id);
-      const existingRemoveItem = productData[existingRemoveItemIndex];
-      let updatedRemoveItems;
-      const updatedItem = {
-        ...existingRemoveItem,
-        quantity: existingRemoveItem.quantity + 1
-      };
-      updatedRemoveItems = [...productData];
-      updatedRemoveItems[existingRemoveItemIndex] = updatedItem;
-      setProductData(updatedRemoveItems);
-      setFilteredData(updatedRemoveItems);
+    const existingRemoveItem = productData[existingRemoveItemIndex];
+    let updatedRemoveItems;
+    const updatedItem = {
+      ...existingRemoveItem,
+      quantity: existingRemoveItem.quantity + 1
+    };
+    updatedRemoveItems = [...productData];
+    updatedRemoveItems[existingRemoveItemIndex] = updatedItem;
+    setProductData(updatedRemoveItems);
+    setFilteredData(updatedRemoveItems);
   };
 
   return (

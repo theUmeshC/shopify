@@ -11,7 +11,7 @@ import { DataState } from '../Context/DataContext/dataContext';
 
 const Navbar = (props) => {
   const { productDataKey, filteredDataKey } = DataState();
-  const [productData,] = productDataKey;
+  const [productData] = productDataKey;
   const [, setFilteredData] = filteredDataKey;
   const [searchTerm, setSearchTerm] = useState('');
   const [cartState] = CartState();
@@ -34,7 +34,6 @@ const Navbar = (props) => {
       });
       filteredItems.push(...filterItem);
       setFilteredData(filteredItems);
-
     } else {
       setFilteredData(productData);
     }

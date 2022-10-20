@@ -53,7 +53,7 @@ const SideBar = (props) => {
     } else {
       setFilteredData(productData);
     }
-  }, [setProductData, setFilteredData,productData, Checked]);
+  }, [setProductData, setFilteredData, productData, Checked]);
   return (
     <SideBarContainer className="hamburger">
       <FormControl>

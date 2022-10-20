@@ -3,16 +3,14 @@
 import React from 'react';
 import { toast } from 'react-toastify';
 import { CartState } from '../Context/CartContext/context';
-import { baseURL } from '../Helper/httpSupplier';
-import useAxios from '../Helper/useAxios';
+import { DataState } from '../Context/DataContext/dataContext';
 import Dashboard from './DashBoard';
 import SideBar from './SideBar';
 
 const Home = (props) => {
-  const baseUrl = baseURL;
+  const { filteredDataKey } = DataState();
+  const [filteredData] = filteredDataKey;
   const [cartState, setCartState] = CartState();
-  const { data, loadingState, cloneData } = useAxios(baseUrl);
-
   const cartDataHandler = (product) => {
     let selectedItemQuantity = product.quantity;
     if (cartState.length > 0) {
@@ -47,12 +45,11 @@ const Home = (props) => {
   };
   return (
     <div className="wrapper">
-      {data && <SideBar data={data} />}
+      {filteredData && <SideBar data={filteredData} />}
       <Dashboard
         className=""
-        loading={loadingState}
+        loading={props.loading}
         onItemAddedTOCart={cartDataHandler}
-        cloneData={cloneData}
         searchDisplay={props.searchDisplay}
       />
     </div>

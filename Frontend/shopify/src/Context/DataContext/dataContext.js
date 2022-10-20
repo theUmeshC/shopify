@@ -2,21 +2,21 @@
 /* eslint-disable react/prop-types */
 import { createContext, useContext, useState } from 'react';
 
-const productData = createContext();
+const productDataContext = createContext();
 const DataContext = ({ children }) => {
   const [productData, setProductData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   return (
-    <productData.Provider
+    <productDataContext.Provider
       value={{
         productDataKey: [productData, setProductData],
         filteredDataKey: [filteredData, setFilteredData]
       }}>
       {children}
-    </productData.Provider>
+    </productDataContext.Provider>
   );
 };
 export default DataContext;
 export const DataState = () => {
-  return useContext(productData);
+  return useContext(productDataContext);
 };

@@ -9,19 +9,17 @@ const useAxios = (baseURL) => {
   const [, setFilteredData] = filteredDataKey;
   const [data, setData] = useState();
   const [loadingState, setLoadingState] = useState(true);
-  const [cloneData, setCloneData] = useState([]);
   useEffect(() => {
     axios.get(`${baseURL}`).then((response) => {
       setTimeout(() => {
         setData(response.data);
-        setCloneData(response.data);
         setProductData(response.data);
         setFilteredData(response.data);
         setLoadingState(false);
       }, 2500);
     });
   }, [baseURL, setFilteredData, setProductData]);
-  return { data, loadingState, cloneData };
+  return { data, loadingState };
 };
 
 export default useAxios;

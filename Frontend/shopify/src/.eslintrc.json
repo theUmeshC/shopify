@@ -18,6 +18,14 @@
         "react"
     ],
     "rules": {
-        "react/react-in-jsx-scope": "off"    
+        "react/react-in-jsx-scope": "off" ,
+        "prettier/prettier": [
+            "error",
+            {
+              "trailingComma": "es5",
+              "singleQuote": true,
+              "printWidth": 120
+            }
+          ]   
     }
 }
