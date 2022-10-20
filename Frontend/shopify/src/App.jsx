@@ -11,7 +11,7 @@ import {baseURL} from './Helper/httpSupplier'
 
 function App() {
   const baseUrl = baseURL;
-  const { loadingState } = useAxios(baseUrl);
+  const { data,loadingState } = useAxios(baseUrl);
   const [searchDisplay, setSearchDisplay] = useState(true);
   const changeSearchDisplay = (value) => {
     setSearchDisplay(value);
@@ -34,7 +34,7 @@ function App() {
               draggable
               pauseOnHover
             />
-            <Home searchDisplay={changeSearchDisplay} loading= {loadingState} />
+            <Home searchDisplay={changeSearchDisplay} loading= {loadingState} data = {data} />
           </Route>
           <Route path="/cart">
             <Cart searchDisplay={changeSearchDisplay} />

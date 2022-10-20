@@ -3,13 +3,10 @@
 import React from 'react';
 import { toast } from 'react-toastify';
 import { CartState } from '../Context/CartContext/context';
-import { DataState } from '../Context/DataContext/dataContext';
 import Dashboard from './DashBoard';
 import SideBar from './SideBar';
 
 const Home = (props) => {
-  const { filteredDataKey } = DataState();
-  const [filteredData] = filteredDataKey;
   const [cartState, setCartState] = CartState();
   const cartDataHandler = (product) => {
     let selectedItemQuantity = product.quantity;
@@ -45,7 +42,7 @@ const Home = (props) => {
   };
   return (
     <div className="wrapper">
-      {filteredData && <SideBar data={filteredData} />}
+      {props.data && <SideBar data={props.data} />}
       <Dashboard
         className=""
         loading={props.loading}
