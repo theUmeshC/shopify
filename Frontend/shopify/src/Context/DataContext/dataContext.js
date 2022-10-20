@@ -9,8 +9,8 @@ const DataContext = ({ children }) => {
   return (
     <productData.Provider
       value={{
-        productData: [productData, setProductData],
-        filteredData: [filteredData, setFilteredData]
+        productDataKey: [productData, setProductData],
+        filteredDataKey: [filteredData, setFilteredData]
       }}>
       {children}
     </productData.Provider>
