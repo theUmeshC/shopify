@@ -8,20 +8,35 @@ import { HomeContainer } from '../UI/HomeContainer';
 import { DataState } from '../Context/DataContext/dataContext';
 
 const Dashboard = (props) => {
+  const { productDataKey, filteredDataKey } = DataState();
+  const [, setProductData] = productDataKey;
+  const [filteredData, setFilteredData] = filteredDataKey;
   useEffect(() => {
     props.searchDisplay(true);
   }, [props]);
-  const {
-    dataState: { filteredData },
-    dispatchData
-  } = DataState();
   const loading = props.loading;
   const addItemTOCartHandler = (id, product) => {
     props.onItemAddedTOCart(product);
-    dispatchData({
-      type: 'ADD_TO_CART',
-      payload: product
-    });
+    const existingDataItemIndex = filteredData.findIndex((c) => c.id === product.id);
+    const existingItem = filteredData[existingDataItemIndex];
+    let updatedItems;
+    if (existingItem.quantity >= 1) {
+      const updatedItem = {
+        ...existingItem,
+        quantity: existingItem.quantity - 1
+      };
+      updatedItems = [...filteredData];
+      updatedItems[existingDataItemIndex] = updatedItem;
+    } else {
+      const updatedItem = {
+        ...existingItem,
+        quantity: 0
+      };
+      updatedItems = [...filteredData];
+      updatedItems[existingDataItemIndex] = updatedItem;
+    }
+    setFilteredData(updatedItems);
+    setProductData(updatedItems);
   };
 
   return (

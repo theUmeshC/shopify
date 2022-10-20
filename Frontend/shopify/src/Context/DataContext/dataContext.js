@@ -1,16 +1,19 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react/prop-types */
-import { createContext, useContext, useReducer } from 'react';
-import { dataReducer } from './dataReducer';
+import { createContext, useContext, useState } from 'react';
 
 const productData = createContext();
 const DataContext = ({ children }) => {
-  const [dataState, dispatchData] = useReducer(dataReducer, {
-    productData: [],
-    filteredData: []
-  });
+  const [productData, setProductData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
   return (
-    <productData.Provider value={{ dataState, dispatchData }}>{children}</productData.Provider>
+    <productData.Provider
+      value={{
+        productData: [productData, setProductData],
+        filteredData: [filteredData, setFilteredData]
+      }}>
+      {children}
+    </productData.Provider>
   );
 };
 export default DataContext;

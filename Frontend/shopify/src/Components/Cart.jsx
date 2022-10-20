@@ -1,13 +1,14 @@
 /* eslint-disable prettier/prettier */
 import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
 import { Container, Cards, Basket } from '../UI/Cart';
-import { DataState } from '../Context/DataContext/dataContext';
 import { CartState } from '../Context/CartContext/context';
-import { addQuantity } from '../Context/DataContext/dataHandler';
+import { DataState } from '../Context/DataContext/dataContext';
 
 const Cart = () => {
+  const { productDataKey, filteredDataKey } = DataState();
+  const [productData, setProductData] = productDataKey;
+  const [, setFilteredData] = filteredDataKey;
   const [cartState, setCartState] = CartState();
-  const { dispatchData } = DataState();
   let totalSum = 0;
   cartState.map((value) => {
     return (totalSum += value.price * value.qty);
@@ -29,7 +30,17 @@ const Cart = () => {
     }
     const cartData = updatedItems;
     setCartState(cartData);
-    dispatchData(addQuantity(product));
+    const existingRemoveItemIndex = productData.findIndex((c) => c.id === product.id);
+      const existingRemoveItem = productData[existingRemoveItemIndex];
+      let updatedRemoveItems;
+      const updatedItem = {
+        ...existingRemoveItem,
+        quantity: existingRemoveItem.quantity + 1
+      };
+      updatedRemoveItems = [...productData];
+      updatedRemoveItems[existingRemoveItemIndex] = updatedItem;
+      setProductData(updatedRemoveItems);
+      setFilteredData(updatedRemoveItems);
   };
 
   return (

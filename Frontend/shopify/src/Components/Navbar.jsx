@@ -8,11 +8,12 @@ import { DebounceInput } from 'react-debounce-input';
 import { CartState } from '../Context/CartContext/context';
 import { Nav, Cart, RightContainer, Logo, SearchInput } from '../UI/NavBar';
 import { DataState } from '../Context/DataContext/dataContext';
-import { searchData } from '../Context/DataContext/dataHandler';
 
 const Navbar = (props) => {
+  const { productDataKey, filteredDataKey } = DataState();
+  const [productData,] = productDataKey;
+  const [, setFilteredData] = filteredDataKey;
   const [searchTerm, setSearchTerm] = useState('');
-  const { dispatchData } = DataState();
   const [cartState] = CartState();
   let total = 0;
   cartState.map((value) => {
@@ -20,7 +21,23 @@ const Navbar = (props) => {
   });
   const searchHandle = (e) => {
     setSearchTerm(e.target.value);
-    dispatchData(searchData(e.target.value));
+    const product = e.target.value;
+    if (product.length > 0) {
+      let filteredItems = [];
+      const filterItem = productData.filter((item) => {
+        return (
+          item.color.toLowerCase() === product.toLowerCase() ||
+          item.type.toLowerCase() === product.toLowerCase() ||
+          item.price.toString() === product ||
+          item.gender.toLowerCase() === product.toLowerCase()
+        );
+      });
+      filteredItems.push(...filterItem);
+      setFilteredData(filteredItems);
+
+    } else {
+      setFilteredData(productData);
+    }
   };
   return (
     <Nav>

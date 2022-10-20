@@ -6,8 +6,10 @@ import { DataState } from '../Context/DataContext/dataContext';
 import { SideBarContainer } from '../UI/SideBarContainer';
 
 const SideBar = (props) => {
+  const { productDataKey, filteredDataKey } = DataState();
+  const [productData, setProductData] = productDataKey;
+  const [, setFilteredData] = filteredDataKey;
   const [Checked, setChecked] = useState([]);
-  const { dispatchData } = DataState();
 
   const filterColor = [
     ...new Set(
@@ -34,8 +36,24 @@ const SideBar = (props) => {
     setChecked(newChecked);
   };
   useEffect(() => {
-    dispatchData({ type: 'FILTER-DATA', payload: Checked });
-  }, [dispatchData, Checked]);
+    let filteredItems = [];
+    if (Checked.length > 0) {
+      Checked.forEach((element) => {
+        const filterItem = productData.filter((item) => {
+          return (
+            item.color.toLowerCase() === element.toLowerCase() ||
+            item.type.toLowerCase() === element.toLowerCase() ||
+            item.price.toString() === element ||
+            item.gender.toLowerCase() === element.toLowerCase()
+          );
+        });
+        filteredItems.push(...filterItem);
+      });
+      setFilteredData(filteredItems);
+    } else {
+      setFilteredData(productData);
+    }
+  }, [setProductData, setFilteredData,productData, Checked]);
   return (
     <SideBarContainer className="hamburger">
       <FormControl>

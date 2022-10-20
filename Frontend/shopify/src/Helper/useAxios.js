@@ -2,10 +2,11 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { DataState } from '../Context/DataContext/dataContext';
-import { dataLoad } from '../Context/DataContext/dataHandler';
 
 const useAxios = (baseURL) => {
-  const { dispatchData } = DataState();
+  const { productDataKey, filteredDataKey } = DataState();
+  const [, setProductData] = productDataKey;
+  const [, setFilteredData] = filteredDataKey;
   const [data, setData] = useState();
   const [loadingState, setLoadingState] = useState(true);
   const [cloneData, setCloneData] = useState([]);
@@ -14,11 +15,12 @@ const useAxios = (baseURL) => {
       setTimeout(() => {
         setData(response.data);
         setCloneData(response.data);
-        dispatchData(dataLoad(response.data));
+        setProductData(response.data);
+        setFilteredData(response.data);
         setLoadingState(false);
       }, 2500);
     });
-  }, [baseURL, dispatchData]);
+  }, [baseURL, setFilteredData, setProductData]);
   return { data, loadingState, cloneData };
 };
 
