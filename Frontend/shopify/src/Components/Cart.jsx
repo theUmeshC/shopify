@@ -1,87 +1,160 @@
 /* eslint-disable prettier/prettier */
+/* eslint-disable react/prop-types */
 import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
 import { Container, Cards, Basket } from '../UI/Cart';
-import { CartState } from '../Context/CartContext/context';
-import { DataState } from '../Context/DataContext/dataContext';
+import React, { Component } from 'react'
+import { cart } from '../Context/CartContext/context';
 
-const Cart = () => {
-  const { productDataKey, filteredDataKey } = DataState();
-  const [productData, setProductData] = productDataKey;
-  const [, setFilteredData] = filteredDataKey;
-  const [cartState, setCartState] = CartState();
-  let totalSum = 0;
-  cartState.map((value) => {
-    return (totalSum += value.price * value.qty);
-  });
-  let total = 0;
-  cartState.map((value) => {
-    return (total += value.qty);
-  });
-  const removeItemHandler = (product) => {
-    const existingCartItemIndex = cartState.findIndex((c) => c.id === product.id);
-    const existingItem = cartState[existingCartItemIndex];
+export default class Cart extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+    }
+  }
+  static contextType = cart;
+
+  removeItemHandler = (product) => {
+    const existingCartItemIndex = this.context.cartState.findIndex((c) => c.id === product.id);
+    const existingItem = this.context.cartState[existingCartItemIndex];
     let updatedItems;
     if (existingItem.qty === 1) {
-      updatedItems = cartState.filter((item) => item.id !== product.id);
+      updatedItems = this.context.cartState.filter((item) => item.id !== product.id);
     } else {
       const updatedItem = { ...existingItem, qty: existingItem.qty - 1 };
-      updatedItems = [...cartState];
+      updatedItems = [...this.context.cartState];
       updatedItems[existingCartItemIndex] = updatedItem;
     }
     const cartData = updatedItems;
-    setCartState(cartData);
-    const existingRemoveItemIndex = productData.findIndex((c) => c.id === product.id);
-    const existingRemoveItem = productData[existingRemoveItemIndex];
-    let updatedRemoveItems;
-    const updatedItem = {
-      ...existingRemoveItem,
-      quantity: existingRemoveItem.quantity + 1
-    };
-    updatedRemoveItems = [...productData];
-    updatedRemoveItems[existingRemoveItemIndex] = updatedItem;
-    setProductData(updatedRemoveItems);
-    setFilteredData(updatedRemoveItems);
+    this.context.updateCartData(cartData);
+    this.props.removeFromCart(product);
   };
+  render() {
+    return (
+      <>
+        <Container>
+          <div className="title">
+            <h1>Products</h1>
+            <h1>Details</h1>
+            <h1>Quantity</h1>
+            <h1>Remove</h1>
+          </div>
+          <div className="cart__items">
+            {this.context.cartState &&
+              this.context.cartState.map((value, i) => {
+                return (
+                  <Cards key={i}>
+                    <img src={value.imageURL} alt="" />
+                    <div className="details">
+                      <h4>{value.name}</h4>
+                      <h5>Price:{value.price}</h5>
+                    </div>
+                    <div className="quantity">
+                      <h3>{value.qty}</h3>
+                    </div>
+                    <RemoveShoppingCartIcon
+                      className="cart__icon"
+                      onClick={() => {
+                        this.removeItemHandler(value);
+                      }}
+                    />
+                  </Cards>
+                );
+              })}
+          </div>
+        </Container>
+        <Basket>
+          {/* <h1>Total Quantity:{total}</h1>
+          <h1>Total Amount :{`₹${totalSum}`}</h1> */}
+        </Basket>
+      </>
+    );
+  }
+}
 
-  return (
-    <>
-      <Container>
-        <div className="title">
-          <h1>Products</h1>
-          <h1>Details</h1>
-          <h1>Quantity</h1>
-          <h1>Remove</h1>
-        </div>
-        <div className="cart__items">
-          {cartState &&
-            cartState.map((value, i) => {
-              return (
-                <Cards key={i}>
-                  <img src={value.imageURL} alt="" />
-                  <div className="details">
-                    <h4>{value.name}</h4>
-                    <h5>Price:{value.price}</h5>
-                  </div>
-                  <div className="quantity">
-                    <h3>{value.qty}</h3>
-                  </div>
-                  <RemoveShoppingCartIcon
-                    className="cart__icon"
-                    onClick={() => {
-                      removeItemHandler(value);
-                    }}
-                  />
-                </Cards>
-              );
-            })}
-        </div>
-      </Container>
-      <Basket>
-        <h1>Total Quantity:{total}</h1>
-        <h1>Total Amount :{`₹${totalSum}`}</h1>
-      </Basket>
-    </>
-  );
-};
 
-export default Cart;
+
+
+
+
+
+// const Cart = () => {
+//   const { productDataKey, filteredDataKey } = DataState();
+//   const [productData, setProductData] = productDataKey;
+//   const [, setFilteredData] = filteredDataKey;
+//   const [cartState, setCartState] = CartState();
+//   let totalSum = 0;
+//   cartState.map((value) => {
+//     return (totalSum += value.price * value.qty);
+//   });
+//   let total = 0;
+//   cartState.map((value) => {
+//     return (total += value.qty);
+//   });
+//   const removeItemHandler = (product) => {
+//     const existingCartItemIndex = cartState.findIndex((c) => c.id === product.id);
+//     const existingItem = cartState[existingCartItemIndex];
+//     let updatedItems;
+//     if (existingItem.qty === 1) {
+//       updatedItems = cartState.filter((item) => item.id !== product.id);
+//     } else {
+//       const updatedItem = { ...existingItem, qty: existingItem.qty - 1 };
+//       updatedItems = [...cartState];
+//       updatedItems[existingCartItemIndex] = updatedItem;
+//     }
+//     const cartData = updatedItems;
+//     setCartState(cartData);
+//     const existingRemoveItemIndex = productData.findIndex((c) => c.id === product.id);
+//     const existingRemoveItem = productData[existingRemoveItemIndex];
+//     let updatedRemoveItems;
+//     const updatedItem = {
+//       ...existingRemoveItem,
+//       quantity: existingRemoveItem.quantity + 1
+//     };
+//     updatedRemoveItems = [...productData];
+//     updatedRemoveItems[existingRemoveItemIndex] = updatedItem;
+//     setProductData(updatedRemoveItems);
+//     setFilteredData(updatedRemoveItems);
+//   };
+
+//   return (
+//     <>
+//       <Container>
+//         <div className="title">
+//           <h1>Products</h1>
+//           <h1>Details</h1>
+//           <h1>Quantity</h1>
+//           <h1>Remove</h1>
+//         </div>
+//         <div className="cart__items">
+//           {cartState &&
+//             cartState.map((value, i) => {
+//               return (
+//                 <Cards key={i}>
+//                   <img src={value.imageURL} alt="" />
+//                   <div className="details">
+//                     <h4>{value.name}</h4>
+//                     <h5>Price:{value.price}</h5>
+//                   </div>
+//                   <div className="quantity">
+//                     <h3>{value.qty}</h3>
+//                   </div>
+//                   <RemoveShoppingCartIcon
+//                     className="cart__icon"
+//                     onClick={() => {
+//                       removeItemHandler(value);
+//                     }}
+//                   />
+//                 </Cards>
+//               );
+//             })}
+//         </div>
+//       </Container>
+//       <Basket>
+//         <h1>Total Quantity:{total}</h1>
+//         <h1>Total Amount :{`₹${totalSum}`}</h1>
+//       </Basket>
+//     </>
+//   );
+// };
+
+// export default Cart;
