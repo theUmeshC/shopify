@@ -22,18 +22,19 @@ export default class Home extends Component {
         const exist = this.context.cartState.find((x) => x.id === product.id);
         if (exist) {
           const cartData = this.context.cartState.map((x) =>
-            x.id === product.id ? { ...x, qty: x.qty + 1 } : x
+            x.id === product.id ? { ...x, qty: x.qty + 1, availQty : product.quantity -1 } : x , 
           );
-          this.context.updateCart( ...cartData );
+          this.context.updateExistingCartData( cartData );
         } else {
           const cartData = [
             ...this.context.cartState,
             {
               ...product,
-              qty: 1
+              qty: 1,
+              availQty : product.quantity -1,
             }
           ];
-          this.context.updateCart(...cartData );
+          this.context.updateCart( cartData );
         }
       } else {
         toast.error('🦄 Out of Stock!');
@@ -41,9 +42,10 @@ export default class Home extends Component {
     } else {
       const cartData = {
         ...product,
-        qty: 1
+        qty: 1,
+        availQty : product.quantity -1
       };
-      this.context.updateCart(cartData);
+      this.context.initialUpdate(cartData);
     }
   };
   render() {

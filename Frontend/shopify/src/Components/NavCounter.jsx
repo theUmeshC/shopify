@@ -11,7 +11,7 @@ export default class NavCounter extends Component {
   render() {
     let total = 0;
     this.context.cartState.map((value) => {
-      return (total += 1);
+      return (total += value.qty);
     });
     return <span>{total}</span>;
   }
