@@ -30,7 +30,6 @@ export default class Cart extends Component {
     const cartData = updatedItems;
     this.context.updateCartData(cartData);
     // this.props.removeFromCart(product);
-    // console.log(this.context.cartState);
   };
   render() {
     return (
