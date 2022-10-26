@@ -7,136 +7,70 @@ import { DebounceInput } from 'react-debounce-input';
 import { Nav, Cart, RightContainer, Logo, SearchInput } from '../UI/NavBar';
 import { productDataContext } from '../Context/DataContext/dataContext';
 
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import NavCounter from './NavCounter';
 
 export default class Navbar extends Component {
   constructor(props) {
-        super(props);
-        this.state = {
-          searchTerm:'',
-        }
-      }
+    super(props);
+    this.state = {
+      searchTerm: ''
+    };
+  }
 
-      static contextType = productDataContext;
+  static contextType = productDataContext;
 
-      searchHandle = (e) => {
-        this.setState({
-          searchTerm: e.target.value,
-        });
-        const product = e.target.value;
-        if (product.length > 0) {
-          let filteredItems = [];
-          const filterItem = this.context.dataState.productData.filter((item) => {
-            return (
-              item.color.toLowerCase() === product.toLowerCase() ||
-              item.type.toLowerCase() === product.toLowerCase() ||
-              item.price.toString() === product ||
-              item.gender.toLowerCase() === product.toLowerCase()
-            );
-          });
-          filteredItems.push(...filterItem);
-          this.context.updateFilteredData(filteredItems);
-          // setFilteredData(filteredItems);
-        } else {
-          this.context.updateFilteredData(this.context.dataState.productData);
-          // setFilteredData(productData);
-        }
-      };
+  searchHandle = (e) => {
+    this.setState({
+      searchTerm: e.target.value
+    });
+    const product = e.target.value;
+    if (product.length > 0) {
+      let filteredItems = [];
+      const filterItem = this.context.dataState.productData.filter((item) => {
+        return (
+          item.color.toLowerCase() === product.toLowerCase() ||
+          item.type.toLowerCase() === product.toLowerCase() ||
+          item.price.toString() === product ||
+          item.gender.toLowerCase() === product.toLowerCase()
+        );
+      });
+      filteredItems.push(...filterItem);
+      this.context.updateFilteredData(filteredItems);
+    } else {
+      this.context.updateFilteredData(this.context.dataState.productData);
+    }
+  };
 
   render() {
-   return (
-    <Nav>
-      <Link to="/" className="cart__icon">
-        <Logo>Shopify</Logo>
-      </Link>
-      {this.props.searchDisplay && (
-        <SearchInput>
-          <DebounceInput
-            debounceTimeout={500}
-            value={this.state.searchTerm}
-            onChange={this.searchHandle}
-            className="searchBar"
-          />
-          <SearchIcon />
-        </SearchInput>
-      )}
-      <RightContainer>
+    return (
+      <Nav>
         <Link to="/" className="cart__icon">
-          <h1>Products</h1>
+          <Logo>Shopify</Logo>
         </Link>
-        <Cart>
-          <Link to="/cart" className="cart__icon">
-            <ShoppingCartOutlinedIcon />
+        {this.props.searchDisplay && (
+          <SearchInput>
+            <DebounceInput
+              debounceTimeout={500}
+              value={this.state.searchTerm}
+              onChange={this.searchHandle}
+              className="searchBar"
+            />
+            <SearchIcon />
+          </SearchInput>
+        )}
+        <RightContainer>
+          <Link to="/" className="cart__icon">
+            <h1>Products</h1>
           </Link>
-          <NavCounter/>
-        </Cart>
-      </RightContainer>
-    </Nav>
-  );
+          <Cart>
+            <Link to="/cart" className="cart__icon">
+              <ShoppingCartOutlinedIcon />
+            </Link>
+            <NavCounter />
+          </Cart>
+        </RightContainer>
+      </Nav>
+    );
   }
 }
-
-
-
-// const Navbar = (props) => {
-//   const { productDataKey, filteredDataKey } = DataState();
-//   const [productData] = productDataKey;
-//   const [, setFilteredData] = filteredDataKey;
-//   const [searchTerm, setSearchTerm] = useState('');
-//   const [cartState] = CartState();
-//   let total = 0;
-//   cartState.map((value) => {
-//     return (total += value.qty);
-//   });
-//   const searchHandle = (e) => {
-//     setSearchTerm(e.target.value);
-//     const product = e.target.value;
-//     if (product.length > 0) {
-//       let filteredItems = [];
-//       const filterItem = productData.filter((item) => {
-//         return (
-//           item.color.toLowerCase() === product.toLowerCase() ||
-//           item.type.toLowerCase() === product.toLowerCase() ||
-//           item.price.toString() === product ||
-//           item.gender.toLowerCase() === product.toLowerCase()
-//         );
-//       });
-//       filteredItems.push(...filterItem);
-//       setFilteredData(filteredItems);
-//     } else {
-//       setFilteredData(productData);
-//     }
-//   };
-//   return (
-//     <Nav>
-//       <Link to="/" className="cart__icon">
-//         <Logo>Shopify</Logo>
-//       </Link>
-//       {props.searchDisplay && (
-//         <SearchInput>
-//           <DebounceInput
-//             debounceTimeout={500}
-//             value={searchTerm}
-//             onChange={searchHandle}
-//             className="searchBar"
-//           />
-//           <SearchIcon />
-//         </SearchInput>
-//       )}
-//       <RightContainer>
-//         <Link to="/" className="cart__icon">
-//           <h1>Products</h1>
-//         </Link>
-//         <Cart>
-//           <Link to="/cart" className="cart__icon">
-//             <ShoppingCartOutlinedIcon />
-//           </Link>
-//           <span>{total}</span>
-//         </Cart>
-//       </RightContainer>
-//     </Nav>
-//   );
-// };
-
-// export default Navbar;

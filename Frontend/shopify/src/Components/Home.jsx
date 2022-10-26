@@ -10,8 +10,7 @@ import React, { Component } from 'react';
 export default class Home extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-    }
+    this.state = {};
   }
   static contextType = cart;
 
@@ -22,19 +21,19 @@ export default class Home extends Component {
         const exist = this.context.cartState.find((x) => x.id === product.id);
         if (exist) {
           const cartData = this.context.cartState.map((x) =>
-            x.id === product.id ? { ...x, qty: x.qty + 1, availQty : product.quantity -1 } : x , 
+            x.id === product.id ? { ...x, qty: x.qty + 1, availQty: product.quantity - 1 } : x
           );
-          this.context.updateExistingCartData( cartData );
+          this.context.updateExistingCartData(cartData);
         } else {
           const cartData = [
             ...this.context.cartState,
             {
               ...product,
               qty: 1,
-              availQty : product.quantity -1,
+              availQty: product.quantity - 1
             }
           ];
-          this.context.updateCart( cartData );
+          this.context.updateCart(cartData);
         }
       } else {
         toast.error('🦄 Out of Stock!');
@@ -43,7 +42,7 @@ export default class Home extends Component {
       const cartData = {
         ...product,
         qty: 1,
-        availQty : product.quantity -1
+        availQty: product.quantity - 1
       };
       this.context.initialUpdate(cartData);
     }
@@ -62,54 +61,3 @@ export default class Home extends Component {
     );
   }
 }
-
-
-
-// const Home = (props) => {
-//   const [cartState, setCartState] = CartState();
-//   const cartDataHandler = (product) => {
-//     let selectedItemQuantity = product.quantity;
-//     if (cartState.length > 0) {
-//       if (selectedItemQuantity > 0) {
-//         const exist = cartState.find((x) => x.id === product.id);
-//         if (exist) {
-//           const cartData = cartState.map((x) =>
-//             x.id === product.id ? { ...x, qty: x.qty + 1 } : x
-//           );
-//           console.log(cartData);
-//           setCartState(cartData);
-//         } else {
-//           const cartData = [
-//             ...cartState,
-//             {
-//               ...product,
-//               qty: 1
-//             }
-//           ];
-//           setCartState(cartData);
-//         }
-//       } else {
-//         toast.error('🦄 Out of Stock!');
-//       }
-//     } else {
-//       const cartData = {
-//         ...product,
-//         qty: 1
-//       };
-//       setCartState([cartData]);
-//     }
-//   };
-//   return (
-//     <div className="wrapper">
-//       {props.data && <SideBar data={props.data} />}
-//       <Dashboard
-//         className=""
-//         loading={props.loading}
-//         onItemAddedTOCart={cartDataHandler}
-//         searchDisplay={props.searchDisplay}
-//       />
-//     </div>
-//   );
-// };
-
-// export default Home;

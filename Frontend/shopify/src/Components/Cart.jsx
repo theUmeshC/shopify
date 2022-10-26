@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
 import { Container, Cards, Basket } from '../UI/Cart';
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { cart } from '../Context/CartContext/context';
 import NavCounter from './NavCounter';
 import CartData from './CartData';
@@ -11,8 +11,8 @@ export default class Cart extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      reRender : [],
-    }
+      reRender: []
+    };
   }
   static contextType = cart;
 
@@ -67,8 +67,13 @@ export default class Cart extends Component {
           </div>
         </Container>
         <Basket>
-          <h1>Total Quantity:<NavCounter /></h1>
-          <h1>Total Amount :<CartData /></h1>
+          <h1>
+            Total Quantity:
+            <NavCounter />
+          </h1>
+          <h1>
+            Total Amount :<CartData />
+          </h1>
         </Basket>
       </>
     );
