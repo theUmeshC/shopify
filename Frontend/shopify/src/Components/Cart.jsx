@@ -11,10 +11,12 @@ export default class Cart extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      reRender: []
     };
   }
   static contextType = cart;
+  componentDidMount(){
+    this.props.searchDisplay(false);
+  }
 
   removeItemHandler = (product) => {
     const existingCartItemIndex = this.context.cartState.findIndex((c) => c.id === product.id);
@@ -29,7 +31,7 @@ export default class Cart extends Component {
     }
     const cartData = updatedItems;
     this.context.updateCartData(cartData);
-    // this.props.removeFromCart(product);
+    this.props.removeFromCart(product);
   };
   render() {
     return (

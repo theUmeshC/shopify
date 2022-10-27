@@ -16,7 +16,7 @@ export default class App extends Component {
     this.state = {
       data: [],
       loading: true,
-      searchDisplay: true
+      searchDisplay: true,
     };
   }
 

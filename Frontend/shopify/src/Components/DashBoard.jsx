@@ -78,12 +78,12 @@ export default class DashBoard extends Component {
                       </div>
                       <div
                         className="card-footer"
-                        onClick={() => this.addItemTOCartHandler(item.id, item)}>
+                        >
                         <Typography gutterBottom variant="body2" color="text.secondary">
                           {`Qty:${item.quantity}`}
                         </Typography>
                         <IconButton aria-label="delete" size="small">
-                          <AddShoppingCartIcon className="cart__icon" />
+                          <AddShoppingCartIcon onClick={() => this.addItemTOCartHandler(item.id, item)}className="cart__icon" />
                         </IconButton>
                       </div>
                     </Box>
