@@ -31,7 +31,18 @@ export default class Cart extends Component {
     }
     const cartData = updatedItems;
     this.context.updateCartData(cartData);
-    this.props.removeFromCart(product);
+    const existingRemoveItemIndex = this.props.dataState.dataState.productData.findIndex(
+      (c) => c.id === product.id
+    );
+    const existingRemoveItem = this.props.dataState.dataState.productData[existingRemoveItemIndex];
+    let updatedRemoveItems;
+    const updatedItem = {
+      ...existingRemoveItem,
+      quantity: existingRemoveItem.quantity + 1
+    };
+    updatedRemoveItems = [...this.props.dataState.dataState.productData];
+    updatedRemoveItems[existingRemoveItemIndex] = updatedItem;
+    this.props.dataState.updateState(updatedRemoveItems);
   };
   render() {
     return (

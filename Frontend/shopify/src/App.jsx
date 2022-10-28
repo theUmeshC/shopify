@@ -8,6 +8,7 @@ import { baseURL } from './Helper/httpSupplier';
 import axios from 'axios';
 import React, { Component } from 'react';
 import { productDataContext } from './Context/DataContext/dataContext';
+import { cart } from './Context/CartContext/context';
 import Cart from './Components/Cart';
 
 export default class App extends Component {
@@ -16,7 +17,7 @@ export default class App extends Component {
     this.state = {
       data: [],
       loading: true,
-      searchDisplay: true,
+      searchDisplay: true
     };
   }
 
@@ -38,18 +39,8 @@ export default class App extends Component {
     });
   }
 
-  onItemRemoveFromCart (product) {
+  onItemRemoveFromCart(product) {
     console.log(this.context);
-    const existingRemoveItemIndex = this.context.dataState.productData.findIndex((c) => c.id === product.id);
-    const existingRemoveItem = this.context.dataState.productData[existingRemoveItemIndex];
-    let updatedRemoveItems;
-    const updatedItem = {
-      ...existingRemoveItem,
-      quantity: existingRemoveItem.quantity + 1
-    };
-    updatedRemoveItems = [...this.context.dataState.productData];
-    updatedRemoveItems[existingRemoveItemIndex] = updatedItem;
-    this.context.updateState(updatedRemoveItems);
   }
 
   render() {
@@ -77,7 +68,20 @@ export default class App extends Component {
               />
             </Route>
             <Route path="/cart">
-              <Cart searchDisplay={this.changeSearchDisplay } removeFromCart = {this.onItemRemoveFromCart} />
+              <productDataContext.Consumer>
+                {(dataState) => (
+                  <cart.Consumer>
+                    {(cartState) => (
+                      <Cart
+                        searchDisplay={this.changeSearchDisplay}
+                        removeFromCart={this.onItemRemoveFromCart}
+                        dataState = { dataState }
+                        cartState={cartState}
+                      />
+                    )}
+                  </cart.Consumer>
+                )}
+              </productDataContext.Consumer>
             </Route>
           </Switch>
         </div>
