@@ -3,7 +3,7 @@
 import { Grid, IconButton, Skeleton, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import { HomeContainer } from '../UI/HomeContainer';
+import { HomeContainer } from '../UI/Dashboard';
 import { productDataContext } from '../Context/DataContext/dataContext';
 import React, { Component } from 'react';
 

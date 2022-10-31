@@ -29,7 +29,7 @@ export default class SideBar extends Component {
     });
   };
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate( _ , prevState ) {
     if (prevState.Checked !== this.state.Checked) {
       let filteredItems = [];
       if (this.state.Checked.length > 0) {
