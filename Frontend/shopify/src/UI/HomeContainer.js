@@ -26,10 +26,7 @@ export const HomeContainer = styled.div`
     border-radius: 0.5rem;
     transition: 0.3s ease;
   }
-  .card-img:hover {
-    transform: translateY(-25%);
-    box-shadow: #599ff4 0px 13px 47px -5px, #599ff4 0px 8px 16px -8px;
-  }
+
   .text-title {
     font-weight: 500;
     font-size: 1.1em;

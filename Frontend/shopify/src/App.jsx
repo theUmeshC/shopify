@@ -38,10 +38,6 @@ export default class App extends Component {
     });
   }
 
-  onItemRemoveFromCart(product) {
-    console.log(this.context);
-  }
-
   render() {
     return (
       <Router>
@@ -71,7 +67,6 @@ export default class App extends Component {
                 {(dataState) => (
                       <Cart
                         searchDisplay={this.changeSearchDisplay}
-                        removeFromCart={this.onItemRemoveFromCart}
                         dataState = { dataState }
                       />
                 )}
