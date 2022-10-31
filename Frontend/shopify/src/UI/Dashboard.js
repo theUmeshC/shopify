@@ -26,7 +26,6 @@ export const HomeContainer = styled.div`
     border-radius: 0.5rem;
     transition: 0.3s ease;
   }
-
   .text-title {
     font-weight: 500;
     font-size: 1.1em;
