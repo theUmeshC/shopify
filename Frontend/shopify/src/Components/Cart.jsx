@@ -84,7 +84,7 @@ export default class Cart extends Component {
             <NavCounter />
           </h1>
           <h1>
-            Total Amount :<CartData />
+            Total Amount :₹ <CartData />
           </h1>
         </Basket>
       </>
