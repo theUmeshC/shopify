@@ -10,7 +10,7 @@ React, material ui and styledComponents.
 
 ### `Get different builds of App in different Branches`
 
-#### `Main`: App bulid using just states 
+#### `Main`(href:"google.com"): App bulid using just states 
 
 #### `contextState` : App build using context with state management using useState
 
