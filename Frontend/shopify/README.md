@@ -23,6 +23,6 @@ You may also see any lint errors in the console.
 
 ## Below you can find the project sample images
 
-<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/bootstrap/bootstrap-plain-wordmark.svg">
+<img src="https://i.postimg.cc/66b9h3p0/Screenshot-2022-11-01-135335.png">
 <hr/>
 
