@@ -1,10 +1,11 @@
 /* eslint-disable prettier/prettier */
-/* eslint-disable react/prop-types */
 import React from 'react';
 import { toast } from 'react-toastify';
 import { CartState } from '../Context/CartContext/context';
 import Dashboard from './DashBoard';
 import SideBar from './SideBar';
+import PropTypes from 'prop-types';
+
 
 const Home = (props) => {
   const [cartState, setCartState] = CartState();
@@ -17,7 +18,6 @@ const Home = (props) => {
           const cartData = cartState.map((x) =>
             x.id === product.id ? { ...x, qty: x.qty + 1 } : x
           );
-          console.log(cartData);
           setCartState(cartData);
         } else {
           const cartData = [
@@ -52,5 +52,11 @@ const Home = (props) => {
     </div>
   );
 };
+
+Home.propTypes = {
+  searchDisplay : PropTypes.func,
+  loading : PropTypes.bool,
+  data : PropTypes.array,
+}
 
 export default Home;

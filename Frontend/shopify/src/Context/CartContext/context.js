@@ -1,16 +1,16 @@
 /* eslint-disable prettier/prettier */
-/* eslint-disable react/prop-types */
 import { createContext, useContext, useState } from 'react';
-// import { cartReducer } from './cartReducer';
+import PropTypes from 'prop-types';
 
 const cart = createContext();
 
 const Context = ({ children }) => {
-  // const [state, dispatch] = useReducer(cartReducer, {
-  //   cart: []
-  // });
   const [cartState, setCartState] = useState([]);
   return <cart.Provider value={[cartState, setCartState]}>{children}</cart.Provider>;
+};
+
+Context.propTypes = {
+  children: PropTypes.element.isRequired
 };
 
 export default Context;

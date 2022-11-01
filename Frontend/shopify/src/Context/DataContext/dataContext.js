@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
-/* eslint-disable react/prop-types */
 import { createContext, useContext, useState } from 'react';
+import PropTypes from 'prop-types';
+
 
 const productDataContext = createContext();
 const DataContext = ({ children }) => {
@@ -16,7 +17,13 @@ const DataContext = ({ children }) => {
     </productDataContext.Provider>
   );
 };
+
+DataContext.propTypes = {
+  children: PropTypes.element.isRequired
+};
+
 export default DataContext;
+
 export const DataState = () => {
   return useContext(productDataContext);
 };

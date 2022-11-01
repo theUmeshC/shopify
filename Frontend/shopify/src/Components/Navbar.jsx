@@ -1,5 +1,4 @@
 /* eslint-disable prettier/prettier */
-/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import SearchIcon from '@mui/icons-material/Search';
@@ -8,6 +7,8 @@ import { DebounceInput } from 'react-debounce-input';
 import { CartState } from '../Context/CartContext/context';
 import { Nav, Cart, RightContainer, Logo, SearchInput } from '../UI/NavBar';
 import { DataState } from '../Context/DataContext/dataContext';
+import PropTypes from 'prop-types';
+
 
 const Navbar = (props) => {
   const { productDataKey, filteredDataKey } = DataState();
@@ -68,5 +69,9 @@ const Navbar = (props) => {
     </Nav>
   );
 };
+
+Navbar.propTypes = {
+  searchDisplay : PropTypes.bool,
+}
 
 export default Navbar;

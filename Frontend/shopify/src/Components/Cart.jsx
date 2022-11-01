@@ -1,9 +1,10 @@
 /* eslint-disable prettier/prettier */
-/* eslint-disable react/prop-types */
 import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
 import { Container, Cards, Basket } from '../UI/Cart';
 import { CartState } from '../Context/CartContext/context';
 import { DataState } from '../Context/DataContext/dataContext';
+import PropTypes from 'prop-types';
+import { useEffect } from 'react';
 
 const Cart = (props) => {
   const { productDataKey, filteredDataKey } = DataState();
@@ -11,14 +12,19 @@ const Cart = (props) => {
   const [, setFilteredData] = filteredDataKey;
   const [cartState, setCartState] = CartState();
   let totalSum = 0;
+  
   cartState.map((value) => {
     return (totalSum += value.price * value.qty);
   });
+
   let total = 0;
   cartState.map((value) => {
     return (total += value.qty);
   });
-  props.searchDisplay(false);
+
+  useEffect(()=>{
+    props.searchDisplay(false);
+  }, [props]);
   
   const removeItemHandler = (product) => {
     const existingCartItemIndex = cartState.findIndex((c) => c.id === product.id);
@@ -86,5 +92,9 @@ const Cart = (props) => {
     </>
   );
 };
+
+Cart.propTypes = {
+  searchDisplay : PropTypes.func,
+}
 
 export default Cart;

@@ -4,6 +4,8 @@ import { FormControl, FormControlLabel, FormLabel, Checkbox } from '@mui/materia
 import { useEffect, useState } from 'react';
 import { DataState } from '../Context/DataContext/dataContext';
 import { SideBarContainer } from '../UI/SideBarContainer';
+import PropTypes from 'prop-types';
+
 
 const SideBar = (props) => {
   const { productDataKey, filteredDataKey } = DataState();
@@ -165,5 +167,9 @@ const SideBar = (props) => {
     </SideBarContainer>
   );
 };
+
+SideBar.propTypes = {
+  data : PropTypes.array,
+}
 
 export default SideBar;
