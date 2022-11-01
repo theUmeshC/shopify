@@ -3,8 +3,9 @@
 This is a single page react App where you can view the products, filter them, search them , and even add the products to the cart ✌
 
 ## Teck Stack
-
-React, material ui and styledComponents.
+- React
+- Material UI
+- React Router Dom
 
 ## Setup Instructions
 
@@ -18,20 +19,49 @@ React, material ui and styledComponents.
 
 #### `classBased` : App build using class based components, using context to maintain the app wide data
 
-### `Download or clone the app`
-download the code files or clone the app from the repository 'https://github.com/theUmeshC/shopify'.
+## Run Locally
 
-### `npm install`
-to install the npm package and the dependencies.    
+Clone the project
 
-### `npm start`
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```bash
+  git clone https://github.com/theUmeshC/shopify .
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```
+
+Go to the project directory
+
+```bash
+  cd Shopify
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the server
+
+```bash
+  npm run start
+```
+
+## Features
+
+- View Products
+- Filter Products
+- Search Products
+- Add Products to Cart 
+
+## API Reference
+
+#### Get all items
+
+```http:://geektrust.s3.ap-southeast-1.amazonaws.com/coding-problems/shopping-cart/catalogue.json
+```
 
 ## Below you can find the project sample images
 
-<img src="https://i.postimg.cc/66b9h3p0/Screenshot-2022-11-01-135335.png" width='300'>
-<img src="https://i.postimg.cc/nr4gg3tB/Screenshot.png" width='300'>
+![App Screenshot](https://i.postimg.cc/66b9h3p0/Screenshot-2022-11-01-135335.png)
+
+![App Screenshot](https://i.postimg.cc/nr4gg3tB/Screenshot.png)
