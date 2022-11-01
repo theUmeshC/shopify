@@ -2,9 +2,9 @@
 
 This is a single page react App where you can view the products, filter them, search them , and even add the products to the cart ✌
 
-## Teck Stack used throughout
+## Teck Stack
 
-React, materil ui and styledComponents.
+React, material ui and styledComponents.
 
 ## Setup Instructions
 
@@ -35,5 +35,3 @@ You may also see any lint errors in the console.
 
 <img src="https://i.postimg.cc/66b9h3p0/Screenshot-2022-11-01-135335.png" width='300'>
 <img src="https://i.postimg.cc/nr4gg3tB/Screenshot.png" width='300'>
-
-
