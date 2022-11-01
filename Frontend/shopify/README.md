@@ -57,8 +57,8 @@ Start the server
 
 #### Get all items
 
-```http 
-://geektrust.s3.ap-southeast-1.amazonaws.com/coding-problems/shopping-cart/catalogue.json
+```
+http://geektrust.s3.ap-southeast-1.amazonaws.com/coding-problems/shopping-cart/catalogue.json
 ```
 
 ## Below you can find the project sample images
