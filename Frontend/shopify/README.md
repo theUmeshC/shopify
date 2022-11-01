@@ -67,4 +67,4 @@ http://geektrust.s3.ap-southeast-1.amazonaws.com/coding-problems/shopping-cart/c
 
 ![App Screenshot](https://i.postimg.cc/nr4gg3tB/Screenshot.png)
 
-<img   width='400' src='https://im3.ezgif.com/tmp/ezgif-3-88a5a46986.gif'>
+<img   width='100%' src='https://im3.ezgif.com/tmp/ezgif-3-88a5a46986.gif'>
