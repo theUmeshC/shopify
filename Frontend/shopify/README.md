@@ -8,6 +8,16 @@ React, materil ui and styledComponents.
 
 ## Setup Instructions
 
+### `Get different builds of App in different Branches`
+
+Main: App bulid using just states 
+
+contextState : App build using context with state management using useState
+
+contextReducer : App build using context with state management using useReducer
+
+classBased : App build using class based components, using context to maintain the app wide data
+
 ### `Download or clone the app`
 download the code files or clone the app from the repository from 'https://github.com/theUmeshC/shopify'.
 
