@@ -5,9 +5,10 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 90vw;
-  border-radius: 15px;
+  border-radius: 2px;
   background: #f8f6f6;
-  box-shadow: 18px 18px 14px #cfcfcf, -18px -18px 14px #ffffff;
+  border: 1px solid #cfcfcf;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -35,7 +36,7 @@ export const Container = styled.div`
   }
 
   .title {
-    border-radius: 15px;
+    border-radius: 2px;
     position: sticky;
     padding: 10px 0px;
     top: 0;
@@ -44,7 +45,6 @@ export const Container = styled.div`
     display: flex;
     justify-content: space-around;
     align-items: center;
-
     h1 {
       font-size: 15px;
       font-weight: bold;
@@ -58,7 +58,14 @@ export const Cards = styled.div`
   align-items: center;
   img {
     width: 70px;
+    object-fit: contain;
     border-radius: 50%;
+  }
+  .details {
+    width: 90px;
+  }
+  .quantity {
+    width: 60px;
   }
   .cart__icon {
     background-color: #ff5709;
@@ -68,6 +75,7 @@ export const Cards = styled.div`
     transition: 0.3s;
     box-sizing: border-box;
     font-size: 30px;
+    margin-right: 20px;
   }
   .cart__icon:hover {
     background-color: #ff0000;
@@ -81,12 +89,16 @@ export const Cards = styled.div`
 `;
 export const Basket = styled.div`
   position: absolute;
-  bottom: 1vh;
+  bottom: 0vh;
   display: flex;
   width: 100vw;
+  z-index: 999;
   text-align: center;
   flex-direction: column;
+  background-color: aliceblue;
+  border-top: 1px solid #cfcfcf;
+  padding: 5px 0;
   h1 {
-    font-size: 20px;
+    font-size: 1.07rem;
   }
 `;
