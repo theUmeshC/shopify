@@ -35,8 +35,6 @@ You may also see any lint errors in the console.
 
 <img src="https://i.postimg.cc/66b9h3p0/Screenshot-2022-11-01-135335.png" width='300'>
 <img src="https://i.postimg.cc/nr4gg3tB/Screenshot.png" width='300'>
-<video width="320" height="240" controls>
-  <source src="https://uploadnow.io/files/Gj2hfvJ" type="WEBM File">
-</video>
+<div style="height: 0; padding-bottom: calc(41.56%); position:relative; width: 100%;"><iframe allow="autoplay; gyroscope;" allowfullscreen height="100%" referrerpolicy="strict-origin" src="https://www.kapwing.com/e/6360e587b083c5003dd5320a?autoplay=true" style="border:0; height:100%; left:0; overflow:hidden; position:absolute; top:0; width:100%" title="Embedded content made on Kapwing" width="100%"></iframe></div><p style="font-size: 12px; text-align: right;">Video edited on <a href="https://www.kapwing.com/video-editor">Kapwing</a></p>
 
 
