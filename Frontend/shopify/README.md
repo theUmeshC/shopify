@@ -19,7 +19,7 @@ React, material ui and styledComponents.
 #### `classBased` : App build using class based components, using context to maintain the app wide data
 
 ### `Download or clone the app`
-download the code files or clone the app from the repository from 'https://github.com/theUmeshC/shopify'.
+download the code files or clone the app from the repository 'https://github.com/theUmeshC/shopify'.
 
 ### `npm install`
 to install the npm package and the dependencies.    
