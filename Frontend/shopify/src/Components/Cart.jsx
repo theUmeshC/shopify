@@ -1,4 +1,5 @@
 /* eslint-disable prettier/prettier */
+
 import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
 import { Container, Cards, Basket } from '../UI/Cart';
 import { CartState } from '../Context/CartContext/context';
@@ -12,7 +13,7 @@ const Cart = (props) => {
   const [, setFilteredData] = filteredDataKey;
   const [cartState, setCartState] = CartState();
   let totalSum = 0;
-  
+
   cartState.map((value) => {
     return (totalSum += value.price * value.qty);
   });
@@ -22,10 +23,10 @@ const Cart = (props) => {
     return (total += value.qty);
   });
 
-  useEffect(()=>{
+  useEffect(() => {
     props.searchDisplay(false);
   }, [props]);
-  
+
   const removeItemHandler = (product) => {
     const existingCartItemIndex = cartState.findIndex((c) => c.id === product.id);
     const existingItem = cartState[existingCartItemIndex];
@@ -44,7 +45,7 @@ const Cart = (props) => {
     let updatedRemoveItems;
     const updatedItem = {
       ...existingRemoveItem,
-      quantity: existingRemoveItem.quantity + 1
+      quantity: existingRemoveItem.quantity + 1,
     };
     updatedRemoveItems = [...productData];
     updatedRemoveItems[existingRemoveItemIndex] = updatedItem;
@@ -94,7 +95,7 @@ const Cart = (props) => {
 };
 
 Cart.propTypes = {
-  searchDisplay : PropTypes.func,
-}
+  searchDisplay: PropTypes.func,
+};
 
 export default Cart;
