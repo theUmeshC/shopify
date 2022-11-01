@@ -4,10 +4,12 @@ import { Grid, IconButton, Skeleton, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React, { useEffect } from 'react';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import { HomeContainer } from '../UI/HomeContainer';
+import { HomeContainer } from '../UI/Dashboard';
 import { DataState } from '../Context/DataContext/dataContext';
+// import PropTypes from 'prop-types';
 
 const Dashboard = (props) => {
+  console.log(props);
   const { productDataKey, filteredDataKey } = DataState();
   const [, setProductData] = productDataKey;
   const [filteredData, setFilteredData] = filteredDataKey;
@@ -97,5 +99,9 @@ const Dashboard = (props) => {
     </HomeContainer>
   );
 };
+
+Dashboard.propTypes = {
+
+}
 
 export default Dashboard;

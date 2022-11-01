@@ -17,6 +17,7 @@ const Cart = () => {
   cartState.map((value) => {
     return (total += value.qty);
   });
+  
   const removeItemHandler = (product) => {
     const existingCartItemIndex = cartState.findIndex((c) => c.id === product.id);
     const existingItem = cartState[existingCartItemIndex];
