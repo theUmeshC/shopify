@@ -29,7 +29,7 @@ export const Cart = styled.div`
     cursor: pointer;
     color: gold;
   }
-  span{
+  span {
     width: 5px;
   }
 `;
