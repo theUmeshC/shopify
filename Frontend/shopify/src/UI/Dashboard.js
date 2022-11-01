@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export const HomeContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  width: 80vw;
+  width: 82%;
   margin: auto;
   align-items: center;
   justify-content: center;
@@ -25,10 +25,6 @@ export const HomeContainer = styled.div`
     width: 100%;
     border-radius: 0.5rem;
     transition: 0.3s ease;
-  }
-  .card-img:hover {
-    transform: translateY(-25%);
-    box-shadow: #599ff4 0px 13px 47px -5px, #599ff4 0px 8px 16px -8px;
   }
   .text-title {
     font-weight: 500;
