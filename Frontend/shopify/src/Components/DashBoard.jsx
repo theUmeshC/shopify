@@ -75,11 +75,11 @@ const Dashboard = (props) => {
                       </Typography>
                     </div>
                   </div>
-                  <div className="card-footer" onClick={() => addItemTOCartHandler(item.id, item)}>
+                  <div className="card-footer" >
                     <Typography gutterBottom variant="body2" color="text.secondary">
                       {`Qty:${item.quantity}`}
                     </Typography>
-                    <IconButton aria-label="delete" size="small">
+                    <IconButton aria-label="delete" size="small" onClick={() => addItemTOCartHandler(item.id, item)}>
                       <AddShoppingCartIcon className="cart__icon" />
                     </IconButton>
                   </div>
