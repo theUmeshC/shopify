@@ -67,4 +67,4 @@ http://geektrust.s3.ap-southeast-1.amazonaws.com/coding-problems/shopping-cart/c
 
 ![App Screenshot](https://i.postimg.cc/nr4gg3tB/Screenshot.png)
 
-![App Screenshot](https://i.imgur.com/InbUEbD.mp4)
+<img align='right' alt='coading' width='400' src='https://i.imgur.com/InbUEbD.mp4'>
