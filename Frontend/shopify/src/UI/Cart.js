@@ -92,16 +92,16 @@ export const Basket = styled.div`
   bottom: 0vh;
   left:50%;
   transform: translateX(-50%);
-  margin: 0 auto;
   display: flex;
+  height: 1.6rem;
   width: 90vw;
   z-index: 999;
   text-align: center;
   flex-direction: row;
   justify-content: space-around;
-  background-color: aliceblue;
+  background-color: #c2e2fe;
   border: 1px solid #cfcfcf;
-  padding: 5px 0;
+  padding: 0.3em 0;
   h1 {
     font-size: 1.07rem;
   }
