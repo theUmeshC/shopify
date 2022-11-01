@@ -6,12 +6,23 @@ This is a single page react App where you can view the products, filter them, se
 
 React, materil ui and styledComponents.
 
-### `npm start`
+## Setup Instructions
 
+### `Download or clone the app`
+download the code files or clone the app from the repository from 'https://github.com/theUmeshC/shopify'.
+
+### `npm install`
+to install the npm package and the dependencies.    
+
+### `npm start`
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-<img src="blob:https://celestialsystem-my.sharepoint.com/9cc2ad4b-43a5-48de-9309-12e17e6937b5">
+## Below you can find the project sample images
+
+<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/bootstrap/bootstrap-plain-wordmark.svg">
+<hr/>
+
