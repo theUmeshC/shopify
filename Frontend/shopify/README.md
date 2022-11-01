@@ -24,7 +24,7 @@ This is a single page react App where you can view the products, filter them, se
 Clone the project
 
 ```bash
-  git clone https://github.com/theUmeshC/shopify .
+  git clone https://github.com/theUmeshC/shopify/(with respective to branches).
 
 ```
 
