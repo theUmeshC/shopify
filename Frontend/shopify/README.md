@@ -23,6 +23,7 @@ You may also see any lint errors in the console.
 
 ## Below you can find the project sample images
 
-<img src="https://i.postimg.cc/66b9h3p0/Screenshot-2022-11-01-135335.png">
-<hr/>
+<img src="https://i.postimg.cc/66b9h3p0/Screenshot-2022-11-01-135335.png" width='300'>
+<img src="https://i.postimg.cc/nr4gg3tB/Screenshot.png" width='300'>
+
 
