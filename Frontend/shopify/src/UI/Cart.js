@@ -88,15 +88,19 @@ export const Cards = styled.div`
   }
 `;
 export const Basket = styled.div`
-  position: absolute;
+  position: fixed;
   bottom: 0vh;
+  left:50%;
+  transform: translateX(-50%);
+  margin: 0 auto;
   display: flex;
-  width: 100vw;
+  width: 90vw;
   z-index: 999;
   text-align: center;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-around;
   background-color: aliceblue;
-  border-top: 1px solid #cfcfcf;
+  border: 1px solid #cfcfcf;
   padding: 5px 0;
   h1 {
     font-size: 1.07rem;
