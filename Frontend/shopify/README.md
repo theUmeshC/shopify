@@ -35,5 +35,5 @@ You may also see any lint errors in the console.
 
 <img src="https://i.postimg.cc/66b9h3p0/Screenshot-2022-11-01-135335.png" width='300'>
 <img src="https://i.postimg.cc/nr4gg3tB/Screenshot.png" width='300'>
-[![Watch the video](https://celestialsystem-my.sharepoint.com/:v:/g/personal/umesh_c_celestialsys_com/EVTQF5NQ7T9PlGDS5TRRx_ABZIMXJwNOuOAiFz9SBwzHwA?e=b88Lr6)
+![MasterHead](https://celestialsystem-my.sharepoint.com/:v:/g/personal/umesh_c_celestialsys_com/EVTQF5NQ7T9PlGDS5TRRx_ABZIMXJwNOuOAiFz9SBwzHwA?e=b88Lr6)
 
