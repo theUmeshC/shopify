@@ -1,7 +1,8 @@
-/* eslint-disable prettier/prettier */
+/* eslint-disable react/no-access-state-in-setstate */
+/* eslint-disable react/jsx-no-constructed-context-values */
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
-import { createContext } from 'react';
-import React, { Component } from 'react';
+import React, { createContext, Component } from 'react';
 
 export const cart = createContext();
 
@@ -9,28 +10,32 @@ export default class Context extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cartState: []
+      cartState: [],
     };
   }
+
   setCartData = (value) => {
     this.setState({
-      cartState: [...value]
+      cartState: [...value],
     });
   };
+
   initialUpdate = (value) => {
     this.setState({
-      cartState: [...this.state.cartState, value]
+      cartState: [...this.state.cartState, value],
     });
   };
 
   updateExistingCartData = (value) => {
     this.setState({
-      cartState: [...value]
+      cartState: [...value],
     });
   };
+
   updateCartData = (value) => {
     this.setState({ cartState: value });
   };
+
   render() {
     return (
       <cart.Provider
@@ -39,8 +44,9 @@ export default class Context extends Component {
           updateCart: this.setCartData,
           updateCartData: this.updateCartData,
           updateExistingCartData: this.updateExistingCartData,
-          initialUpdate: this.initialUpdate
-        }}>
+          initialUpdate: this.initialUpdate,
+        }}
+      >
         {this.props.children}
       </cart.Provider>
     );

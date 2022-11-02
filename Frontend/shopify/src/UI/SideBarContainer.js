@@ -1,7 +1,6 @@
-/* eslint-disable prettier/prettier */
 import styled from 'styled-components';
 
-export const SideBarContainer = styled.div`
+const SideBarContainer = styled.div`
   height: 90vh;
   min-width: 190px;
   position: sticky;
@@ -15,3 +14,5 @@ export const SideBarContainer = styled.div`
     display: none;
   }
 `;
+
+export default SideBarContainer;

@@ -1,7 +1,8 @@
-/* eslint-disable prettier/prettier */
+/* eslint-disable react/jsx-no-constructed-context-values */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable react/no-unused-state */
 /* eslint-disable react/prop-types */
-import { createContext } from 'react';
-import React, { Component } from 'react';
+import React, { Component, createContext } from 'react';
 
 export const productDataContext = createContext();
 
@@ -10,20 +11,20 @@ export default class DataContext extends Component {
     super(props);
     this.state = {
       productData: [],
-      filteredData: []
+      filteredData: [],
     };
   }
 
   setData = (value) => {
     this.setState({
       productData: value,
-      filteredData: value
+      filteredData: value,
     });
   };
 
   updateFilteredData = (value) => {
     this.setState({
-      filteredData: value
+      filteredData: value,
     });
   };
 
@@ -33,12 +34,11 @@ export default class DataContext extends Component {
         value={{
           dataState: this.state,
           updateState: this.setData,
-          updateFilteredData: this.updateFilteredData
-        }}>
+          updateFilteredData: this.updateFilteredData,
+        }}
+      >
         {this.props.children}
       </productDataContext.Provider>
     );
   }
 }
-
-

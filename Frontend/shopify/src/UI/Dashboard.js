@@ -1,7 +1,6 @@
-/* eslint-disable prettier/prettier */
 import styled from 'styled-components';
 
-export const HomeContainer = styled.div`
+const HomeContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: 80vw;
@@ -69,3 +68,5 @@ export const HomeContainer = styled.div`
     border: 1px solid #eb8d12;
   }
 `;
+
+export default HomeContainer;
