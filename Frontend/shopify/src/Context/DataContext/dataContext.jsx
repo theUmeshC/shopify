@@ -1,29 +1,28 @@
-/* eslint-disable prettier/prettier */
-import { createContext, useContext, useState } from 'react';
+import React, {
+  createContext, useContext, useState, useMemo,
+} from 'react';
 import PropTypes from 'prop-types';
 
-
 const productDataContext = createContext();
-const DataContext = ({ children }) => {
+function DataContext({ children }) {
   const [productData, setProductData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   return (
     <productDataContext.Provider
-      value={{
+      value={useMemo({
         productDataKey: [productData, setProductData],
-        filteredDataKey: [filteredData, setFilteredData]
-      }}>
+        filteredDataKey: [filteredData, setFilteredData],
+      })}
+    >
       {children}
     </productDataContext.Provider>
   );
-};
+}
 
 DataContext.propTypes = {
-  children: PropTypes.element.isRequired
+  children: PropTypes.element.isRequired,
 };
 
 export default DataContext;
 
-export const DataState = () => {
-  return useContext(productDataContext);
-};
+export const DataState = () => useContext(productDataContext);

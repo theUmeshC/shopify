@@ -1,13 +1,13 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable react/prop-types */
-import { FormControl, FormControlLabel, FormLabel, Checkbox } from '@mui/material';
-import { useEffect, useState } from 'react';
-import { DataState } from '../Context/DataContext/dataContext';
-import { SideBarContainer } from '../UI/SideBarContainer';
+/* eslint-disable react/forbid-prop-types */
+import {
+  FormControl, FormControlLabel, FormLabel, Checkbox,
+} from '@mui/material';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { DataState } from '../Context/DataContext/dataContext';
+import SideBarContainer from '../UI/SideBarContainer';
 
-
-const SideBar = (props) => {
+function SideBar({ data }) {
   const { productDataKey, filteredDataKey } = DataState();
   const [productData, setProductData] = productDataKey;
   const [, setFilteredData] = filteredDataKey;
@@ -15,17 +15,13 @@ const SideBar = (props) => {
 
   const filterColor = [
     ...new Set(
-      props.data.map((item) => {
-        return item.color;
-      })
-    )
+      data.map((item) => item.color),
+    ),
   ];
   const filterType = [
     ...new Set(
-      props.data.map((item) => {
-        return item.type;
-      })
-    )
+      data.map((item) => item.type),
+    ),
   ];
   const handleCheck = (item) => {
     const currentIndex = Checked.indexOf(item);
@@ -38,17 +34,15 @@ const SideBar = (props) => {
     setChecked(newChecked);
   };
   useEffect(() => {
-    let filteredItems = [];
+    const filteredItems = [];
     if (Checked.length > 0) {
       Checked.forEach((element) => {
-        const filterItem = productData.filter((item) => {
-          return (
-            item.color.toLowerCase() === element.toLowerCase() ||
-            item.type.toLowerCase() === element.toLowerCase() ||
-            item.price.toString() === element ||
-            item.gender.toLowerCase() === element.toLowerCase()
-          );
-        });
+        const filterItem = productData.filter((item) => (
+          item.color.toLowerCase() === element.toLowerCase()
+            || item.type.toLowerCase() === element.toLowerCase()
+            || item.price.toString() === element
+            || item.gender.toLowerCase() === element.toLowerCase()
+        ));
         filteredItems.push(...filterItem);
       });
       setFilteredData(filteredItems);
@@ -60,68 +54,64 @@ const SideBar = (props) => {
     <SideBarContainer className="hamburger">
       <FormControl>
         <FormLabel id="demo-radio-buttons-group-label">Color</FormLabel>
-        {filterColor.map((item, index) => {
-          return (
-            <FormControlLabel
-              key={index++}
-              value={item}
-              control={
-                <Checkbox
-                  checked={Checked.indexOf(item) === -1 ? false : true}
-                  onChange={() => {
-                    handleCheck(item);
-                  }}
-                />
-              }
-              label={item}
-            />
-          );
-        })}
+        {filterColor.map((item) => (
+          <FormControlLabel
+            key={Math.random()}
+            value={item}
+            control={(
+              <Checkbox
+                checked={Checked.indexOf(item) !== -1}
+                onChange={() => {
+                  handleCheck(item);
+                }}
+              />
+              )}
+            label={item}
+          />
+        ))}
       </FormControl>
       <FormControl>
         <FormLabel id="demo-radio-buttons-group-label">Type</FormLabel>
-        {filterType.map((item, index) => {
-          return (
-            <FormControlLabel
-              key={index}
-              value={item}
-              control={
-                <Checkbox
-                  checked={Checked.indexOf(item) === -1 ? false : true}
-                  onChange={() => {
-                    handleCheck(item);
-                  }}
-                />
-              }
-              label={item}
-            />
-          );
-        })}
+        {filterType.map((item) => (
+          <FormControlLabel
+            key={Math.random()}
+            value={item}
+            control={(
+              <Checkbox
+                checked={Checked.indexOf(item) !== -1}
+                onChange={() => {
+                  handleCheck(item);
+                }}
+              />
+              )}
+            label={item}
+          />
+        ))}
       </FormControl>
       <FormControl>
         <FormLabel id="demo-radio-buttons-group-label">Gender</FormLabel>
         <FormControlLabel
           value="Men"
-          control={
+          control={(
             <Checkbox
-              checked={Checked.indexOf('Men') === -1 ? false : true}
+              checked={Checked.indexOf('Men') !== -1}
               onChange={() => {
                 handleCheck('Men');
               }}
             />
-          }
+          )}
           label="Male"
         />
         <FormControlLabel
           value="Women"
-          control={
+          control={(
             <Checkbox
-              checked={Checked.indexOf('Women') === -1 ? false : true}
+              checked={Checked.indexOf('Women') !== -1}
               onChange={() => {
                 handleCheck('Women');
               }}
             />
-          }
+          )}
           label="Female"
         />
       </FormControl>
@@ -129,47 +119,50 @@ const SideBar = (props) => {
         <FormLabel id="demo-radio-buttons-group-label">Price</FormLabel>
         <FormControlLabel
           value="250"
-          control={
+          control={(
             <Checkbox
-              checked={Checked.indexOf('250') === -1 ? false : true}
+              checked={Checked.indexOf('250') !== -1}
               onChange={() => {
                 handleCheck('250');
               }}
             />
-          }
+          )}
           label="0-250"
         />
         <FormControlLabel
           value="300"
-          control={
+          control={(
             <Checkbox
-              checked={Checked.indexOf('300') === -1 ? false : true}
+              checked={Checked.indexOf('300') !== -1}
               onChange={() => {
                 handleCheck('300');
               }}
             />
-          }
+          )}
           label="250-450"
         />
         <FormControlLabel
           value="500"
-          control={
+          control={(
             <Checkbox
-              checked={Checked.indexOf('500') === -1 ? false : true}
+              checked={Checked.indexOf('500') !== -1}
               onChange={() => {
                 handleCheck('500');
               }}
             />
-          }
+          )}
           label="500-All"
         />
       </FormControl>
     </SideBarContainer>
   );
-};
+}
 
 SideBar.propTypes = {
-  data : PropTypes.array,
-}
+  data: PropTypes.array,
+};
+SideBar.defaultProps = {
+  data: PropTypes.array,
+};
 
 export default SideBar;

@@ -1,38 +1,35 @@
-/* eslint-disable prettier/prettier */
+/* eslint-disable no-return-assign */
 import React, { useState } from 'react';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import SearchIcon from '@mui/icons-material/Search';
 import { Link } from 'react-router-dom';
 import { DebounceInput } from 'react-debounce-input';
-import { CartState } from '../Context/CartContext/context';
-import { Nav, Cart, RightContainer, Logo, SearchInput } from '../UI/NavBar';
-import { DataState } from '../Context/DataContext/dataContext';
 import PropTypes from 'prop-types';
+import { CartState } from '../Context/CartContext/context';
+import {
+  Nav, Cart, RightContainer, Logo, SearchInput,
+} from '../UI/NavBar';
+import { DataState } from '../Context/DataContext/dataContext';
 
-
-const Navbar = (props) => {
+function Navbar({ searchDisplay }) {
   const { productDataKey, filteredDataKey } = DataState();
   const [productData] = productDataKey;
   const [, setFilteredData] = filteredDataKey;
   const [searchTerm, setSearchTerm] = useState('');
   const [cartState] = CartState();
   let total = 0;
-  cartState.map((value) => {
-    return (total += value.qty);
-  });
+  cartState.map((value) => (total += value.qty));
   const searchHandle = (e) => {
     setSearchTerm(e.target.value);
     const product = e.target.value;
     if (product.length > 0) {
-      let filteredItems = [];
-      const filterItem = productData.filter((item) => {
-        return (
-          item.color.toLowerCase() === product.toLowerCase() ||
-          item.type.toLowerCase() === product.toLowerCase() ||
-          item.price.toString() === product ||
-          item.gender.toLowerCase() === product.toLowerCase()
-        );
-      });
+      const filteredItems = [];
+      const filterItem = productData.filter((item) => (
+        item.color.toLowerCase() === product.toLowerCase()
+          || item.type.toLowerCase() === product.toLowerCase()
+          || item.price.toString() === product
+          || item.gender.toLowerCase() === product.toLowerCase()
+      ));
       filteredItems.push(...filterItem);
       setFilteredData(filteredItems);
     } else {
@@ -44,7 +41,7 @@ const Navbar = (props) => {
       <Link to="/" className="cart__icon">
         <Logo>Shopify</Logo>
       </Link>
-      {props.searchDisplay && (
+      {searchDisplay && (
         <SearchInput>
           <DebounceInput
             debounceTimeout={500}
@@ -68,10 +65,13 @@ const Navbar = (props) => {
       </RightContainer>
     </Nav>
   );
-};
+}
 
 Navbar.propTypes = {
-  searchDisplay : PropTypes.bool,
-}
+  searchDisplay: PropTypes.bool,
+};
+Navbar.defaultProps = {
+  searchDisplay: PropTypes.bool,
+};
 
 export default Navbar;
