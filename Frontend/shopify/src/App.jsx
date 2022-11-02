@@ -1,17 +1,16 @@
-/* eslint-disable prettier/prettier */
-import Navbar from './Components/Navbar';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Cart from './Components/Cart';
 import { ToastContainer } from 'react-toastify';
+import Cart from './Components/Cart';
+import Navbar from './Components/Navbar';
 import 'react-toastify/dist/ReactToastify.css';
 import Home from './Components/Home';
 import useAxios from './Helper/useAxios';
-import {baseURL} from './Helper/httpSupplier'
+import { baseURL } from './Helper/httpSupplier';
 
 function App() {
   const baseUrl = baseURL;
-  const { data,loadingState } = useAxios(baseUrl);
+  const { data, loadingState } = useAxios(baseUrl);
   const [searchDisplay, setSearchDisplay] = useState(true);
   const changeSearchDisplay = (value) => {
     setSearchDisplay(value);
@@ -34,7 +33,11 @@ function App() {
               draggable
               pauseOnHover
             />
-            <Home searchDisplay={changeSearchDisplay} loading= {loadingState} data = {data} />
+            <Home
+              searchDisplay={changeSearchDisplay}
+              loading={loadingState}
+              data={data}
+            />
           </Route>
           <Route path="/cart">
             <Cart searchDisplay={changeSearchDisplay} />
