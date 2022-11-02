@@ -1,3 +1,3 @@
-/* eslint-disable prettier/prettier */
-export const baseURL =
-  'https://geektrust.s3.ap-southeast-1.amazonaws.com/coding-problems/shopping-cart/catalogue.json';
+const baseURL = 'https://geektrust.s3.ap-southeast-1.amazonaws.com/coding-problems/shopping-cart/catalogue.json';
+
+export default baseURL;
