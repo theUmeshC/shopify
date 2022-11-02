@@ -6,7 +6,7 @@ import Navbar from './Components/Navbar';
 import 'react-toastify/dist/ReactToastify.css';
 import Home from './Components/Home';
 import useAxios from './Helper/useAxios';
-import { baseURL } from './Helper/httpSupplier';
+import baseURL from './Helper/httpSupplier';
 
 function App() {
   const baseUrl = baseURL;

@@ -99,14 +99,9 @@ function Dashboard({ searchDisplay, onItemAddedTOCart, loading }) {
 }
 
 Dashboard.propTypes = {
-  loading: PropTypes.bool,
-  onItemAddedTOCart: PropTypes.func,
-  searchDisplay: PropTypes.func,
-};
-Dashboard.defaultProps = {
-  loading: PropTypes.bool,
-  onItemAddedTOCart: PropTypes.func,
-  searchDisplay: PropTypes.func,
+  loading: PropTypes.bool.isRequired,
+  onItemAddedTOCart: PropTypes.func.isRequired,
+  searchDisplay: PropTypes.func.isRequired,
 };
 
 export default Dashboard;

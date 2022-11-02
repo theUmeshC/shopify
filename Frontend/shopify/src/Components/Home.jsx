@@ -1,4 +1,3 @@
-/* eslint-disable react/forbid-prop-types */
 /* eslint-disable max-len */
 import React from 'react';
 import { toast } from 'react-toastify';
@@ -52,14 +51,9 @@ function Home({ searchDisplay, loading, data }) {
 }
 
 Home.propTypes = {
-  searchDisplay: PropTypes.func,
-  loading: PropTypes.bool,
-  data: PropTypes.array,
-};
-Home.defaultProps = {
-  searchDisplay: PropTypes.func,
-  loading: PropTypes.bool,
-  data: PropTypes.array,
+  searchDisplay: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
+  data: PropTypes.instanceOf(Array).isRequired,
 };
 
 export default Home;

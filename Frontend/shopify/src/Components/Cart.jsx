@@ -96,10 +96,7 @@ function Cart({ searchDisplay }) {
 }
 
 Cart.propTypes = {
-  searchDisplay: PropTypes.func,
-};
-Cart.defaultProps = {
-  searchDisplay: PropTypes.func,
+  searchDisplay: PropTypes.func.isRequired,
 };
 
 export default Cart;

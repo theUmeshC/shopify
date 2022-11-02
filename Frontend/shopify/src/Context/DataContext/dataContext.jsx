@@ -1,5 +1,6 @@
+/* eslint-disable react/jsx-no-constructed-context-values */
 import React, {
-  createContext, useContext, useState, useMemo,
+  createContext, useContext, useState,
 } from 'react';
 import PropTypes from 'prop-types';
 
@@ -9,10 +10,10 @@ function DataContext({ children }) {
   const [filteredData, setFilteredData] = useState([]);
   return (
     <productDataContext.Provider
-      value={useMemo({
+      value={{
         productDataKey: [productData, setProductData],
         filteredDataKey: [filteredData, setFilteredData],
-      })}
+      }}
     >
       {children}
     </productDataContext.Provider>

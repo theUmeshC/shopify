@@ -1,4 +1,3 @@
-/* eslint-disable react/forbid-prop-types */
 import {
   FormControl, FormControlLabel, FormLabel, Checkbox,
 } from '@mui/material';
@@ -12,7 +11,6 @@ function SideBar({ data }) {
   const [productData, setProductData] = productDataKey;
   const [, setFilteredData] = filteredDataKey;
   const [Checked, setChecked] = useState([]);
-
   const filterColor = [
     ...new Set(
       data.map((item) => item.color),
@@ -159,10 +157,7 @@ function SideBar({ data }) {
 }
 
 SideBar.propTypes = {
-  data: PropTypes.array,
-};
-SideBar.defaultProps = {
-  data: PropTypes.array,
+  data: PropTypes.instanceOf(Array).isRequired,
 };
 
 export default SideBar;

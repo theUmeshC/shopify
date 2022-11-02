@@ -68,10 +68,7 @@ function Navbar({ searchDisplay }) {
 }
 
 Navbar.propTypes = {
-  searchDisplay: PropTypes.bool,
-};
-Navbar.defaultProps = {
-  searchDisplay: PropTypes.bool,
+  searchDisplay: PropTypes.bool.isRequired,
 };
 
 export default Navbar;

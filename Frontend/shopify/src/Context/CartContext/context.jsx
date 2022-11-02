@@ -1,5 +1,6 @@
+/* eslint-disable react/jsx-no-constructed-context-values */
 import React, {
-  createContext, useContext, useState, useMemo,
+  createContext, useContext, useState,
 } from 'react';
 import PropTypes from 'prop-types';
 
@@ -7,7 +8,7 @@ const cart = createContext();
 
 function Context({ children }) {
   const [cartState, setCartState] = useState([]);
-  return <cart.Provider value={useMemo([cartState, setCartState])}>{children}</cart.Provider>;
+  return <cart.Provider value={[cartState, setCartState]}>{children}</cart.Provider>;
 }
 
 Context.propTypes = {
