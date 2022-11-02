@@ -1,8 +1,9 @@
 /* eslint-disable max-len */
 /* eslint-disable react/static-property-placement */
 /* eslint-disable react/destructuring-assignment */
-/* eslint-disable react/prop-types */
+
 import { toast } from 'react-toastify';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import Dashboard from './DashBoard';
 import SideBar from './SideBar';
@@ -56,9 +57,13 @@ export default class Home extends Component {
           className=""
           loading={this.props.loading}
           onItemAddedTOCart={this.cartDataHandler}
-          searchDisplay={this.props.searchDisplay}
         />
       </div>
     );
   }
 }
+
+Home.propTypes = {
+  loading: PropTypes.bool.isRequired,
+  data: PropTypes.instanceOf(Array).isRequired,
+};

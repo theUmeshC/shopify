@@ -35,10 +35,6 @@ export default class App extends Component {
     });
   }
 
-  changeSearchDisplay = (value) => {
-    this.setState({ searchDisplay: value });
-  };
-
   render() {
     return (
       <Router>
@@ -67,7 +63,6 @@ export default class App extends Component {
               <productDataContext.Consumer>
                 {(dataState) => (
                   <Cart
-                    searchDisplay={this.changeSearchDisplay}
                     dataState={dataState}
                   />
                 )}

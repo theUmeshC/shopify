@@ -1,5 +1,5 @@
-/* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/static-property-placement */
 import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
 import React, { Component } from 'react';
@@ -8,17 +8,13 @@ import { cart } from '../Context/CartContext/context';
 import NavCounter from './NavCounter';
 import CartData from './CartData';
 
-export default class Cart extends Component {
+class Cart extends Component {
   static contextType = cart;
 
   constructor(props) {
     super(props);
     this.state = {
     };
-  }
-
-  componentDidMount() {
-    this.props.searchDisplay(false);
   }
 
   removeItemHandler = (product) => {
@@ -97,3 +93,5 @@ export default class Cart extends Component {
     );
   }
 }
+
+export default Cart;

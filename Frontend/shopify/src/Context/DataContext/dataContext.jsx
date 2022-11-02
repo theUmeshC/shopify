@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/no-unused-state */
-/* eslint-disable react/prop-types */
 import React, { Component, createContext } from 'react';
+import PropTypes from 'prop-types';
 
 export const productDataContext = createContext();
 
@@ -42,3 +42,7 @@ export default class DataContext extends Component {
     );
   }
 }
+
+DataContext.propTypes = {
+  children: PropTypes.element.isRequired,
+};

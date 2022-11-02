@@ -1,8 +1,8 @@
 /* eslint-disable react/no-access-state-in-setstate */
 /* eslint-disable react/jsx-no-constructed-context-values */
 /* eslint-disable react/destructuring-assignment */
-/* eslint-disable react/prop-types */
 import React, { createContext, Component } from 'react';
+import PropTypes from 'prop-types';
 
 export const cart = createContext();
 
@@ -52,3 +52,7 @@ export default class Context extends Component {
     );
   }
 }
+
+Context.propTypes = {
+  children: PropTypes.element.isRequired,
+};

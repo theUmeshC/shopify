@@ -1,10 +1,10 @@
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/static-property-placement */
-/* eslint-disable react/prop-types */
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import SearchIcon from '@mui/icons-material/Search';
 import { Link } from 'react-router-dom';
 import { DebounceInput } from 'react-debounce-input';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import {
   Nav, Cart, RightContainer, Logo, SearchInput,
@@ -75,3 +75,7 @@ export default class Navbar extends Component {
     );
   }
 }
+
+Navbar.propTypes = {
+  searchDisplay: PropTypes.bool.isRequired,
+};

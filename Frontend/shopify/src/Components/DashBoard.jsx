@@ -1,18 +1,18 @@
 /* eslint-disable max-len */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/static-property-placement */
-/* eslint-disable react/prop-types */
 import {
   Grid, IconButton, Skeleton, Typography,
 } from '@mui/material';
 import { Box } from '@mui/system';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import HomeContainer from '../UI/Dashboard';
 import { productDataContext } from '../Context/DataContext/dataContext';
 
-export default class DashBoard extends Component {
+class DashBoard extends Component {
   static contextType = productDataContext;
 
   constructor(props) {
@@ -109,3 +109,10 @@ export default class DashBoard extends Component {
     );
   }
 }
+
+DashBoard.propTypes = {
+  loading: PropTypes.bool.isRequired,
+  onItemAddedTOCart: PropTypes.func.isRequired,
+};
+
+export default DashBoard;

@@ -1,10 +1,10 @@
 /* eslint-disable react/no-access-state-in-setstate */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/static-property-placement */
-/* eslint-disable react/prop-types */
 import {
   FormControl, FormControlLabel, FormLabel, Checkbox,
 } from '@mui/material';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import SideBarContainer from '../UI/SideBarContainer';
@@ -172,3 +172,7 @@ export default class SideBar extends Component {
     );
   }
 }
+
+SideBar.propTypes = {
+  data: PropTypes.instanceOf(Array).isRequired,
+};
