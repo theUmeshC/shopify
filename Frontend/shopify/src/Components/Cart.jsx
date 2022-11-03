@@ -1,8 +1,8 @@
-/* eslint-disable react/prop-types */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/static-property-placement */
 import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Container, Cards, Basket } from '../UI/Cart';
 import { cart } from '../Context/CartContext/context';
 import NavCounter from './NavCounter';
@@ -93,5 +93,9 @@ class Cart extends Component {
     );
   }
 }
+
+Cart.propTypes = {
+  dataState: PropTypes.instanceOf(Object).isRequired,
+};
 
 export default Cart;
