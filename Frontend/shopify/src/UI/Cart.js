@@ -12,21 +12,19 @@ export const Container = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  height: 390px;
+  height: 65%;
   .cart__items {
     overflow-y: auto;
   }
   .cart__items::-webkit-scrollbar {
     width: 16px;
-    border-radius: 15px;
-    height: 100%;
   }
   .cart__items::-webkit-scrollbar-track {
     background-color: white;
   }
   .cart__items::-webkit-scrollbar-thumb {
     background-color: #597ef7;
-    border-radius: 15px;
+    border-radius: 7px;
     border: 3px solid #ffffff;
   }
   .cart__items::-webkit-scrollbar-thumb:hover {

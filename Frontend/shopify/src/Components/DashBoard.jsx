@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 /* eslint-disable max-len */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/static-property-placement */
@@ -11,6 +10,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { connect } from 'react-redux';
+import { toast } from 'react-toastify';
 import HomeContainer from '../UI/Dashboard';
 import { productDataContext } from '../Context/DataContext/dataContext';
 import { addItemToCart } from '../Store/cartSlice';
@@ -25,7 +25,6 @@ class DashBoard extends Component {
 
   addItemTOCartHandler = (id, product) => {
     this.props.addItemToCart(product);
-    this.props.onItemAddedTOCart(product);
     const existingDataItemIndex = this.context.dataState.filteredData.findIndex(
       (c) => c.id === product.id,
     );
@@ -43,6 +42,7 @@ class DashBoard extends Component {
         ...existingItem,
         quantity: 0,
       };
+      toast.error('🦄 Out of Stock!');
       updatedItems = [...this.context.dataState.filteredData];
       updatedItems[existingDataItemIndex] = updatedItem;
     }
@@ -50,13 +50,12 @@ class DashBoard extends Component {
   };
 
   render() {
-    // console.log(this.props);
     return (
       <HomeContainer>
         <Grid container wrap="wrap" className="grid__wrapper">
           {(this.props.loading ? Array.from(new Array(6)) : this.context.dataState.filteredData).map(
             (item) => (
-              <Box className="card1" key={uuidv4()} sx={{ width: 210, marginRight: 6, my: 5 }}>
+              <Box className="card1" key={uuidv4()}>
                 {item ? (
                   <img alt={item.title} src={item.imageURL} className="card-img" />
                 ) : (
@@ -117,12 +116,10 @@ class DashBoard extends Component {
 
 DashBoard.propTypes = {
   loading: PropTypes.bool.isRequired,
-  onItemAddedTOCart: PropTypes.func.isRequired,
+  addItemToCart: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  cart: state.cart,
-});
+const mapStateToProps = (state) => state.cartReducers;
 const mapDispatchToProps = { addItemToCart };
 
 export default connect(mapStateToProps, mapDispatchToProps)(DashBoard);

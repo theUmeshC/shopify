@@ -3,7 +3,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import cartReducers from './cartSlice';
 
 const reducers = combineReducers({
-  cartReduers: cartReducers,
+  cartReducers,
 });
 
 const store = configureStore({

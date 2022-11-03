@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/static-property-placement */
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
@@ -5,15 +6,14 @@ import SearchIcon from '@mui/icons-material/Search';
 import { Link } from 'react-router-dom';
 import { DebounceInput } from 'react-debounce-input';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import {
   Nav, Cart, RightContainer, Logo, SearchInput,
 } from '../UI/NavBar';
 import { productDataContext } from '../Context/DataContext/dataContext';
 
-import NavCounter from './NavCounter';
-
-export default class Navbar extends Component {
+class Navbar extends Component {
   static contextType = productDataContext;
 
   constructor(props) {
@@ -68,7 +68,7 @@ export default class Navbar extends Component {
             <Link to="/cart" className="cart__icon">
               <ShoppingCartOutlinedIcon />
             </Link>
-            <NavCounter />
+            {this.props.totalCount}
           </Cart>
         </RightContainer>
       </Nav>
@@ -79,3 +79,7 @@ export default class Navbar extends Component {
 Navbar.propTypes = {
   searchDisplay: PropTypes.bool.isRequired,
 };
+
+const mapStateToProps = (state) => state.cartReducers;
+
+export default connect(mapStateToProps)(Navbar);

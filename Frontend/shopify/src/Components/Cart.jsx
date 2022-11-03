@@ -4,14 +4,11 @@
 import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Container, Cards, Basket } from '../UI/Cart';
-import { cart } from '../Context/CartContext/context';
-import NavCounter from './NavCounter';
-import CartData from './CartData';
+import { removeItemFromCart } from '../Store/cartSlice';
 
 class Cart extends Component {
-  static contextType = cart;
-
   constructor(props) {
     super(props);
     this.state = {
@@ -19,6 +16,7 @@ class Cart extends Component {
   }
 
   removeItemHandler = (product) => {
+    this.props.removeItemFromCart(product);
     const existingCartItemIndex = this.context.cartState.findIndex((c) => c.id === product.id);
     const existingItem = this.context.cartState[existingCartItemIndex];
     let updatedItems;
@@ -55,8 +53,8 @@ class Cart extends Component {
             <h1>Remove</h1>
           </div>
           <div className="cart__items">
-            {this.context.cartState
-              && this.context.cartState.map((value) => (
+            {this.props.items
+              && this.props.items.map((value) => (
                 <Cards key={Math.random()}>
                   <img src={value.imageURL} alt="" />
                   <div className="details">
@@ -82,12 +80,11 @@ class Cart extends Component {
         <Basket>
           <h1>
             Total Quantity:
-            <NavCounter />
+            {this.props.totalCount}
           </h1>
           <h1>
             Total Amount :₹
-            {' '}
-            <CartData />
+            {this.props.totalAmount}
           </h1>
         </Basket>
       </>
@@ -99,4 +96,7 @@ Cart.propTypes = {
   dataState: PropTypes.instanceOf(Object).isRequired,
 };
 
-export default Cart;
+const mapStateToProps = (state) => state.cartReducers;
+const mapDispatchToProps = { removeItemFromCart };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);
