@@ -11,7 +11,7 @@ import { productDataContext } from './Context/DataContext/dataContext';
 import Cart from './Components/Cart';
 import Navbar from './Components/Navbar';
 
-export default class App extends Component {
+class App extends Component {
   static contextType = productDataContext;
 
   constructor() {
@@ -74,3 +74,4 @@ export default class App extends Component {
     );
   }
 }
+export default App;

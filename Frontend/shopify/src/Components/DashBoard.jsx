@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable max-len */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/static-property-placement */
@@ -9,8 +10,10 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import { connect } from 'react-redux';
 import HomeContainer from '../UI/Dashboard';
 import { productDataContext } from '../Context/DataContext/dataContext';
+import { addItemToCart } from '../Store/cartSlice';
 
 class DashBoard extends Component {
   static contextType = productDataContext;
@@ -21,6 +24,7 @@ class DashBoard extends Component {
   }
 
   addItemTOCartHandler = (id, product) => {
+    this.props.addItemToCart(product);
     this.props.onItemAddedTOCart(product);
     const existingDataItemIndex = this.context.dataState.filteredData.findIndex(
       (c) => c.id === product.id,
@@ -46,6 +50,7 @@ class DashBoard extends Component {
   };
 
   render() {
+    // console.log(this.props);
     return (
       <HomeContainer>
         <Grid container wrap="wrap" className="grid__wrapper">
@@ -115,4 +120,9 @@ DashBoard.propTypes = {
   onItemAddedTOCart: PropTypes.func.isRequired,
 };
 
-export default DashBoard;
+const mapStateToProps = (state) => ({
+  cart: state.cart,
+});
+const mapDispatchToProps = { addItemToCart };
+
+export default connect(mapStateToProps, mapDispatchToProps)(DashBoard);

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/static-property-placement */
 import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
