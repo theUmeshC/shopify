@@ -17,18 +17,6 @@ class Cart extends Component {
 
   removeItemHandler = (product) => {
     this.props.removeItemFromCart(product);
-    const existingCartItemIndex = this.context.cartState.findIndex((c) => c.id === product.id);
-    const existingItem = this.context.cartState[existingCartItemIndex];
-    let updatedItems;
-    if (existingItem.qty === 1) {
-      updatedItems = this.context.cartState.filter((item) => item.id !== product.id);
-    } else {
-      const updatedItem = { ...existingItem, qty: existingItem.qty - 1 };
-      updatedItems = [...this.context.cartState];
-      updatedItems[existingCartItemIndex] = updatedItem;
-    }
-    const cartData = updatedItems;
-    this.context.updateCartData(cartData);
     const existingRemoveItemIndex = this.props.dataState.dataState.productData.findIndex(
       (c) => c.id === product.id,
     );

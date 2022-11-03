@@ -44,7 +44,7 @@ class App extends Component {
             <Route exact path="/">
               <ToastContainer
                 position="top-right"
-                autoClose={1500}
+                autoClose={1000}
                 hideProgressBar={false}
                 newestOnTop={false}
                 closeOnClick
