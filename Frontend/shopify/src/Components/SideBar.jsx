@@ -3,13 +3,13 @@ import {
 } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { DataState } from '../Context/DataContext/dataContext';
+import { useSelector, useDispatch } from 'react-redux';
 import SideBarContainer from '../UI/SideBarContainer';
+import { updateFilteredData } from '../Store/productSlice';
 
 function SideBar({ data }) {
-  const { productDataKey, filteredDataKey } = DataState();
-  const [productData, setProductData] = productDataKey;
-  const [, setFilteredData] = filteredDataKey;
+  const productDataRedux = useSelector((state) => state.productReducers.productData);
+  const dispatch = useDispatch();
   const [Checked, setChecked] = useState([]);
   const filterColor = [
     ...new Set(
@@ -35,7 +35,7 @@ function SideBar({ data }) {
     const filteredItems = [];
     if (Checked.length > 0) {
       Checked.forEach((element) => {
-        const filterItem = productData.filter((item) => (
+        const filterItem = productDataRedux.filter((item) => (
           item.color.toLowerCase() === element.toLowerCase()
             || item.type.toLowerCase() === element.toLowerCase()
             || item.price.toString() === element
@@ -43,11 +43,11 @@ function SideBar({ data }) {
         ));
         filteredItems.push(...filterItem);
       });
-      setFilteredData(filteredItems);
+      dispatch(updateFilteredData(filteredItems));
     } else {
-      setFilteredData(productData);
+      dispatch(updateFilteredData(productDataRedux));
     }
-  }, [setProductData, setFilteredData, productData, Checked]);
+  }, [Checked]);
   return (
     <SideBarContainer className="hamburger">
       <FormControl>

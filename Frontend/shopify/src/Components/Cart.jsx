@@ -2,49 +2,33 @@
 import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Container, Cards, Basket } from '../UI/Cart';
-import { CartState } from '../Context/CartContext/context';
-import { DataState } from '../Context/DataContext/dataContext';
+import { removeItemFromCart } from '../Store/cartSlice';
+import { loadData } from '../Store/productSlice';
 
 function Cart({ searchDisplay }) {
-  const { productDataKey, filteredDataKey } = DataState();
-  const [productData, setProductData] = productDataKey;
-  const [, setFilteredData] = filteredDataKey;
-  const [cartState, setCartState] = CartState();
-  let totalSum = 0;
-
-  cartState.map((value) => totalSum += value.price * value.qty);
-
-  let total = 0;
-  cartState.map((value) => total += value.qty);
+  const productDataRedux = useSelector((state) => state.productReducers.productData);
+  const cartDataRedux = useSelector((state) => state.cartReducers.items);
+  const cartCount = useSelector((state) => state.cartReducers.totalCount);
+  const cartAmount = useSelector((state) => state.cartReducers.totalAmount);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     searchDisplay(false);
   }, []);
 
   const removeItemHandler = (product) => {
-    const existingCartItemIndex = cartState.findIndex((c) => c.id === product.id);
-    const existingItem = cartState[existingCartItemIndex];
-    let updatedItems;
-    if (existingItem.qty === 1) {
-      updatedItems = cartState.filter((item) => item.id !== product.id);
-    } else {
-      const updatedItem = { ...existingItem, qty: existingItem.qty - 1 };
-      updatedItems = [...cartState];
-      updatedItems[existingCartItemIndex] = updatedItem;
-    }
-    const cartData = updatedItems;
-    setCartState(cartData);
-    const existingRemoveItemIndex = productData.findIndex((c) => c.id === product.id);
-    const existingRemoveItem = productData[existingRemoveItemIndex];
+    dispatch(removeItemFromCart(product));
+    const existingRemoveItemIndex = productDataRedux.findIndex((c) => c.id === product.id);
+    const existingRemoveItem = productDataRedux[existingRemoveItemIndex];
     const updatedItem = {
       ...existingRemoveItem,
       quantity: existingRemoveItem.quantity + 1,
     };
-    const updatedRemoveItems = [...productData];
+    const updatedRemoveItems = [...productDataRedux];
     updatedRemoveItems[existingRemoveItemIndex] = updatedItem;
-    setProductData(updatedRemoveItems);
-    setFilteredData(updatedRemoveItems);
+    dispatch(loadData(updatedRemoveItems));
   };
 
   return (
@@ -57,8 +41,8 @@ function Cart({ searchDisplay }) {
           <h1>Remove</h1>
         </div>
         <div className="cart__items">
-          {cartState
-            && cartState.map((value) => (
+          {cartDataRedux
+            && cartDataRedux.map((value) => (
               <Cards key={Math.random()}>
                 <img src={value.imageURL} alt="" />
                 <div className="details">
@@ -84,11 +68,11 @@ function Cart({ searchDisplay }) {
       <Basket>
         <h1>
           Total Quantity:
-          {total}
+          {cartCount}
         </h1>
         <h1>
           Total Amount :
-          {`₹${totalSum}`}
+          {`₹${cartAmount}`}
         </h1>
       </Basket>
     </>

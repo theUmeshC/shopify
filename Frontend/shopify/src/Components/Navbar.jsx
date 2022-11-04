@@ -5,35 +5,33 @@ import SearchIcon from '@mui/icons-material/Search';
 import { Link } from 'react-router-dom';
 import { DebounceInput } from 'react-debounce-input';
 import PropTypes from 'prop-types';
-import { CartState } from '../Context/CartContext/context';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   Nav, Cart, RightContainer, Logo, SearchInput,
 } from '../UI/NavBar';
-import { DataState } from '../Context/DataContext/dataContext';
+import { updateFilteredData } from '../Store/productSlice';
 
 function Navbar({ searchDisplay }) {
-  const { productDataKey, filteredDataKey } = DataState();
-  const [productData] = productDataKey;
-  const [, setFilteredData] = filteredDataKey;
+  const cartCount = useSelector((state) => state.cartReducers.totalCount);
+  const productDataRedux = useSelector((state) => state.productReducers.productData);
+  const dispatch = useDispatch();
   const [searchTerm, setSearchTerm] = useState('');
-  const [cartState] = CartState();
-  let total = 0;
-  cartState.map((value) => (total += value.qty));
+
   const searchHandle = (e) => {
     setSearchTerm(e.target.value);
     const product = e.target.value;
     if (product.length > 0) {
       const filteredItems = [];
-      const filterItem = productData.filter((item) => (
+      const filterItem = productDataRedux.filter((item) => (
         item.color.toLowerCase() === product.toLowerCase()
           || item.type.toLowerCase() === product.toLowerCase()
           || item.price.toString() === product
           || item.gender.toLowerCase() === product.toLowerCase()
       ));
       filteredItems.push(...filterItem);
-      setFilteredData(filteredItems);
+      dispatch(updateFilteredData(filteredItems));
     } else {
-      setFilteredData(productData);
+      dispatch(updateFilteredData(productDataRedux));
     }
   };
   return (
@@ -60,7 +58,7 @@ function Navbar({ searchDisplay }) {
           <Link to="/cart" className="cart__icon">
             <ShoppingCartOutlinedIcon />
           </Link>
-          <span>{total}</span>
+          <span>{cartCount}</span>
         </Cart>
       </RightContainer>
     </Nav>

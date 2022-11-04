@@ -10,7 +10,7 @@ const HomeContainer = styled.div`
 
   .card1 {
     margin: 30px;
-    width: 220px;
+    width: 200px;
     height: 254px;
     padding: 0.8em;
     background: #f5f5f5;
