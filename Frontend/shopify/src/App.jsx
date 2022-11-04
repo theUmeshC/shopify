@@ -9,14 +9,11 @@ import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import baseURL from './Helper/httpSupplier';
 import Home from './Components/Home';
-import { productDataContext } from './Context/DataContext/dataContext';
 import Cart from './Components/Cart';
 import Navbar from './Components/Navbar';
 import { loadData } from './Store/productSlice';
 
 class App extends Component {
-  static contextType = productDataContext;
-
   constructor() {
     super();
     this.state = {
@@ -33,7 +30,6 @@ class App extends Component {
           data: response.data,
           loading: false,
         });
-        this.context.updateState(response.data);
         this.props.loadData(response.data);
       }, 2500);
     });
@@ -65,13 +61,7 @@ class App extends Component {
               />
             </Route>
             <Route path="/cart">
-              <productDataContext.Consumer>
-                {(dataState) => (
-                  <Cart
-                    dataState={dataState}
-                  />
-                )}
-              </productDataContext.Consumer>
+              <Cart />
             </Route>
           </Switch>
         </div>

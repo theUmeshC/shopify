@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/static-property-placement */
 import {
@@ -12,12 +11,10 @@ import { v4 as uuidv4 } from 'uuid';
 import { connect } from 'react-redux';
 import { toast } from 'react-toastify';
 import HomeContainer from '../UI/Dashboard';
-import { productDataContext } from '../Context/DataContext/dataContext';
 import { addItemToCart } from '../Store/cartSlice';
+import { loadData } from '../Store/productSlice';
 
 class DashBoard extends Component {
-  static contextType = productDataContext;
-
   constructor(props) {
     super(props);
     this.state = {};
@@ -25,35 +22,30 @@ class DashBoard extends Component {
 
   addItemTOCartHandler = (id, product) => {
     this.props.addItemToCart(product);
-    const existingDataItemIndex = this.context.dataState.filteredData.findIndex(
+    const existingDataItemIndex = this.props.filteredData.findIndex(
       (c) => c.id === product.id,
     );
-    const existingItem = this.context.dataState.filteredData[existingDataItemIndex];
+    const existingItem = this.props.filteredData[existingDataItemIndex];
     let updatedItems;
     if (existingItem.quantity >= 1) {
       const updatedItem = {
         ...existingItem,
         quantity: existingItem.quantity - 1,
       };
-      updatedItems = [...this.context.dataState.filteredData];
+      updatedItems = [...this.props.filteredData];
       updatedItems[existingDataItemIndex] = updatedItem;
     } else {
-      const updatedItem = {
-        ...existingItem,
-        quantity: 0,
-      };
       toast.error('🦄 Out of Stock!');
-      updatedItems = [...this.context.dataState.filteredData];
-      updatedItems[existingDataItemIndex] = updatedItem;
+      updatedItems = [...this.props.filteredData];
     }
-    this.context.updateState(updatedItems);
+    this.props.loadData(updatedItems);
   };
 
   render() {
     return (
       <HomeContainer>
         <Grid container wrap="wrap" className="grid__wrapper">
-          {(this.props.loading ? Array.from(new Array(6)) : this.context.dataState.filteredData).map(
+          {(this.props.loading ? Array.from(new Array(6)) : this.props.filteredData).map(
             (item) => (
               <Box className="card1" key={uuidv4()}>
                 {item ? (
@@ -117,9 +109,17 @@ class DashBoard extends Component {
 DashBoard.propTypes = {
   loading: PropTypes.bool.isRequired,
   addItemToCart: PropTypes.func.isRequired,
+  loadData: PropTypes.func.isRequired,
+  filteredData: PropTypes.instanceOf(Array).isRequired,
 };
 
-const mapStateToProps = (state) => state.cartReducers;
-const mapDispatchToProps = { addItemToCart };
+const mapStateToProps = (state) => {
+  const { cartReducers } = state;
+  const { productReducers } = state;
+  const { productData, filteredData } = productReducers;
+  return { cartReducers, productData, filteredData };
+};
+
+const mapDispatchToProps = { addItemToCart, loadData };
 
 export default connect(mapStateToProps, mapDispatchToProps)(DashBoard);

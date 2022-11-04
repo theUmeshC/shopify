@@ -12,11 +12,18 @@ const productSlice = createSlice({
       state.productData = action.payload;
       state.filteredData = action.payload;
     },
+    updateFilteredData: (state, action) => {
+      state.filteredData = action.payload;
+    },
+    removeFromCart: (state, action) => {
+      state.productData = action.payload;
+      state.filteredData = action.payload;
+    },
   },
 });
 
 const { actions, reducer } = productSlice;
 
-export const { loadData } = actions;
+export const { loadData, removeFromCart, updateFilteredData } = actions;
 
 export default reducer;

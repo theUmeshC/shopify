@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/destructuring-assignment */
-/* eslint-disable react/static-property-placement */
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import SearchIcon from '@mui/icons-material/Search';
 import { Link } from 'react-router-dom';
@@ -11,11 +10,9 @@ import React, { Component } from 'react';
 import {
   Nav, Cart, RightContainer, Logo, SearchInput,
 } from '../UI/NavBar';
-import { productDataContext } from '../Context/DataContext/dataContext';
+import { updateFilteredData } from '../Store/productSlice';
 
 class Navbar extends Component {
-  static contextType = productDataContext;
-
   constructor(props) {
     super(props);
     this.state = {
@@ -30,16 +27,16 @@ class Navbar extends Component {
     const product = e.target.value;
     if (product.length > 0) {
       const filteredItems = [];
-      const filterItem = this.context.dataState.productData.filter((item) => (
+      const filterItem = this.props.productData.filter((item) => (
         item.color.toLowerCase() === product.toLowerCase()
           || item.type.toLowerCase() === product.toLowerCase()
           || item.price.toString() === product
           || item.gender.toLowerCase() === product.toLowerCase()
       ));
       filteredItems.push(...filterItem);
-      this.context.updateFilteredData(filteredItems);
+      this.props.updateFilteredData(filteredItems);
     } else {
-      this.context.updateFilteredData(this.context.dataState.productData);
+      this.props.updateFilteredData(this.props.productData);
     }
   };
 
@@ -68,7 +65,7 @@ class Navbar extends Component {
             <Link to="/cart" className="cart__icon">
               <ShoppingCartOutlinedIcon />
             </Link>
-            {this.props.totalCount}
+            {this.props.cartReducers.totalCount}
           </Cart>
         </RightContainer>
       </Nav>
@@ -80,6 +77,13 @@ Navbar.propTypes = {
   searchDisplay: PropTypes.bool.isRequired,
 };
 
-const mapStateToProps = (state) => state.cartReducers;
+const mapStateToProps = (state) => {
+  const { cartReducers } = state;
+  const { productReducers } = state;
+  const { productData, filteredData } = productReducers;
+  return { cartReducers, productData, filteredData };
+};
 
-export default connect(mapStateToProps)(Navbar);
+const mapDispatchToProps = { updateFilteredData };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

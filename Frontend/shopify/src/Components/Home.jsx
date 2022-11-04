@@ -1,7 +1,5 @@
 /* eslint-disable max-len */
-/* eslint-disable react/static-property-placement */
 /* eslint-disable react/destructuring-assignment */
-
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import Dashboard from './DashBoard';
@@ -16,7 +14,7 @@ export default class Home extends Component {
   render() {
     return (
       <div className="wrapper">
-        {this.props.data && <SideBar data={this.props.data} />}
+        {!this.props.loading && <SideBar data={this.props.data} />}
         <Dashboard
           className=""
           loading={this.props.loading}

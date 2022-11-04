@@ -1,18 +1,16 @@
 /* eslint-disable react/no-access-state-in-setstate */
 /* eslint-disable react/destructuring-assignment */
-/* eslint-disable react/static-property-placement */
 import {
   FormControl, FormControlLabel, FormLabel, Checkbox,
 } from '@mui/material';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import { connect } from 'react-redux';
 import SideBarContainer from '../UI/SideBarContainer';
-import { productDataContext } from '../Context/DataContext/dataContext';
+import { updateFilteredData } from '../Store/productSlice';
 
-export default class SideBar extends Component {
-  static contextType = productDataContext;
-
+class SideBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -25,7 +23,7 @@ export default class SideBar extends Component {
       const filteredItems = [];
       if (this.state.Checked.length > 0) {
         this.state.Checked.forEach((element) => {
-          const filterItem = this.context.dataState.productData.filter((item) => (
+          const filterItem = this.props.productData.filter((item) => (
             item.color.toLowerCase() === element.toLowerCase()
               || item.type.toLowerCase() === element.toLowerCase()
               || item.price.toString() === element
@@ -33,9 +31,9 @@ export default class SideBar extends Component {
           ));
           filteredItems.push(...filterItem);
         });
-        this.context.updateFilteredData(filteredItems);
+        this.props.updateFilteredData(filteredItems);
       } else {
-        this.context.updateFilteredData(this.context.dataState.productData);
+        this.props.updateFilteredData(this.props.productData);
       }
     }
   }
@@ -175,4 +173,17 @@ export default class SideBar extends Component {
 
 SideBar.propTypes = {
   data: PropTypes.instanceOf(Array).isRequired,
+  productData: PropTypes.instanceOf(Array).isRequired,
+  updateFilteredData: PropTypes.func.isRequired,
 };
+
+const mapStateToProps = (state) => {
+  const { cartReducers } = state;
+  const { productReducers } = state;
+  const { productData, filteredData } = productReducers;
+  return { cartReducers, productData, filteredData };
+};
+
+const mapDispatchToProps = { updateFilteredData };
+
+export default connect(mapStateToProps, mapDispatchToProps)(SideBar);
