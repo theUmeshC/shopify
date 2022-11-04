@@ -68,7 +68,7 @@ function Dashboard({ searchDisplay, loading }) {
                       color="text.secondary"
                       className="text-detail"
                     >
-                      {`₹${item.price}`}
+                      {`₹${item.price}.00`}
                     </Typography>
                   </div>
                 </div>

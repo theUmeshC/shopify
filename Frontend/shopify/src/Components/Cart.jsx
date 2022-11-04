@@ -71,7 +71,7 @@ function Cart({ searchDisplay }) {
         </h1>
         <h1>
           Total Amount :
-          {`₹${cartAmount}`}
+          {`₹${cartAmount}.00`}
         </h1>
       </Basket>
     </>
