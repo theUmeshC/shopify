@@ -57,7 +57,7 @@ export const Cards = styled.div`
     border-radius: 50%;
   }
   .details {
-    width: 90px;
+    width: 95px;
   }
   .quantity {
     width: 60px;
