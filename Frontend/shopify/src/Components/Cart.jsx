@@ -1,4 +1,3 @@
-/* eslint-disable no-return-assign */
 import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
