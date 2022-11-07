@@ -67,7 +67,7 @@ http://geektrust.s3.ap-southeast-1.amazonaws.com/coding-problems/shopping-cart/c
 ```
 ## 🔗 Links to Visit the App 
 
-[![Shopify](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://shopify-c2d36.web.app)
+[![Shopify](https://img.shields.io/badge/Shopify-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://shopify-c2d36.web.app)
 
 
 ## Below you can find the project sample images
