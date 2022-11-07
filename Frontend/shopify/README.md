@@ -2,16 +2,17 @@
 
 This is a single page react App where you can view the products, filter them, search them , and even add the products to the cart ✌
 
-## Teck Stack
+## Tech Stack
 - React
 - Material UI
 - React Router Dom
+- Redux 
 
 ## Setup Instructions
 
 ### `Get different builds of App in different Branches`
 
-#### `Main`: App bulid using just states 
+#### `Main`: App build using just states  
 
 #### `contextState` : App build using context with state management using useState
 
