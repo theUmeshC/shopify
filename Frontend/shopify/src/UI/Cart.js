@@ -12,7 +12,7 @@ export const Container = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  height: 390px;
+  height: 65%;
   .cart__items {
     overflow-y: auto;
   }
