@@ -1,5 +1,3 @@
-/* eslint-disable max-len */
-/* eslint-disable react/destructuring-assignment */
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import Dashboard from './DashBoard';
@@ -12,12 +10,13 @@ export default class Home extends Component {
   }
 
   render() {
+    const { loading, data } = this.props;
     return (
       <div className="wrapper">
-        {!this.props.loading && <SideBar data={this.props.data} />}
+        {!loading && <SideBar data={data} />}
         <Dashboard
           className=""
-          loading={this.props.loading}
+          loading={loading}
         />
       </div>
     );

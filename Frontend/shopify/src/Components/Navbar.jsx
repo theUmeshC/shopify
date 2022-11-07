@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable react/destructuring-assignment */
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import SearchIcon from '@mui/icons-material/Search';
 import { Link } from 'react-router-dom';
@@ -21,36 +19,39 @@ class Navbar extends Component {
   }
 
   searchHandle = (e) => {
+    const { productData } = this.props;
     this.setState({
       searchTerm: e.target.value,
     });
     const product = e.target.value;
     if (product.length > 0) {
       const filteredItems = [];
-      const filterItem = this.props.productData.filter((item) => (
+      const filterItem = productData.filter((item) => (
         item.color.toLowerCase() === product.toLowerCase()
           || item.type.toLowerCase() === product.toLowerCase()
           || item.price.toString() === product
           || item.gender.toLowerCase() === product.toLowerCase()
       ));
       filteredItems.push(...filterItem);
-      this.props.updateFilteredData(filteredItems);
+      updateFilteredData(filteredItems);
     } else {
-      this.props.updateFilteredData(this.props.productData);
+      updateFilteredData(productData);
     }
   };
 
   render() {
+    const { searchDisplay, cartReducers } = this.props;
+    const { searchTerm } = this.state;
     return (
       <Nav>
         <Link to="/" className="cart__icon">
           <Logo>Shopify</Logo>
         </Link>
-        {this.props.searchDisplay && (
+        {searchDisplay && (
           <SearchInput>
             <DebounceInput
               debounceTimeout={500}
-              value={this.state.searchTerm}
+              value={searchTerm}
               onChange={this.searchHandle}
               className="searchBar"
             />
@@ -65,7 +66,7 @@ class Navbar extends Component {
             <Link to="/cart" className="cart__icon">
               <ShoppingCartOutlinedIcon />
             </Link>
-            {this.props.cartReducers.totalCount}
+            {cartReducers.totalCount}
           </Cart>
         </RightContainer>
       </Nav>
@@ -75,6 +76,8 @@ class Navbar extends Component {
 
 Navbar.propTypes = {
   searchDisplay: PropTypes.bool.isRequired,
+  productData: PropTypes.instanceOf(Array).isRequired,
+  cartReducers: PropTypes.instanceOf(Object).isRequired,
 };
 
 const mapStateToProps = (state) => {

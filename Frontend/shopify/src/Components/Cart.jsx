@@ -1,10 +1,7 @@
-/* eslint-disable max-len */
-/* eslint-disable react/prop-types */
-/* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/static-property-placement */
 import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Container, Cards, Basket } from '../UI/Cart';
 import { removeItemFromCart } from '../Store/cartSlice';
@@ -18,32 +15,23 @@ class Cart extends Component {
   }
 
   removeItemHandler = (product) => {
-    this.props.removeItemFromCart(product);
-    const existingRemoveItemIndex = this.props.productData.findIndex(
+    const { productData } = this.props;
+    removeItemFromCart(product);
+    const existingRemoveItemIndex = productData.findIndex(
       (c) => c.id === product.id,
     );
-    const existingRemoveItem = this.props.productData[existingRemoveItemIndex];
+    const existingRemoveItem = productData[existingRemoveItemIndex];
     const updatedItem = {
       ...existingRemoveItem,
       quantity: existingRemoveItem.quantity + 1,
     };
-    const updatedRemoveItems = [...this.props.productData];
+    const updatedRemoveItems = [...productData];
     updatedRemoveItems[existingRemoveItemIndex] = updatedItem;
-    this.props.removeFromCart(updatedRemoveItems);
-    // const existingRemoveItemIndex = this.props.dataState.dataState.productData.findIndex(
-    //   (c) => c.id === product.id,
-    // );
-    // const existingRemoveItem = this.props.dataState.dataState.productData[existingRemoveItemIndex];
-    // const updatedItem = {
-    //   ...existingRemoveItem,
-    //   quantity: existingRemoveItem.quantity + 1,
-    // };
-    // const updatedRemoveItems = [...this.props.dataState.dataState.productData];
-    // updatedRemoveItems[existingRemoveItemIndex] = updatedItem;
-    // this.props.dataState.updateState(updatedRemoveItems);
+    removeFromCart(updatedRemoveItems);
   };
 
   render() {
+    const { cartReducers } = this.props;
     return (
       <>
         <Container>
@@ -54,8 +42,8 @@ class Cart extends Component {
             <h1>Remove</h1>
           </div>
           <div className="cart__items">
-            {this.props.cartReducers.items
-              && this.props.cartReducers.items.map((value) => (
+            {cartReducers.items
+              && cartReducers.items.map((value) => (
                 <Cards key={Math.random()}>
                   <img src={value.imageURL} alt="" />
                   <div className="details">
@@ -81,11 +69,11 @@ class Cart extends Component {
         <Basket>
           <h1>
             Total Quantity:
-            {this.props.cartReducers.totalCount}
+            {cartReducers.totalCount}
           </h1>
           <h1>
             Total Amount :₹
-            {this.props.cartReducers.totalAmount}
+            {cartReducers.totalAmount}
           </h1>
         </Basket>
       </>
@@ -93,9 +81,10 @@ class Cart extends Component {
   }
 }
 
-// Cart.propTypes = {
-//   dataState: PropTypes.instanceOf(Object).isRequired,
-// };
+Cart.propTypes = {
+  productData: PropTypes.instanceOf(Array).isRequired,
+  cartReducers: PropTypes.instanceOf(Object).isRequired,
+};
 
 const mapStateToProps = (state) => {
   const { cartReducers } = state;

@@ -1,4 +1,3 @@
-/* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/static-property-placement */
 import {
   Grid, IconButton, Skeleton, Typography,
@@ -21,31 +20,33 @@ class DashBoard extends Component {
   }
 
   addItemTOCartHandler = (id, product) => {
-    this.props.addItemToCart(product);
-    const existingDataItemIndex = this.props.filteredData.findIndex(
+    const { filteredData } = this.props;
+    addItemToCart(product);
+    const existingDataItemIndex = filteredData.findIndex(
       (c) => c.id === product.id,
     );
-    const existingItem = this.props.filteredData[existingDataItemIndex];
+    const existingItem = filteredData[existingDataItemIndex];
     let updatedItems;
     if (existingItem.quantity >= 1) {
       const updatedItem = {
         ...existingItem,
         quantity: existingItem.quantity - 1,
       };
-      updatedItems = [...this.props.filteredData];
+      updatedItems = [...filteredData];
       updatedItems[existingDataItemIndex] = updatedItem;
     } else {
       toast.error('🦄 Out of Stock!');
-      updatedItems = [...this.props.filteredData];
+      updatedItems = [...filteredData];
     }
-    this.props.loadData(updatedItems);
+    loadData(updatedItems);
   };
 
   render() {
+    const { loading, filteredData } = this.props;
     return (
       <HomeContainer>
         <Grid container wrap="wrap" className="grid__wrapper">
-          {(this.props.loading ? Array.from(new Array(6)) : this.props.filteredData).map(
+          {(loading ? Array.from(new Array(6)) : filteredData).map(
             (item) => (
               <Box className="card1" key={uuidv4()}>
                 {item ? (
@@ -108,8 +109,6 @@ class DashBoard extends Component {
 
 DashBoard.propTypes = {
   loading: PropTypes.bool.isRequired,
-  addItemToCart: PropTypes.func.isRequired,
-  loadData: PropTypes.func.isRequired,
   filteredData: PropTypes.instanceOf(Array).isRequired,
 };
 
