@@ -88,7 +88,7 @@ function Cart({ searchDisplay }) {
         </h1>
         <h1>
           Total Amount :
-          {`₹${totalSum}`}
+          {`₹${totalSum}.00`}
         </h1>
       </Basket>
     </>

@@ -67,10 +67,9 @@ function Dashboard({ searchDisplay, onItemAddedTOCart, loading }) {
                     <Typography
                       display="block"
                       variant="caption"
-                      color="text.secondary"
                       className="text-detail"
                     >
-                      {`₹${item.price}`}
+                      {`₹${item.price}.00`}
                     </Typography>
                   </div>
                 </div>
