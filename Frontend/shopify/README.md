@@ -65,11 +65,10 @@ Start the server
 ```
 http://geektrust.s3.ap-southeast-1.amazonaws.com/coding-problems/shopping-cart/catalogue.json
 ```
-# Visit the App at 
+## 🔗 Links to Visit the App 
 
-```
-https://shopify-c2d36.web.app
-```
+[![Shopify](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://shopify-c2d36.web.app)
+
 
 ## Below you can find the project sample images
 
