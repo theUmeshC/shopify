@@ -6,7 +6,7 @@ This is a single page react App where you can view the products, filter them, se
 - React
 - Material UI
 - React Router Dom
-- Redux 
+- Redux and redux toolkit
 
 ## Setup Instructions
 
@@ -15,8 +15,6 @@ This is a single page react App where you can view the products, filter them, se
 #### `Main`: App build using just states  
 
 #### `contextState` : App build using context with state management using useState.
-
-#### `contextReducer` : App build using context with state management using useReducer.
 
 #### `classBased` : App build using class based components, using context to maintain the app wide data.
 
@@ -57,6 +55,7 @@ Start the server
 - Filter Products
 - Search Products
 - Add Products to Cart 
+- Remove Products from Cart
 
 ## API Reference
 
