@@ -65,6 +65,11 @@ Start the server
 ```
 http://geektrust.s3.ap-southeast-1.amazonaws.com/coding-problems/shopping-cart/catalogue.json
 ```
+# Visit the App at 
+
+```
+https://shopify-c2d36.web.app
+```
 
 ## Below you can find the project sample images
 
