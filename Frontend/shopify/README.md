@@ -14,11 +14,15 @@ This is a single page react App where you can view the products, filter them, se
 
 #### `Main`: App build using just states  
 
-#### `contextState` : App build using context with state management using useState
+#### `contextState` : App build using context with state management using useState.
 
-#### `contextReducer` : App build using context with state management using useReducer
+#### `contextReducer` : App build using context with state management using useReducer.
 
-#### `classBased` : App build using class based components, using context to maintain the app wide data
+#### `classBased` : App build using class based components, using context to maintain the app wide data.
+
+#### `fRedux` : App build using Function based components, using Redux to maintain the app wide state.
+
+#### `reduxClass` : App build using Class based components, using Redux to maintain the app wide state.
 
 ## Run Locally
 
