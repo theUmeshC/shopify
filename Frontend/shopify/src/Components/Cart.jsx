@@ -1,8 +1,7 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/static-property-placement */
 import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Container, Cards, Basket } from '../UI/Cart';
 import { cart } from '../Context/CartContext/context';
 import NavCounter from './NavCounter';
@@ -18,32 +17,36 @@ class Cart extends Component {
   }
 
   removeItemHandler = (product) => {
-    const existingCartItemIndex = this.context.cartState.findIndex((c) => c.id === product.id);
-    const existingItem = this.context.cartState[existingCartItemIndex];
+    const { cartState } = this.context;
+    const { updateCartData } = this.context;
+    const { dataState } = this.props;
+    const existingCartItemIndex = cartState.findIndex((c) => c.id === product.id);
+    const existingItem = cartState[existingCartItemIndex];
     let updatedItems;
     if (existingItem.qty === 1) {
-      updatedItems = this.context.cartState.filter((item) => item.id !== product.id);
+      updatedItems = cartState.filter((item) => item.id !== product.id);
     } else {
       const updatedItem = { ...existingItem, qty: existingItem.qty - 1 };
-      updatedItems = [...this.context.cartState];
+      updatedItems = [...cartState];
       updatedItems[existingCartItemIndex] = updatedItem;
     }
     const cartData = updatedItems;
-    this.context.updateCartData(cartData);
-    const existingRemoveItemIndex = this.props.dataState.dataState.productData.findIndex(
+    updateCartData(cartData);
+    const existingRemoveItemIndex = dataState.dataState.productData.findIndex(
       (c) => c.id === product.id,
     );
-    const existingRemoveItem = this.props.dataState.dataState.productData[existingRemoveItemIndex];
+    const existingRemoveItem = dataState.dataState.productData[existingRemoveItemIndex];
     const updatedItem = {
       ...existingRemoveItem,
       quantity: existingRemoveItem.quantity + 1,
     };
-    const updatedRemoveItems = [...this.props.dataState.dataState.productData];
+    const updatedRemoveItems = [...dataState.dataState.productData];
     updatedRemoveItems[existingRemoveItemIndex] = updatedItem;
-    this.props.dataState.updateState(updatedRemoveItems);
+    dataState.updateState(updatedRemoveItems);
   };
 
   render() {
+    const { cartState } = this.context;
     return (
       <>
         <Container>
@@ -54,8 +57,8 @@ class Cart extends Component {
             <h1>Remove</h1>
           </div>
           <div className="cart__items">
-            {this.context.cartState
-              && this.context.cartState.map((value) => (
+            {cartState
+              && cartState.map((value) => (
                 <Cards key={Math.random()}>
                   <img src={value.imageURL} alt="" />
                   <div className="details">
@@ -92,5 +95,9 @@ class Cart extends Component {
     );
   }
 }
+
+Cart.propTypes = {
+  dataState: PropTypes.instanceOf(Object).isRequired,
+};
 
 export default Cart;
