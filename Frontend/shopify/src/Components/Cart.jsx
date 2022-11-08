@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/static-property-placement */
 import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
 import React, { Component } from 'react';
@@ -16,7 +17,7 @@ class Cart extends Component {
 
   removeItemHandler = (product) => {
     const { productData } = this.props;
-    removeItemFromCart(product);
+    this.props.removeItemFromCart(product);
     const existingRemoveItemIndex = productData.findIndex(
       (c) => c.id === product.id,
     );
@@ -27,7 +28,7 @@ class Cart extends Component {
     };
     const updatedRemoveItems = [...productData];
     updatedRemoveItems[existingRemoveItemIndex] = updatedItem;
-    removeFromCart(updatedRemoveItems);
+    this.props.removeFromCart(updatedRemoveItems);
   };
 
   render() {
@@ -84,6 +85,8 @@ class Cart extends Component {
 Cart.propTypes = {
   productData: PropTypes.instanceOf(Array).isRequired,
   cartReducers: PropTypes.instanceOf(Object).isRequired,
+  removeItemFromCart: PropTypes.func.isRequired,
+  removeFromCart: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {

@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import SearchIcon from '@mui/icons-material/Search';
 import { Link } from 'react-router-dom';
@@ -33,9 +34,9 @@ class Navbar extends Component {
           || item.gender.toLowerCase() === product.toLowerCase()
       ));
       filteredItems.push(...filterItem);
-      updateFilteredData(filteredItems);
+      this.props.updateFilteredData(filteredItems);
     } else {
-      updateFilteredData(productData);
+      this.props.updateFilteredData(productData);
     }
   };
 
@@ -78,6 +79,7 @@ Navbar.propTypes = {
   searchDisplay: PropTypes.bool.isRequired,
   productData: PropTypes.instanceOf(Array).isRequired,
   cartReducers: PropTypes.instanceOf(Object).isRequired,
+  updateFilteredData: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {

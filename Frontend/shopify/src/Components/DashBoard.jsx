@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/static-property-placement */
 import {
   Grid, IconButton, Skeleton, Typography,
@@ -21,7 +23,7 @@ class DashBoard extends Component {
 
   addItemTOCartHandler = (id, product) => {
     const { filteredData } = this.props;
-    addItemToCart(product);
+    this.props.addItemToCart(product);
     const existingDataItemIndex = filteredData.findIndex(
       (c) => c.id === product.id,
     );
@@ -38,7 +40,7 @@ class DashBoard extends Component {
       toast.error('🦄 Out of Stock!');
       updatedItems = [...filteredData];
     }
-    loadData(updatedItems);
+    this.props.loadData(updatedItems);
   };
 
   render() {

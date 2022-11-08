@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/no-access-state-in-setstate */
 import {
   FormControl, FormControlLabel, FormLabel, Checkbox,
@@ -32,9 +33,9 @@ class SideBar extends Component {
           ));
           filteredItems.push(...filterItem);
         });
-        updateFilteredData(filteredItems);
+        this.props.updateFilteredData(filteredItems);
       } else {
-        updateFilteredData(productData);
+        this.props.updateFilteredData(productData);
       }
     }
   }
@@ -178,6 +179,7 @@ class SideBar extends Component {
 SideBar.propTypes = {
   data: PropTypes.instanceOf(Array).isRequired,
   productData: PropTypes.instanceOf(Array).isRequired,
+  updateFilteredData: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
