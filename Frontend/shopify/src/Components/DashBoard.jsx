@@ -65,7 +65,6 @@ function Dashboard({ searchDisplay, loading }) {
                     <Typography
                       display="block"
                       variant="caption"
-                      color="text.secondary"
                       className="text-detail"
                     >
                       {`₹${item.price}.00`}
