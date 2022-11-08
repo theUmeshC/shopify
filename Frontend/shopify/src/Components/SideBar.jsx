@@ -51,13 +51,20 @@ function SideBar({ data }) {
   return (
     <SideBarContainer className="hamburger">
       <FormControl>
-        <FormLabel id="demo-radio-buttons-group-label">Color</FormLabel>
+        <FormLabel
+          className="sidebar_title"
+          id="demo-radio-buttons-group-label"
+        >
+          Color
+
+        </FormLabel>
         {filterColor.map((item) => (
           <FormControlLabel
             key={Math.random()}
             value={item}
             control={(
               <Checkbox
+                className="sidebar_checkbox"
                 checked={Checked.indexOf(item) !== -1}
                 onChange={() => {
                   handleCheck(item);
@@ -69,13 +76,20 @@ function SideBar({ data }) {
         ))}
       </FormControl>
       <FormControl>
-        <FormLabel id="demo-radio-buttons-group-label">Type</FormLabel>
+        <FormLabel
+          className="sidebar_title"
+          id="demo-radio-buttons-group-label"
+        >
+          Type
+
+        </FormLabel>
         {filterType.map((item) => (
           <FormControlLabel
             key={Math.random()}
             value={item}
             control={(
               <Checkbox
+                className="sidebar_checkbox"
                 checked={Checked.indexOf(item) !== -1}
                 onChange={() => {
                   handleCheck(item);
@@ -87,11 +101,18 @@ function SideBar({ data }) {
         ))}
       </FormControl>
       <FormControl>
-        <FormLabel id="demo-radio-buttons-group-label">Gender</FormLabel>
+        <FormLabel
+          className="sidebar_title"
+          id="demo-radio-buttons-group-label"
+        >
+          Gender
+
+        </FormLabel>
         <FormControlLabel
           value="Men"
           control={(
             <Checkbox
+              className="sidebar_checkbox"
               checked={Checked.indexOf('Men') !== -1}
               onChange={() => {
                 handleCheck('Men');
@@ -104,6 +125,7 @@ function SideBar({ data }) {
           value="Women"
           control={(
             <Checkbox
+              className="sidebar_checkbox"
               checked={Checked.indexOf('Women') !== -1}
               onChange={() => {
                 handleCheck('Women');
@@ -114,11 +136,18 @@ function SideBar({ data }) {
         />
       </FormControl>
       <FormControl>
-        <FormLabel id="demo-radio-buttons-group-label">Price</FormLabel>
+        <FormLabel
+          className="sidebar_title"
+          id="demo-radio-buttons-group-label"
+        >
+          Price
+
+        </FormLabel>
         <FormControlLabel
           value="250"
           control={(
             <Checkbox
+              className="sidebar_checkbox"
               checked={Checked.indexOf('250') !== -1}
               onChange={() => {
                 handleCheck('250');
@@ -131,6 +160,7 @@ function SideBar({ data }) {
           value="300"
           control={(
             <Checkbox
+              className="sidebar_checkbox"
               checked={Checked.indexOf('300') !== -1}
               onChange={() => {
                 handleCheck('300');
@@ -143,6 +173,7 @@ function SideBar({ data }) {
           value="500"
           control={(
             <Checkbox
+              className="sidebar_checkbox"
               checked={Checked.indexOf('500') !== -1}
               onChange={() => {
                 handleCheck('500');

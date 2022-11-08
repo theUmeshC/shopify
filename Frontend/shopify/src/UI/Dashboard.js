@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const HomeContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  width: 82%;
+  width: 84%;
   margin: auto;
   align-items: center;
   justify-content: center;
