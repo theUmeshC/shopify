@@ -1,7 +1,5 @@
 /* eslint-disable max-len */
 /* eslint-disable react/static-property-placement */
-/* eslint-disable react/destructuring-assignment */
-
 import { toast } from 'react-toastify';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
@@ -18,23 +16,27 @@ export default class Home extends Component {
   }
 
   cartDataHandler = (product) => {
+    const { cartState } = this.context;
+    const { updateExistingCartData } = this.context;
+    const { updateCart } = this.context;
+    const { initialUpdate } = this.context;
     const selectedItemQuantity = product.quantity;
-    if (this.context.cartState.length > 0) {
+    if (cartState.length > 0) {
       if (selectedItemQuantity > 0) {
-        const exist = this.context.cartState.find((x) => x.id === product.id);
+        const exist = cartState.find((x) => x.id === product.id);
         if (exist) {
-          const cartData = this.context.cartState.map((x) => (x.id === product.id ? { ...x, qty: x.qty + 1, availQty: product.quantity - 1 } : x));
-          this.context.updateExistingCartData(cartData);
+          const cartData = cartState.map((x) => (x.id === product.id ? { ...x, qty: x.qty + 1, availQty: product.quantity - 1 } : x));
+          updateExistingCartData(cartData);
         } else {
           const cartData = [
-            ...this.context.cartState,
+            ...cartState,
             {
               ...product,
               qty: 1,
               availQty: product.quantity - 1,
             },
           ];
-          this.context.updateCart(cartData);
+          updateCart(cartData);
         }
       } else {
         toast.error('🦄 Out of Stock!');
@@ -45,17 +47,19 @@ export default class Home extends Component {
         qty: 1,
         availQty: product.quantity - 1,
       };
-      this.context.initialUpdate(cartData);
+      initialUpdate(cartData);
     }
   };
 
   render() {
+    const { data } = this.props;
+    const { loading } = this.props;
     return (
       <div className="wrapper">
-        {this.props.data && <SideBar data={this.props.data} />}
+        {data && <SideBar data={data} />}
         <Dashboard
           className=""
-          loading={this.props.loading}
+          loading={loading}
           onItemAddedTOCart={this.cartDataHandler}
         />
       </div>

@@ -1,5 +1,4 @@
 /* eslint-disable no-return-assign */
-/* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/static-property-placement */
 import React, { Component } from 'react';
 import { cart } from '../Context/CartContext/context';
@@ -13,8 +12,9 @@ export default class CartData extends Component {
   }
 
   render() {
+    const { cartState } = this.context;
     let totalSum = 0;
-    this.context.cartState.map((value) => (totalSum += value.price * value.qty));
+    cartState.map((value) => (totalSum += value.price * value.qty));
     return <span>{totalSum}</span>;
   }
 }

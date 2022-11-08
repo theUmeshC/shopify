@@ -1,4 +1,3 @@
-/* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/static-property-placement */
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import SearchIcon from '@mui/icons-material/Search';
@@ -24,36 +23,40 @@ export default class Navbar extends Component {
   }
 
   searchHandle = (e) => {
+    const { dataState } = this.context;
+    const { updateFilteredData } = this.context;
     this.setState({
       searchTerm: e.target.value,
     });
     const product = e.target.value;
     if (product.length > 0) {
       const filteredItems = [];
-      const filterItem = this.context.dataState.productData.filter((item) => (
+      const filterItem = dataState.productData.filter((item) => (
         item.color.toLowerCase() === product.toLowerCase()
           || item.type.toLowerCase() === product.toLowerCase()
           || item.price.toString() === product
           || item.gender.toLowerCase() === product.toLowerCase()
       ));
       filteredItems.push(...filterItem);
-      this.context.updateFilteredData(filteredItems);
+      updateFilteredData(filteredItems);
     } else {
-      this.context.updateFilteredData(this.context.dataState.productData);
+      updateFilteredData(dataState.productData);
     }
   };
 
   render() {
+    const { searchDisplay } = this.props;
+    const { searchTerm } = this.state;
     return (
       <Nav>
         <Link to="/" className="cart__icon">
           <Logo>Shopify</Logo>
         </Link>
-        {this.props.searchDisplay && (
+        {searchDisplay && (
           <SearchInput>
             <DebounceInput
               debounceTimeout={500}
-              value={this.state.searchTerm}
+              value={searchTerm}
               onChange={this.searchHandle}
               className="searchBar"
             />

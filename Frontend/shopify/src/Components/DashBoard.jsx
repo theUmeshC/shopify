@@ -1,5 +1,3 @@
-/* eslint-disable max-len */
-/* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/static-property-placement */
 import {
   Grid, IconButton, Skeleton, Typography,
@@ -21,35 +19,40 @@ class DashBoard extends Component {
   }
 
   addItemTOCartHandler = (id, product) => {
-    this.props.onItemAddedTOCart(product);
-    const existingDataItemIndex = this.context.dataState.filteredData.findIndex(
+    const { onItemAddedTOCart } = this.props;
+    const { dataState } = this.context;
+    const { updateState } = this.context;
+    onItemAddedTOCart(product);
+    const existingDataItemIndex = dataState.filteredData.findIndex(
       (c) => c.id === product.id,
     );
-    const existingItem = this.context.dataState.filteredData[existingDataItemIndex];
+    const existingItem = dataState.filteredData[existingDataItemIndex];
     let updatedItems;
     if (existingItem.quantity >= 1) {
       const updatedItem = {
         ...existingItem,
         quantity: existingItem.quantity - 1,
       };
-      updatedItems = [...this.context.dataState.filteredData];
+      updatedItems = [...dataState.filteredData];
       updatedItems[existingDataItemIndex] = updatedItem;
     } else {
       const updatedItem = {
         ...existingItem,
         quantity: 0,
       };
-      updatedItems = [...this.context.dataState.filteredData];
+      updatedItems = [...dataState.filteredData];
       updatedItems[existingDataItemIndex] = updatedItem;
     }
-    this.context.updateState(updatedItems);
+    updateState(updatedItems);
   };
 
   render() {
+    const { loading } = this.props;
+    const { dataState } = this.context;
     return (
       <HomeContainer>
         <Grid container wrap="wrap" className="grid__wrapper">
-          {(this.props.loading ? Array.from(new Array(6)) : this.context.dataState.filteredData).map(
+          {(loading ? Array.from(new Array(6)) : dataState.filteredData).map(
             (item) => (
               <Box className="card1" key={uuidv4()} sx={{ width: 210, marginRight: 6, my: 5 }}>
                 {item ? (
@@ -75,10 +78,9 @@ class DashBoard extends Component {
                         <Typography
                           display="block"
                           variant="caption"
-                          color="text.secondary"
                           className="text-detail"
                         >
-                          {`₹${item.price}`}
+                          {`₹${item.price}.00`}
                         </Typography>
                       </div>
                     </div>

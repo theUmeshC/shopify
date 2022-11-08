@@ -85,7 +85,6 @@ class Cart extends Component {
           </h1>
           <h1>
             Total Amount :₹
-            {' '}
             <CartData />
           </h1>
         </Basket>

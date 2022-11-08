@@ -1,5 +1,4 @@
 /* eslint-disable react/no-access-state-in-setstate */
-/* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/static-property-placement */
 import {
   FormControl, FormControlLabel, FormLabel, Checkbox,
@@ -21,11 +20,14 @@ export default class SideBar extends Component {
   }
 
   componentDidUpdate(_, prevState) {
-    if (prevState.Checked !== this.state.Checked) {
+    const { Checked } = this.state;
+    const { dataState } = this.context;
+    const { updateFilteredData } = this.context;
+    if (prevState.Checked !== Checked) {
       const filteredItems = [];
-      if (this.state.Checked.length > 0) {
-        this.state.Checked.forEach((element) => {
-          const filterItem = this.context.dataState.productData.filter((item) => (
+      if (Checked.length > 0) {
+        Checked.forEach((element) => {
+          const filterItem = dataState.productData.filter((item) => (
             item.color.toLowerCase() === element.toLowerCase()
               || item.type.toLowerCase() === element.toLowerCase()
               || item.price.toString() === element
@@ -33,16 +35,17 @@ export default class SideBar extends Component {
           ));
           filteredItems.push(...filterItem);
         });
-        this.context.updateFilteredData(filteredItems);
+        updateFilteredData(filteredItems);
       } else {
-        this.context.updateFilteredData(this.context.dataState.productData);
+        updateFilteredData(dataState.productData);
       }
     }
   }
 
   handleCheck = (item) => {
-    const currentIndex = this.state.Checked.indexOf(item);
-    const newChecked = [...this.state.Checked];
+    const { Checked } = this.state;
+    const currentIndex = Checked.indexOf(item);
+    const newChecked = [...Checked];
     if (currentIndex === -1) {
       newChecked.push(item);
     } else {
@@ -54,14 +57,16 @@ export default class SideBar extends Component {
   };
 
   render() {
+    const { data } = this.props;
+    const { Checked } = this.state;
     const filterColor = [
       ...new Set(
-        this.props.data.map((item) => item.color),
+        data.map((item) => item.color),
       ),
     ];
     const filterType = [
       ...new Set(
-        this.props.data.map((item) => item.type),
+        data.map((item) => item.type),
       ),
     ];
     return (
@@ -74,7 +79,7 @@ export default class SideBar extends Component {
               value={item}
               control={(
                 <Checkbox
-                  checked={this.state.Checked.indexOf(item) !== -1}
+                  checked={Checked.indexOf(item) !== -1}
                   onChange={() => {
                     this.handleCheck(item);
                   }}
@@ -92,7 +97,7 @@ export default class SideBar extends Component {
               value={item}
               control={(
                 <Checkbox
-                  checked={this.state.Checked.indexOf(item) !== -1}
+                  checked={Checked.indexOf(item) !== -1}
                   onChange={() => {
                     this.handleCheck(item);
                   }}
@@ -108,7 +113,7 @@ export default class SideBar extends Component {
             value="Men"
             control={(
               <Checkbox
-                checked={this.state.Checked.indexOf('Men') !== -1}
+                checked={Checked.indexOf('Men') !== -1}
                 onChange={() => {
                   this.handleCheck('Men');
                 }}
@@ -120,7 +125,7 @@ export default class SideBar extends Component {
             value="Women"
             control={(
               <Checkbox
-                checked={this.state.Checked.indexOf('Women') !== -1}
+                checked={Checked.indexOf('Women') !== -1}
                 onChange={() => {
                   this.handleCheck('Women');
                 }}
@@ -135,7 +140,7 @@ export default class SideBar extends Component {
             value="250"
             control={(
               <Checkbox
-                checked={this.state.Checked.indexOf('250') !== -1}
+                checked={Checked.indexOf('250') !== -1}
                 onChange={() => {
                   this.handleCheck('250');
                 }}
@@ -147,7 +152,7 @@ export default class SideBar extends Component {
             value="300"
             control={(
               <Checkbox
-                checked={this.state.Checked.indexOf('300') !== -1}
+                checked={Checked.indexOf('300') !== -1}
                 onChange={() => {
                   this.handleCheck('300');
                 }}
@@ -159,7 +164,7 @@ export default class SideBar extends Component {
             value="500"
             control={(
               <Checkbox
-                checked={this.state.Checked.indexOf('500') !== -1}
+                checked={Checked.indexOf('500') !== -1}
                 onChange={() => {
                   this.handleCheck('500');
                 }}

@@ -4,37 +4,34 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 90vw;
-  border-radius: 5px;
+  border-radius: 2px;
   background: #f8f6f6;
   border: 1px solid #cfcfcf;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  height: 390px;
+  height: 65%;
   .cart__items {
     overflow-y: auto;
   }
   .cart__items::-webkit-scrollbar {
     width: 16px;
-    border-radius: 15px;
-    height: 100%;
   }
   .cart__items::-webkit-scrollbar-track {
     background-color: white;
   }
   .cart__items::-webkit-scrollbar-thumb {
     background-color: #597ef7;
-    border-radius: 15px;
+    border-radius: 7px;
     border: 3px solid #ffffff;
   }
-
   .cart__items::-webkit-scrollbar-thumb:hover {
     background-color: #3766ff;
   }
-
   .title {
-    border-radius: 5px;
+    border-radius: 2px;
     position: sticky;
     padding: 10px 0px;
     top: 0;
@@ -60,7 +57,7 @@ export const Cards = styled.div`
     border-radius: 50%;
   }
   .details {
-    width: 90px;
+    width: 95px;
   }
   .quantity {
     width: 60px;
@@ -86,16 +83,20 @@ export const Cards = styled.div`
   }
 `;
 export const Basket = styled.div`
-  position: absolute;
+  position: fixed;
   bottom: 0vh;
+  left:50%;
+  transform: translateX(-50%);
   display: flex;
-  width: 100vw;
+  height: 1.6rem;
+  width: 90vw;
   z-index: 999;
   text-align: center;
-  flex-direction: column;
-  background-color: aliceblue;
-  border-top: 1px solid #cfcfcf;
-  padding : 5px 0;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: #c2e2fe;
+  border: 1px solid #cfcfcf;
+  padding: 0.3em 0;
   h1 {
     font-size: 1.07rem;
   }
