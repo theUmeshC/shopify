@@ -40,7 +40,7 @@ function Dashboard({ searchDisplay, loading }) {
   return (
     <HomeContainer>
       <Grid container wrap="wrap" className="grid__wrapper">
-        {(loading ? Array.from(new Array(6)) : filteredProductData).map((item) => (
+        {(loading ? Array.from(new Array(8)) : filteredProductData).map((item) => (
           <Box className="card1" key={Math.random()} sx={{ width: 210, marginRight: 6, my: 5 }}>
             {item ? (
               <img alt={item.title} src={item.imageURL} className="card-img" />
