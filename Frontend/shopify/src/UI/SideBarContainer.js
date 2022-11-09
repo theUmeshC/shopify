@@ -6,7 +6,6 @@ const SideBarContainer = styled.div`
   position: sticky;
   top: 10vh;
   background: #A3C7D6;
-  /* color:  */
   flex-direction: column;
   padding-left: 25px;
   padding-top: 5px;

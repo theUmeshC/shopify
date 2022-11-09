@@ -52,7 +52,7 @@ class DashBoard extends Component {
     return (
       <HomeContainer>
         <Grid container wrap="wrap" className="grid__wrapper">
-          {(loading ? Array.from(new Array(6)) : dataState.filteredData).map(
+          {(loading ? Array.from(new Array(8)) : dataState.filteredData).map(
             (item) => (
               <Box className="card1" key={uuidv4()} sx={{ width: 210, marginRight: 6, my: 5 }}>
                 {item ? (

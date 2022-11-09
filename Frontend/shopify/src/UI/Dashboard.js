@@ -49,7 +49,7 @@ const HomeContainer = styled.div`
     align-items: center;
   }
   .cart__icon {
-    background-color: #eb8d12;
+    background-color: #8D72E1;
     padding: 5px;
     border-radius: 50%;
     color: white;
@@ -58,13 +58,13 @@ const HomeContainer = styled.div`
     font-size: 30px;
   }
   .cart__icon:hover {
-    background-color: #db7e05;
+    background-color: #6C4AB6;
     scale: 1.2;
   }
   .cart__icon:active {
     background-color: white;
-    color: #eb8d12;
-    border: 1px solid #eb8d12;
+    color: #6C4AB6;
+    border: 1px solid #6C4AB6;
   }
 `;
 
