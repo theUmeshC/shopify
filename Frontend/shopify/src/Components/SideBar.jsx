@@ -4,11 +4,12 @@ import {
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
-import SideBarContainer from '../UI/SideBarContainer';
 import { updateFilteredData } from '../Store/productSlice';
+import useStyles from '../UI/SidebarStyles';
 
 function SideBar({ data }) {
   const productDataRedux = useSelector((state) => state.productReducers.productData);
+  const classes = useStyles();
   const dispatch = useDispatch();
   const [Checked, setChecked] = useState([]);
   const filterColor = [
@@ -49,10 +50,10 @@ function SideBar({ data }) {
     }
   }, [Checked]);
   return (
-    <SideBarContainer className="hamburger">
+    <div className={`${classes.sidebar_container} hamburger`}>
       <FormControl>
         <FormLabel
-          className="sidebar_title"
+          className={classes.sideBarTitles}
           id="demo-radio-buttons-group-label"
         >
           Color
@@ -64,7 +65,7 @@ function SideBar({ data }) {
             value={item}
             control={(
               <Checkbox
-                className="sidebar_checkbox"
+                className={classes.sidebarCheckbox}
                 checked={Checked.indexOf(item) !== -1}
                 onChange={() => {
                   handleCheck(item);
@@ -77,7 +78,7 @@ function SideBar({ data }) {
       </FormControl>
       <FormControl>
         <FormLabel
-          className="sidebar_title"
+          className={classes.sideBarTitles}
           id="demo-radio-buttons-group-label"
         >
           Type
@@ -89,7 +90,7 @@ function SideBar({ data }) {
             value={item}
             control={(
               <Checkbox
-                className="sidebar_checkbox"
+                className={classes.sidebarCheckbox}
                 checked={Checked.indexOf(item) !== -1}
                 onChange={() => {
                   handleCheck(item);
@@ -102,7 +103,7 @@ function SideBar({ data }) {
       </FormControl>
       <FormControl>
         <FormLabel
-          className="sidebar_title"
+          className={classes.sideBarTitles}
           id="demo-radio-buttons-group-label"
         >
           Gender
@@ -112,7 +113,7 @@ function SideBar({ data }) {
           value="Men"
           control={(
             <Checkbox
-              className="sidebar_checkbox"
+              className={classes.sidebarCheckbox}
               checked={Checked.indexOf('Men') !== -1}
               onChange={() => {
                 handleCheck('Men');
@@ -125,7 +126,7 @@ function SideBar({ data }) {
           value="Women"
           control={(
             <Checkbox
-              className="sidebar_checkbox"
+              className={classes.sidebarCheckbox}
               checked={Checked.indexOf('Women') !== -1}
               onChange={() => {
                 handleCheck('Women');
@@ -137,7 +138,7 @@ function SideBar({ data }) {
       </FormControl>
       <FormControl>
         <FormLabel
-          className="sidebar_title"
+          className={classes.sideBarTitles}
           id="demo-radio-buttons-group-label"
         >
           Price
@@ -147,7 +148,7 @@ function SideBar({ data }) {
           value="250"
           control={(
             <Checkbox
-              className="sidebar_checkbox"
+              className={classes.sidebarCheckbox}
               checked={Checked.indexOf('250') !== -1}
               onChange={() => {
                 handleCheck('250');
@@ -160,7 +161,7 @@ function SideBar({ data }) {
           value="300"
           control={(
             <Checkbox
-              className="sidebar_checkbox"
+              className={classes.sidebarCheckbox}
               checked={Checked.indexOf('300') !== -1}
               onChange={() => {
                 handleCheck('300');
@@ -173,7 +174,7 @@ function SideBar({ data }) {
           value="500"
           control={(
             <Checkbox
-              className="sidebar_checkbox"
+              className={classes.sidebarCheckbox}
               checked={Checked.indexOf('500') !== -1}
               onChange={() => {
                 handleCheck('500');
@@ -183,7 +184,7 @@ function SideBar({ data }) {
           label="500-All"
         />
       </FormControl>
-    </SideBarContainer>
+    </div>
   );
 }
 

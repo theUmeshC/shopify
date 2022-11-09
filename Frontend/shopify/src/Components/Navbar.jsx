@@ -5,12 +5,11 @@ import { Link } from 'react-router-dom';
 import { DebounceInput } from 'react-debounce-input';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  Nav, Cart, RightContainer, Logo, SearchInput,
-} from '../UI/NavBar';
 import { updateFilteredData } from '../Store/productSlice';
+import useStyles from '../UI/NavbarStyles';
 
 function Navbar({ searchDisplay }) {
+  const classes = useStyles();
   const cartCount = useSelector((state) => state.cartReducers.totalCount);
   const productDataRedux = useSelector((state) => state.productReducers.productData);
   const dispatch = useDispatch();
@@ -34,12 +33,12 @@ function Navbar({ searchDisplay }) {
     }
   };
   return (
-    <Nav>
-      <Link to="/" className="cart__icon">
-        <Logo>Shopify</Logo>
+    <div className={classes.navContainer}>
+      <Link to="/">
+        <div className={classes.navbarLogo}>Shopify</div>
       </Link>
       {searchDisplay && (
-        <SearchInput>
+        <div className={classes.navbarSearchInput}>
           <DebounceInput
             debounceTimeout={500}
             value={searchTerm}
@@ -47,20 +46,20 @@ function Navbar({ searchDisplay }) {
             className="searchBar"
           />
           <SearchIcon />
-        </SearchInput>
+        </div>
       )}
-      <RightContainer>
+      <div className={classes.navbarRightContainer}>
         <Link to="/" className="cart__icon">
           <h1>Products</h1>
         </Link>
-        <Cart>
-          <Link to="/cart" className="cart__icon">
+        <div className={classes.navCart}>
+          <Link to="/cart">
             <ShoppingCartOutlinedIcon />
           </Link>
           <span>{cartCount}</span>
-        </Cart>
-      </RightContainer>
-    </Nav>
+        </div>
+      </div>
+    </div>
   );
 }
 
