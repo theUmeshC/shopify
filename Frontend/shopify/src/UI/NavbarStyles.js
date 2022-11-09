@@ -57,7 +57,7 @@ export default makeStyles(() => ({
     minWidth: '80px',
     alignItems: 'center',
     '& input': {
-      minWidth: '80px',
+      width: '350px',
       backgroundColor: 'transparent',
       height: '20px',
       border: 'solid white',

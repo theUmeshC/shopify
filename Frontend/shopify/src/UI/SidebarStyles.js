@@ -8,8 +8,8 @@ export default makeStyles(() => ({
     top: '10vh',
     background: '#A3C7D6',
     flexDirection: 'column',
-    paddingLeft: '25px',
-    paddingTop: '5px',
+    padding: '5px 0 0 3%',
+    // paddingTop: '5px',
     overflowY: 'scroll',
     '&::-webkit-scrollbar': {
       display: 'none',
@@ -17,11 +17,11 @@ export default makeStyles(() => ({
   },
   sideBarTitles: {
     fontSize: '17px',
-    color: '#6C4AB6',
-    fontWeight: '700',
-    margin: '15px 0 5px 0',
+    color: 'black !important',
+    fontWeight: '700 !important',
+    margin: '15px 0 5px 0 !important',
   },
   sidebarCheckbox: {
-    color: '#8D72E1',
+    // color: '#8D72E1 !important',
   },
 }));
