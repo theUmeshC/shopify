@@ -72,13 +72,20 @@ export default class SideBar extends Component {
     return (
       <SideBarContainer className="hamburger">
         <FormControl>
-          <FormLabel id="demo-radio-buttons-group-label">Color</FormLabel>
+          <FormLabel
+            className="sidebar_title"
+            id="demo-radio-buttons-group-label"
+          >
+            Color
+
+          </FormLabel>
           {filterColor.map((item) => (
             <FormControlLabel
               key={uuidv4()}
               value={item}
               control={(
                 <Checkbox
+                  className="sidebar_checkbox"
                   checked={Checked.indexOf(item) !== -1}
                   onChange={() => {
                     this.handleCheck(item);
@@ -90,13 +97,20 @@ export default class SideBar extends Component {
           ))}
         </FormControl>
         <FormControl>
-          <FormLabel id="demo-radio-buttons-group-label">Type</FormLabel>
+          <FormLabel
+            className="sidebar_title"
+            id="demo-radio-buttons-group-label"
+          >
+            Type
+
+          </FormLabel>
           {filterType.map((item) => (
             <FormControlLabel
               key={Math.random()}
               value={item}
               control={(
                 <Checkbox
+                  className="sidebar_checkbox"
                   checked={Checked.indexOf(item) !== -1}
                   onChange={() => {
                     this.handleCheck(item);
@@ -108,11 +122,18 @@ export default class SideBar extends Component {
           ))}
         </FormControl>
         <FormControl>
-          <FormLabel id="demo-radio-buttons-group-label">Gender</FormLabel>
+          <FormLabel
+            className="sidebar_title"
+            id="demo-radio-buttons-group-label"
+          >
+            Gender
+
+          </FormLabel>
           <FormControlLabel
             value="Men"
             control={(
               <Checkbox
+                className="sidebar_checkbox"
                 checked={Checked.indexOf('Men') !== -1}
                 onChange={() => {
                   this.handleCheck('Men');
@@ -125,6 +146,7 @@ export default class SideBar extends Component {
             value="Women"
             control={(
               <Checkbox
+                className="sidebar_checkbox"
                 checked={Checked.indexOf('Women') !== -1}
                 onChange={() => {
                   this.handleCheck('Women');
@@ -135,11 +157,18 @@ export default class SideBar extends Component {
           />
         </FormControl>
         <FormControl>
-          <FormLabel id="demo-radio-buttons-group-label">Price</FormLabel>
+          <FormLabel
+            className="sidebar_title"
+            id="demo-radio-buttons-group-label"
+          >
+            Price
+
+          </FormLabel>
           <FormControlLabel
             value="250"
             control={(
               <Checkbox
+                className="sidebar_checkbox"
                 checked={Checked.indexOf('250') !== -1}
                 onChange={() => {
                   this.handleCheck('250');
@@ -152,6 +181,7 @@ export default class SideBar extends Component {
             value="300"
             control={(
               <Checkbox
+                className="sidebar_checkbox"
                 checked={Checked.indexOf('300') !== -1}
                 onChange={() => {
                   this.handleCheck('300');
@@ -164,6 +194,7 @@ export default class SideBar extends Component {
             value="500"
             control={(
               <Checkbox
+                className="sidebar_checkbox"
                 checked={Checked.indexOf('500') !== -1}
                 onChange={() => {
                   this.handleCheck('500');

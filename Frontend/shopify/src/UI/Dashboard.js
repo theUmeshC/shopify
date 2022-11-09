@@ -3,13 +3,13 @@ import styled from 'styled-components';
 const HomeContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  width: 82%;
+  width: 84%;
   margin: auto;
   align-items: center;
   justify-content: center;
   .card1 {
     margin: 30px;
-    width: 220px;
+    width: 200px;
     height: 254px;
     padding: 0.8em;
     background: #f5f5f5;
