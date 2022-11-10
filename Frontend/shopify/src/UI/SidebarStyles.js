@@ -9,7 +9,6 @@ export default makeStyles(() => ({
     background: '#A3C7D6',
     flexDirection: 'column',
     padding: '5px 0 0 3%',
-    // paddingTop: '5px',
     overflowY: 'scroll',
     '&::-webkit-scrollbar': {
       display: 'none',
