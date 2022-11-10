@@ -2,11 +2,13 @@ import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Container, Cards, Basket } from '../UI/Cart';
+import { v4 as uuidv4 } from 'uuid';
 import { removeItemFromCart } from '../Store/cartSlice';
 import { loadData } from '../Store/productSlice';
+import useStyles from '../UI/CartStyles';
 
 function Cart({ searchDisplay }) {
+  const classes = useStyles();
   const productDataRedux = useSelector((state) => state.productReducers.productData);
   const cartDataRedux = useSelector((state) => state.cartReducers.items);
   const cartCount = useSelector((state) => state.cartReducers.totalCount);
@@ -32,39 +34,39 @@ function Cart({ searchDisplay }) {
 
   return (
     <>
-      <Container>
-        <div className="title">
+      <div className={classes.cart_container}>
+        <div className={classes.cart_titles}>
           <h1>Products</h1>
           <h1>Details</h1>
           <h1>Quantity</h1>
           <h1>Remove</h1>
         </div>
-        <div className="cart__items">
+        <div className={classes.cart_items_container}>
           {cartDataRedux
             && cartDataRedux.map((value) => (
-              <Cards key={Math.random()}>
+              <div className={classes.cart_items} key={uuidv4()}>
                 <img src={value.imageURL} alt="" />
-                <div className="details">
+                <div className={classes.cart_items_details}>
                   <h5>{value.name}</h5>
                   <h6>
                     Price:
                     {value.price}
                   </h6>
                 </div>
-                <div className="quantity">
+                <div className={classes.cart_items_quantity}>
                   <h4>{value.qty}</h4>
                 </div>
                 <RemoveShoppingCartIcon
-                  className="cart__icon"
+                  className={classes.cart_items_cart__icon}
                   onClick={() => {
                     removeItemHandler(value);
                   }}
                 />
-              </Cards>
+              </div>
             ))}
         </div>
-      </Container>
-      <Basket>
+      </div>
+      <div className={classes.cart_basket}>
         <h1>
           Total Quantity:
           {cartCount}
@@ -73,7 +75,7 @@ function Cart({ searchDisplay }) {
           Total Amount :
           {`₹${cartAmount}.00`}
         </h1>
-      </Basket>
+      </div>
     </>
   );
 }

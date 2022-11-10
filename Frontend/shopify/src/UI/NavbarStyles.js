@@ -25,7 +25,6 @@ export default makeStyles(() => ({
       color: 'white',
     },
     '& a:hover': {
-      textDecoration: 'none',
       cursor: 'pointer',
       color: 'gold',
     },
@@ -42,9 +41,8 @@ export default makeStyles(() => ({
       fontSize: '15px',
     },
     '& h1:hover': {
-      textDecoration: 'none',
       cursor: 'pointer',
-      color: '#3ee83e',
+      color: 'gold',
     },
   },
   navbarLogo: {

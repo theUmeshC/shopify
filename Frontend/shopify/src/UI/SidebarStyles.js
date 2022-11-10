@@ -8,7 +8,9 @@ export default makeStyles(() => ({
     top: '10vh',
     background: '#A3C7D6',
     flexDirection: 'column',
-    padding: '5px 0 0 3%',
+    paddingLeft: '25px',
+    paddingTop: '5px',
+    boxSizing: 'border-box',
     overflowY: 'scroll',
     '&::-webkit-scrollbar': {
       display: 'none',
@@ -21,6 +23,6 @@ export default makeStyles(() => ({
     margin: '15px 0 5px 0 !important',
   },
   sidebarCheckbox: {
-    // color: '#8D72E1 !important',
+    color: 'green !important',
   },
 }));

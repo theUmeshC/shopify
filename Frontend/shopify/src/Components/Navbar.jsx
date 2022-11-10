@@ -49,7 +49,7 @@ function Navbar({ searchDisplay }) {
         </div>
       )}
       <div className={classes.navbarRightContainer}>
-        <Link to="/" className="cart__icon">
+        <Link to="/" className="">
           <h1>Products</h1>
         </Link>
         <div className={classes.navCart}>

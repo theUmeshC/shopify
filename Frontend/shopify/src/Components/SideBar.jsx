@@ -4,6 +4,7 @@ import {
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
+import { v4 as uuidv4 } from 'uuid';
 import { updateFilteredData } from '../Store/productSlice';
 import useStyles from '../UI/SidebarStyles';
 
@@ -61,7 +62,7 @@ function SideBar({ data }) {
         </FormLabel>
         {filterColor.map((item) => (
           <FormControlLabel
-            key={Math.random()}
+            key={uuidv4()}
             value={item}
             control={(
               <Checkbox
@@ -86,7 +87,7 @@ function SideBar({ data }) {
         </FormLabel>
         {filterType.map((item) => (
           <FormControlLabel
-            key={Math.random()}
+            key={uuidv4()}
             value={item}
             control={(
               <Checkbox
