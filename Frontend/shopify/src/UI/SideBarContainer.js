@@ -15,11 +15,11 @@ const SideBarContainer = styled.div`
     display: none;
   }
   .sidebar_checkbox{
-    color:#8D72E1;
+    color:green;
   }
   .sidebar_title{
     font-size:17px;
-    color:#6C4AB6;
+    color:black;
     font-weight: 700;
     margin: 15px 0 5px 0;
   }
