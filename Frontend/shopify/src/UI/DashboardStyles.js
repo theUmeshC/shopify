@@ -20,7 +20,7 @@ export default makeStyles(() => ({
     boxShadow: '0 1px 3px rgba(0,0,0,0.12),0 1px 2px rgba(0,0,0,0.24)',
   },
   dashboardCardImg: {
-    backgroundColor: '#5fa9f9 !important',
+    backgroundColor: '##8D72E1 !important',
     height: '55% !important',
     width: '100% !important',
     borderRadius: '0.5rem !important',
