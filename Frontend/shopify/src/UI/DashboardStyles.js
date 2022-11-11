@@ -70,6 +70,6 @@ export default makeStyles(() => ({
     },
   },
   skeleton: {
-    backgroundColor: '#8d72e1c9',
+    backgroundColor: '#8d72e1c9 !important',
   },
 }));
