@@ -69,11 +69,15 @@ function Cart({ searchDisplay }) {
       <div className={classes.cart_basket}>
         <h1>
           Total Quantity:
-          {cartCount}
+          <span>
+            {cartCount}
+          </span>
         </h1>
         <h1>
           Total Amount :
-          {`₹${cartAmount}.00`}
+          <span>
+            {`₹${cartAmount}.00`}
+          </span>
         </h1>
       </div>
     </>

@@ -58,7 +58,6 @@ function SideBar({ data }) {
           id="demo-radio-buttons-group-label"
         >
           Color
-
         </FormLabel>
         {filterColor.map((item) => (
           <FormControlLabel
@@ -83,7 +82,6 @@ function SideBar({ data }) {
           id="demo-radio-buttons-group-label"
         >
           Type
-
         </FormLabel>
         {filterType.map((item) => (
           <FormControlLabel
@@ -108,7 +106,6 @@ function SideBar({ data }) {
           id="demo-radio-buttons-group-label"
         >
           Gender
-
         </FormLabel>
         <FormControlLabel
           value="Men"
@@ -143,7 +140,6 @@ function SideBar({ data }) {
           id="demo-radio-buttons-group-label"
         >
           Price
-
         </FormLabel>
         <FormControlLabel
           value="250"
