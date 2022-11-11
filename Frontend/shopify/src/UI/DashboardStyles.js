@@ -69,4 +69,7 @@ export default makeStyles(() => ({
       border: '1px solid #6C4AB6',
     },
   },
+  skeleton: {
+    backgroundColor: '#8d72e1c9',
+  },
 }));

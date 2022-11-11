@@ -84,10 +84,10 @@ function Dashboard({ searchDisplay, loading }) {
               </Box>
             ) : (
               <Box sx={{ pt: 0.5 }}>
-                <Skeleton width="60%" />
-                <Skeleton />
-                <Skeleton />
-                <Skeleton />
+                <Skeleton width="60%" className={classes.skeleton} />
+                <Skeleton className={classes.skeleton} />
+                <Skeleton className={classes.skeleton} />
+                <Skeleton className={classes.skeleton} />
               </Box>
             )}
           </Box>
