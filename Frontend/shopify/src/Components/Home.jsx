@@ -1,13 +1,14 @@
 /* eslint-disable react/require-default-props */
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import useStyles from '../UI/HomeStyles';
 import Dashboard from './DashBoard';
 import SideBar from './SideBar';
 
 function Home({ searchDisplay, loading, data }) {
+  const classes = useStyles();
   return (
-    <div className="wrapper">
+    <div className={classes.HomeWrapper}>
       {data && <SideBar data={data} />}
       <Dashboard
         className=""
