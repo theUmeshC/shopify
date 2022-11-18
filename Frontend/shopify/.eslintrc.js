@@ -19,5 +19,20 @@ module.exports = {
   rules: {
     'linebreak-style': 0,
     'react/react-in-jsx-scope': 'off',
+    'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
+    'import/no-unresolved': [
+      2,
+      { caseSensitive: false },
+    ],
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        js: 'never',
+        jsx: 'never',
+        ts: 'never',
+        tsx: 'never',
+      },
+    ],
   },
 };

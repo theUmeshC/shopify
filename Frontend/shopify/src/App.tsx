@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+/* eslint-disable */
+import { useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import Cart from './Components/Cart';
@@ -12,7 +13,7 @@ function App() {
   const baseUrl = baseURL;
   const { data, loadingState } = useAxios(baseUrl);
   const [searchDisplay, setSearchDisplay] = useState(true);
-  const changeSearchDisplay = (value) => {
+  const changeSearchDisplay = (value:boolean) => {
     setSearchDisplay(value);
   };
 
