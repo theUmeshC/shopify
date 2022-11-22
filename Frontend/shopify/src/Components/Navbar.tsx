@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useState } from 'react';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import SearchIcon from '@mui/icons-material/Search';
@@ -7,15 +8,20 @@ import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateFilteredData } from '../Store/productSlice';
 import useStyles from '../UI/NavbarStyles';
+import { IRootState } from '../Store/store';
 
-function Navbar({ searchDisplay }) {
+type Iprops = {
+  searchDisplay :boolean
+};
+
+function Navbar({ searchDisplay }: Iprops) {
   const classes = useStyles();
-  const cartCount = useSelector((state) => state.cartReducers.totalCount);
-  const productDataRedux = useSelector((state) => state.productReducers.productData);
+  const cartCount = useSelector((state: IRootState) => state.cartReducers.totalCount);
+  const productDataRedux = useSelector((state: IRootState) => state.productReducers.productData);
   const dispatch = useDispatch();
   const [searchTerm, setSearchTerm] = useState('');
 
-  const searchHandle = (e) => {
+  const searchHandle = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
     const product = e.target.value;
     if (product.length > 0) {

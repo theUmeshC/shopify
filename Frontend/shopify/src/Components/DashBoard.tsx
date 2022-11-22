@@ -1,3 +1,4 @@
+/* eslint-disable */
 import {
   Grid, IconButton, Skeleton, Typography,
 } from '@mui/material';
@@ -11,28 +12,23 @@ import { v4 as uuidv4 } from 'uuid';
 import { loadData } from '../Store/productSlice';
 import { addItemToCart } from '../Store/cartSlice';
 import useStyles from '../UI/DashboardStyles';
+import { IRootState } from '../Store/store';
+import { dataTypeContext } from '../Helper/types';
 
-// interface dataItem {
-//   color: string;
-//   currency : string;
-//   gender : string;
-//   id : number;
-//   imageURL : string;
-//   name: string;
-//   price : number;
-//   quantity : number;
-//   type : string;
-// };
+type Iprops = {
+  searchDisplay : ( val: boolean ) => void,
+  loading : boolean,
+};
 
-function Dashboard({ searchDisplay, loading }) {
+function Dashboard({ searchDisplay, loading }: Iprops) {
   const classes = useStyles();
-  const filteredProductData = useSelector((state) => state.productReducers.filteredData);
+  const filteredProductData = useSelector((state: IRootState) => state.productReducers.filteredData);
   const dispatch = useDispatch();
   useEffect(() => {
     searchDisplay(true);
   }, []);
 
-  const addItemTOCartHandler = (product) => {
+  const addItemTOCartHandler = (product: dataTypeContext) => {
     dispatch(addItemToCart(product));
     const existingDataItemIndex = filteredProductData.findIndex((c) => c.id === product.id);
     const existingItem = filteredProductData[existingDataItemIndex];

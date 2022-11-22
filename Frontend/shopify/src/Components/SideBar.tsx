@@ -1,18 +1,25 @@
+/* eslint-disable */
 import {
   FormControl, FormControlLabel, FormLabel, Checkbox,
 } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import { updateFilteredData } from '../Store/productSlice';
 import useStyles from '../UI/SidebarStyles';
+import { IRootState } from '../Store/store';
+import { dataTypeProductContext } from '../Helper/types';
 
-function SideBar({ data }) {
-  const productDataRedux = useSelector((state) => state.productReducers.productData);
+type Iprops = {
+  data: dataTypeProductContext,
+};
+
+function SideBar({ data }: Iprops) {
+  const productDataRedux = useSelector((state:IRootState) => state.productReducers.productData);
   const classes = useStyles();
   const dispatch = useDispatch();
-  const [Checked, setChecked] = useState([]);
+  const [Checked, setChecked] = useState<string[]>([]);
   const filterColor = [
     ...new Set(
       data.map((item) => item.color),
@@ -23,9 +30,9 @@ function SideBar({ data }) {
       data.map((item) => item.type),
     ),
   ];
-  const handleCheck = (item) => {
+  const handleCheck = (item: string ) => {
     const currentIndex = Checked.indexOf(item);
-    const newChecked = [...Checked];
+    const newChecked:string[] = [...Checked];
     if (currentIndex === -1) {
       newChecked.push(item);
     } else {
@@ -34,9 +41,9 @@ function SideBar({ data }) {
     setChecked(newChecked);
   };
   useEffect(() => {
-    const filteredItems = [];
+    const filteredItems: dataTypeProductContext = [];
     if (Checked.length > 0) {
-      Checked.forEach((element) => {
+      Checked.forEach((element:string) => {
         const filterItem = productDataRedux.filter((item) => (
           item.color.toLowerCase() === element.toLowerCase()
             || item.type.toLowerCase() === element.toLowerCase()

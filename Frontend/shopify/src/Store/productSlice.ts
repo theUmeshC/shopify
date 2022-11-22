@@ -1,12 +1,15 @@
-/* eslint-disable no-param-reassign */
+/* eslint-disable */
 import { createSlice } from '@reduxjs/toolkit';
+import { productStateType } from '../Helper/types';
+
+const initialProductState: productStateType = {
+  productData: [],
+  filteredData: [],
+};
 
 const productSlice = createSlice({
   name: 'cart',
-  initialState: {
-    productData: [],
-    filteredData: [],
-  },
+  initialState:initialProductState,
   reducers: {
     loadData: (state, action) => {
       state.productData = action.payload;

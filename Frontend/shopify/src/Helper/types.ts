@@ -9,7 +9,20 @@ export type dataType = {
     quantity : number,
     type : string,
     qty?: number,
-}[]|undefined
+}[]|undefined;
+
+export type dataTypeProductContext = {
+    color: string,
+    currency : string,
+    gender : string,
+    id : number,
+    imageURL : string,
+    name: string,
+    price : number,
+    quantity : number,
+    type : string,
+    qty?: number,
+}[];
 
 export type dataTypeContext = {
     color: string,
@@ -22,4 +35,9 @@ export type dataTypeContext = {
     quantity : number,
     type : string,
     qty: number,
+};
+
+export interface productStateType {
+    productData : dataTypeProductContext,
+    filteredData : dataTypeProductContext,  
 }

@@ -1,25 +1,32 @@
+/* eslint-disable */
 import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
 import PropTypes from 'prop-types';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
+import { dataTypeContext } from '../Helper/types';
 import { removeItemFromCart } from '../Store/cartSlice';
 import { loadData } from '../Store/productSlice';
+import { IRootState } from '../Store/store';
 import useStyles from '../UI/CartStyles';
 
-function Cart({ searchDisplay }) {
+type Iprops = {
+  searchDisplay : ( val: boolean ) => void,
+};
+
+function Cart({ searchDisplay }: Iprops) {
   const classes = useStyles();
-  const productDataRedux = useSelector((state) => state.productReducers.productData);
-  const cartDataRedux = useSelector((state) => state.cartReducers.items);
-  const cartCount = useSelector((state) => state.cartReducers.totalCount);
-  const cartAmount = useSelector((state) => state.cartReducers.totalAmount);
+  const productDataRedux = useSelector((state:IRootState) => state.productReducers.productData);
+  const cartDataRedux = useSelector((state:IRootState) => state.cartReducers.items);
+  const cartCount = useSelector((state:IRootState) => state.cartReducers.totalCount);
+  const cartAmount = useSelector((state:IRootState) => state.cartReducers.totalAmount);
   const dispatch = useDispatch();
 
   useEffect(() => {
     searchDisplay(false);
   }, []);
 
-  const removeItemHandler = (product) => {
+  const removeItemHandler = (product: dataTypeContext) => {
     dispatch(removeItemFromCart(product));
     const existingRemoveItemIndex = productDataRedux.findIndex((c) => c.id === product.id);
     const existingRemoveItem = productDataRedux[existingRemoveItemIndex];

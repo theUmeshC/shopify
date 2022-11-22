@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { combineReducers } from 'redux';
 import { configureStore } from '@reduxjs/toolkit';
 import cartReducers from './cartSlice';
@@ -11,6 +12,6 @@ const store = configureStore({
   reducer: reducers,
 });
 
-export type RootState = ReturnType<typeof store.getState>
+export type IRootState = ReturnType<typeof reducers>;
 
 export default store;
