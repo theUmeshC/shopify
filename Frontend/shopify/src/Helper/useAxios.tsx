@@ -1,33 +1,33 @@
-/* eslint-disable */
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { loadData } from '../Store/productSlice';
-import { Url } from './httpSupplier';
 
-export interface dataInterface {
-  color: string;
-  currency : string;
-  gender : string;
-  id : number;
-  imageURL : string;
-  name: string;
-  price : number;
-  quantity : number;
-  type : string;
-}[];
+// interface dataItem {
+//   color: string,
+//   currency : string,
+//   gender : string,
+//   id : number,
+//   imageURL : string,
+//   name: string,
+//   price : number,
+//   quantity : number,
+//   type : string,
+// }[];
 
-const useAxios = (baseURL:Url) => {
+const useAxios = (baseURL: string) => {
   const dispatch = useDispatch();
-  const [data, setData] = useState<dataInterface | undefined>();
+  const [data, setData] = useState();
   const [loadingState, setLoadingState] = useState(true);
 
   useEffect(() => {
     axios.get(`${baseURL}`).then((response) => {
       setTimeout(() => {
-        const apiData:dataInterface = response.data;
-        setData(apiData);
-        dispatch(loadData(apiData));
+        const appData = response.data;
+        if (appData) {
+          setData(appData);
+        }
+        dispatch(loadData(appData));
         setLoadingState(false);
       }, 2500);
     });

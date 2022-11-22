@@ -2,7 +2,7 @@ import {
   Grid, IconButton, Skeleton, Typography,
 } from '@mui/material';
 import { Box } from '@mui/system';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
@@ -11,6 +11,18 @@ import { v4 as uuidv4 } from 'uuid';
 import { loadData } from '../Store/productSlice';
 import { addItemToCart } from '../Store/cartSlice';
 import useStyles from '../UI/DashboardStyles';
+
+// interface dataItem {
+//   color: string;
+//   currency : string;
+//   gender : string;
+//   id : number;
+//   imageURL : string;
+//   name: string;
+//   price : number;
+//   quantity : number;
+//   type : string;
+// };
 
 function Dashboard({ searchDisplay, loading }) {
   const classes = useStyles();
