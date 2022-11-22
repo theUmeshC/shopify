@@ -41,3 +41,5 @@ export interface productStateType {
     productData : dataTypeProductContext,
     filteredData : dataTypeProductContext,  
 }
+
+export type funType = (val:boolean) => void;

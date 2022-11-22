@@ -8,11 +8,11 @@ import Home from './Components/Home';
 import useAxios from './Helper/useAxios';
 import baseURL from './Helper/httpSupplier';
 
-function App() {
+const App: React.FC = () => {
   const baseUrl = baseURL;
   const { data, loadingState } = useAxios(baseUrl);
   const [searchDisplay, setSearchDisplay] = useState(true);
-  const changeSearchDisplay = (value:boolean) => {
+  const changeSearchDisplay: (value: boolean) => void = (value: boolean) => {
     setSearchDisplay(value);
   };
 
