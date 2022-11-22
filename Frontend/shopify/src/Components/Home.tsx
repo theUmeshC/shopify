@@ -1,23 +1,14 @@
-/* eslint-disable react/require-default-props */
+/* eslint-disable */
 import PropTypes from 'prop-types';
 import useStyles from '../UI/HomeStyles';
 import Dashboard from './DashBoard';
 import SideBar from './SideBar';
+import { dataType } from '../Helper/types';
 
 type Iprops = {
   searchDisplay : ( val: boolean ) => void,
   loading : boolean,
-  data: {
-      color: string,
-      currency : string,
-      gender : string,
-      id : number,
-      imageURL : string,
-      name: string,
-      price : number,
-      quantity : number,
-      type : string,
-    }[]|undefined,
+  data: dataType,
 };
 
 function Home({ searchDisplay, loading, data }:Iprops){

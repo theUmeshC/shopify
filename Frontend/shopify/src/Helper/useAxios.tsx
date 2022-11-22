@@ -3,18 +3,6 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { loadData } from '../Store/productSlice';
 
-// interface dataItem {
-//   color: string,
-//   currency : string,
-//   gender : string,
-//   id : number,
-//   imageURL : string,
-//   name: string,
-//   price : number,
-//   quantity : number,
-//   type : string,
-// }[];
-
 const useAxios = (baseURL: string) => {
   const dispatch = useDispatch();
   const [data, setData] = useState();
