@@ -1,21 +1,21 @@
-/* eslint-disable */
 import PropTypes from 'prop-types';
 import useStyles from '../UI/HomeStyles';
 import Dashboard from './DashBoard';
 import SideBar from './SideBar';
 import { dataType } from '../Helper/types';
+import React from 'react';
 
-type Iprops = {
-  searchDisplay : ( val: boolean ) => void,
-  loading : boolean,
-  data: dataType,
+interface Iprops {
+  searchDisplay: (val: boolean) => void
+  loading: boolean
+  data: dataType
 };
 
-function Home({ searchDisplay, loading, data }:Iprops){
+const Home: React.FC<Iprops> = ({ searchDisplay, loading, data }) => {
   const classes = useStyles();
   return (
     <div className={classes.HomeWrapper}>
-      {data && <SideBar data={data} />}
+      {(data !== undefined) ? <SideBar data={data}/> : 'loading...'}
       <Dashboard
         loading={loading}
         searchDisplay={searchDisplay}
@@ -27,7 +27,6 @@ function Home({ searchDisplay, loading, data }:Iprops){
 Home.propTypes = {
   searchDisplay: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
-  data: PropTypes.instanceOf(Array),
 };
 
 export default Home;

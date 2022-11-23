@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { useState } from 'react';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import SearchIcon from '@mui/icons-material/Search';
@@ -10,27 +9,27 @@ import { updateFilteredData } from '../Store/productSlice';
 import useStyles from '../UI/NavbarStyles';
 import { IRootState } from '../Store/store';
 
-type Iprops = {
-  searchDisplay :boolean
+interface Iprops {
+  searchDisplay: boolean
 };
 
-function Navbar({ searchDisplay }: Iprops) {
+const Navbar: React.FC<Iprops> = ({ searchDisplay }) => {
   const classes = useStyles();
   const cartCount = useSelector((state: IRootState) => state.cartReducers.totalCount);
   const productDataRedux = useSelector((state: IRootState) => state.productReducers.productData);
   const dispatch = useDispatch();
   const [searchTerm, setSearchTerm] = useState('');
 
-  const searchHandle = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const searchHandle: (e: React.ChangeEvent<HTMLInputElement>) => void = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
     const product = e.target.value;
     if (product.length > 0) {
       const filteredItems = [];
       const filterItem = productDataRedux.filter((item) => (
-        item.color.toLowerCase() === product.toLowerCase()
-          || item.type.toLowerCase() === product.toLowerCase()
-          || item.price.toString() === product
-          || item.gender.toLowerCase() === product.toLowerCase()
+        item.color.toLowerCase() === product.toLowerCase() ||
+        item.type.toLowerCase() === product.toLowerCase() ||
+        item.price.toString() === product ||
+        item.gender.toLowerCase() === product.toLowerCase()
       ));
       filteredItems.push(...filterItem);
       dispatch(updateFilteredData(filteredItems));

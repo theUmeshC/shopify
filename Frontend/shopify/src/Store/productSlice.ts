@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { createSlice } from '@reduxjs/toolkit';
 import { productStateType } from '../Helper/types';
 
@@ -9,7 +8,7 @@ const initialProductState: productStateType = {
 
 const productSlice = createSlice({
   name: 'cart',
-  initialState:initialProductState,
+  initialState: initialProductState,
   reducers: {
     loadData: (state, action) => {
       state.productData = action.payload;

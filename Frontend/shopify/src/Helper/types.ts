@@ -36,6 +36,18 @@ export type dataTypeContext = {
     type : string,
     qty: number,
 };
+export type ItemType = {
+    color: string,
+    currency : string,
+    gender : string,
+    id : number,
+    imageURL : string,
+    name: string,
+    price : number,
+    quantity : number,
+    type : string,
+    qty: number,
+}|undefined;
 
 export interface productStateType {
     productData : dataTypeProductContext,

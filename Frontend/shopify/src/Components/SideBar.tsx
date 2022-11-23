@@ -1,9 +1,7 @@
-/* eslint-disable */
 import {
   FormControl, FormControlLabel, FormLabel, Checkbox,
 } from '@mui/material';
-import { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import { updateFilteredData } from '../Store/productSlice';
@@ -11,12 +9,12 @@ import useStyles from '../UI/SidebarStyles';
 import { IRootState } from '../Store/store';
 import { dataTypeProductContext } from '../Helper/types';
 
-type Iprops = {
-  data: dataTypeProductContext,
+interface Iprops {
+  data: dataTypeProductContext
 };
 
-function SideBar({ data }: Iprops) {
-  const productDataRedux = useSelector((state:IRootState) => state.productReducers.productData);
+const SideBar: React.FC<Iprops> = ({ data }) => {
+  const productDataRedux = useSelector((state: IRootState) => state.productReducers.productData);
   const classes = useStyles();
   const dispatch = useDispatch();
   const [Checked, setChecked] = useState<string[]>([]);
@@ -30,9 +28,9 @@ function SideBar({ data }: Iprops) {
       data.map((item) => item.type),
     ),
   ];
-  const handleCheck = (item: string ) => {
+  const handleCheck: (item: string) => void = (item: string) => {
     const currentIndex = Checked.indexOf(item);
-    const newChecked:string[] = [...Checked];
+    const newChecked: string[] = [...Checked];
     if (currentIndex === -1) {
       newChecked.push(item);
     } else {
@@ -43,12 +41,12 @@ function SideBar({ data }: Iprops) {
   useEffect(() => {
     const filteredItems: dataTypeProductContext = [];
     if (Checked.length > 0) {
-      Checked.forEach((element:string) => {
+      Checked.forEach((element: string) => {
         const filterItem = productDataRedux.filter((item) => (
-          item.color.toLowerCase() === element.toLowerCase()
-            || item.type.toLowerCase() === element.toLowerCase()
-            || item.price.toString() === element
-            || item.gender.toLowerCase() === element.toLowerCase()
+          item.color.toLowerCase() === element.toLowerCase() ||
+          item.type.toLowerCase() === element.toLowerCase() ||
+          item.price.toString() === element ||
+          item.gender.toLowerCase() === element.toLowerCase()
         ));
         filteredItems.push(...filterItem);
       });
@@ -73,7 +71,7 @@ function SideBar({ data }: Iprops) {
             control={(
               <Checkbox
                 className={classes.sidebarCheckbox}
-                checked={Checked.indexOf(item) !== -1}
+                checked={Checked.includes(item)}
                 onChange={() => {
                   handleCheck(item);
                 }}
@@ -97,7 +95,7 @@ function SideBar({ data }: Iprops) {
             control={(
               <Checkbox
                 className={classes.sidebarCheckbox}
-                checked={Checked.indexOf(item) !== -1}
+                checked={Checked.includes(item)}
                 onChange={() => {
                   handleCheck(item);
                 }}
@@ -119,7 +117,7 @@ function SideBar({ data }: Iprops) {
           control={(
             <Checkbox
               className={classes.sidebarCheckbox}
-              checked={Checked.indexOf('Men') !== -1}
+              checked={Checked.includes('Men')}
               onChange={() => {
                 handleCheck('Men');
               }}
@@ -132,7 +130,7 @@ function SideBar({ data }: Iprops) {
           control={(
             <Checkbox
               className={classes.sidebarCheckbox}
-              checked={Checked.indexOf('Women') !== -1}
+              checked={Checked.includes('Women')}
               onChange={() => {
                 handleCheck('Women');
               }}
@@ -153,7 +151,7 @@ function SideBar({ data }: Iprops) {
           control={(
             <Checkbox
               className={classes.sidebarCheckbox}
-              checked={Checked.indexOf('250') !== -1}
+              checked={Checked.includes('250')}
               onChange={() => {
                 handleCheck('250');
               }}
@@ -166,7 +164,7 @@ function SideBar({ data }: Iprops) {
           control={(
             <Checkbox
               className={classes.sidebarCheckbox}
-              checked={Checked.indexOf('300') !== -1}
+              checked={Checked.includes('300')}
               onChange={() => {
                 handleCheck('300');
               }}
@@ -179,7 +177,7 @@ function SideBar({ data }: Iprops) {
           control={(
             <Checkbox
               className={classes.sidebarCheckbox}
-              checked={Checked.indexOf('500') !== -1}
+              checked={Checked.includes('500')}
               onChange={() => {
                 handleCheck('500');
               }}
@@ -191,9 +189,5 @@ function SideBar({ data }: Iprops) {
     </div>
   );
 }
-
-SideBar.propTypes = {
-  data: PropTypes.instanceOf(Array).isRequired,
-};
 
 export default SideBar;
