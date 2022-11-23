@@ -4,6 +4,7 @@ import Dashboard from './DashBoard';
 import SideBar from './SideBar';
 import { dataType } from '../Helper/types';
 import React from 'react';
+import Loading from './Loading';
 
 interface Iprops {
   searchDisplay: (val: boolean) => void
@@ -15,7 +16,7 @@ const Home: React.FC<Iprops> = ({ searchDisplay, loading, data }) => {
   const classes = useStyles();
   return (
     <div className={classes.HomeWrapper}>
-      {(data !== undefined) ? <SideBar data={data}/> : 'loading...'}
+      {(data !== undefined) ? <SideBar data={data}/> : <Loading />}
       <Dashboard
         loading={loading}
         searchDisplay={searchDisplay}
