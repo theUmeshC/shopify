@@ -7,6 +7,7 @@ This is a single page react App where you can view the products, filter them, se
 - Material UI
 - React Router Dom
 - Redux and redux toolkit
+- Typescript 
 
 ## Setup Instructions
 
@@ -21,6 +22,8 @@ This is a single page react App where you can view the products, filter them, se
 #### `fRedux` : App build using Function based components, using Redux to maintain the app wide state.
 
 #### `reduxClass` : App build using Class based components, using Redux to maintain the app wide state.
+
+#### `typescriptBranch` : App build using function based components, using Redux to maintain the app wide state with the typescript to type check the code.
 
 ## Run Locally
 
