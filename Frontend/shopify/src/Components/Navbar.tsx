@@ -37,6 +37,7 @@ const Navbar: React.FC<Iprops> = ({ searchDisplay }) => {
       dispatch(updateFilteredData(productDataRedux));
     }
   };
+
   return (
     <div className={classes.navContainer}>
       <Link to="/">
