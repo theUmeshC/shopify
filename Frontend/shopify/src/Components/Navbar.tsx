@@ -20,7 +20,7 @@ const Navbar: React.FC<Iprops> = ({ searchDisplay }) => {
   const dispatch = useDispatch();
   const [searchTerm, setSearchTerm] = useState('');
 
-  const searchHandle: (e: React.ChangeEvent<HTMLInputElement>) => void = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const searchHandle: (e: React.ChangeEvent<HTMLInputElement>) => void = (e) => {
     setSearchTerm(e.target.value);
     const product = e.target.value;
     if (product.length > 0) {
