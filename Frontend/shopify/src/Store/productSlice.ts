@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { productStateType } from '../Helper/types';
+import { productStateType } from '../Types/types';
 
 const initialProductState: productStateType = {
   productData: [],

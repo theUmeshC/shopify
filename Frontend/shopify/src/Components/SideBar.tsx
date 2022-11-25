@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { updateFilteredData } from '../Store/productSlice';
 import useStyles from '../UI/SidebarStyles';
 import { IRootState } from '../Store/store';
-import { dataTypeProductContext } from '../Helper/types';
+import { dataTypeProductContext } from '../Types/types';
 
 interface Iprops {
   data: dataTypeProductContext

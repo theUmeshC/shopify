@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import useStyles from '../UI/HomeStyles';
 import Dashboard from './DashBoard';
 import SideBar from './SideBar';
-import { dataType } from '../Helper/types';
+import { dataType } from '../Types/types';
 import React from 'react';
 import Loading from './Loading';
 

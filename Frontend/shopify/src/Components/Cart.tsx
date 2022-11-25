@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
-import { dataTypeContext } from '../Helper/types';
+import { dataTypeContext } from '../Types/types';
 import { removeItemFromCart } from '../Store/cartSlice';
 import { loadData } from '../Store/productSlice';
 import { IRootState } from '../Store/store';

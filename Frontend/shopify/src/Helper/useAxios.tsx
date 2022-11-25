@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { loadData } from '../Store/productSlice';
-import { dataType } from './types';
+import { dataType } from '../Types/types';
 
 const useAxios: (baseURL: string) => { data: dataType, loadingState: boolean } = (baseURL: string) => {
   const dispatch = useDispatch();

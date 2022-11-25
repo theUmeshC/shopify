@@ -12,7 +12,7 @@ import { loadData } from '../Store/productSlice';
 import { addItemToCart } from '../Store/cartSlice';
 import useStyles from '../UI/DashboardStyles';
 import { IRootState } from '../Store/store';
-import { dataTypeContext, ItemType } from '../Helper/types';
+import { dataTypeContext, ItemType } from '../Types/types';
 
 interface Iprops {
   searchDisplay: (val: boolean) => void

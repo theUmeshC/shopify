@@ -1,5 +1,5 @@
 import { createSlice, current } from '@reduxjs/toolkit';
-import { dataTypeContext } from '../Helper/types';
+import { dataTypeContext } from '../Types/types';
 
 interface cartStateType {
   items: dataTypeContext[]
