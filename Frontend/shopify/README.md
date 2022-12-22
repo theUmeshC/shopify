@@ -73,9 +73,10 @@ http://geektrust.s3.ap-southeast-1.amazonaws.com/coding-problems/shopping-cart/c
 
 ## Below you can find the project sample images
 
-![App Screenshot](https://i.postimg.cc/66b9h3p0/Screenshot-2022-11-01-135335.png)
+<img width="960" alt="Screenshot 2022-12-22 151142" src="https://user-images.githubusercontent.com/108338019/209110369-d1ecb957-8dbf-4dd2-a330-927253eebed8.png">
 
 
-![App Screenshot](https://i.postimg.cc/6qJ4qdp5/Screenshot-2022-11-01-184333.png)
+<img width="960" alt="page2" src="https://user-images.githubusercontent.com/108338019/209110506-9aaa0777-a389-4700-9f58-7a3159c6fadb.png">
+
 
 https://user-images.githubusercontent.com/108338019/209109671-1e4ba556-bff7-470b-a6fd-1f9fd602544d.mp4
