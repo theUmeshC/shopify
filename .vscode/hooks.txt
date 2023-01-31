@@ -1,0 +1,12 @@
+Understanding React Hooks
+
+1. useContext
+2. useReducer
+3. useCallback
+4. useMemo
+5. useRef
+6. useLayoutEffect
+7. useHistory
+8. useLocation
+9. useDispatch
+10. useSelector
