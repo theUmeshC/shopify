@@ -10,3 +10,106 @@ Understanding React Hooks
 8. useLocation
 9. useDispatch
 10. useSelector
+
+1. useContext
+
+defi: useContext is a React Hook that lets you read and subscribe to context from your component.
+
+ex: 
+    import { createContext, useContext, useState } from 'react';
+
+    const ThemeContext = createContext(null);
+
+    export default function MyApp() {
+        const [theme, setTheme ] = useState('dark');
+    return (
+        <ThemeContext.Provider value={theme}>
+        <Form />
+        <Button onClick={() => {
+        setTheme('light');          // updating state which is been provided by the context to the children consumers
+      }}>
+        Switch to light theme
+      </Button>
+        </ThemeContext.Provider>
+    )
+    }
+
+    function Form() {
+    return (
+        <Panel title="Welcome">
+        <Button>Sign up</Button>
+        <Button>Log in</Button>
+        </Panel>
+    );
+    }
+
+    function Panel({ title, children }) {
+    const theme = useContext(ThemeContext); // here useContext hook is used to subscribe to the ThemeContext
+    const className = 'panel-' + theme;
+    return (
+        <section className={className}>
+        <h1>{title}</h1>
+        {children}
+        </section>
+    )
+    }
+
+    function Button({ children }) {
+    const theme = useContext(ThemeContext);
+    const className = 'button-' + theme;
+    return (
+        <button className={className}>
+        {children}
+        </button>
+    );
+    }
+
+
+2. useReducer: 
+
+defi: useReducer is a React Hook that lets you add a Reducer to your component.
+
+Call useReducer at the top level of your component to manage its state with a reducer.
+
+const [state, dispatch] = useReducer(reducer, initialArg, init?)
+
+useReducer takes three parameters: 
+
+        1. reducer: The reducer function that specifies how the state gets updated. It must be pure, should take the state and action as arguments, and should return the next state. State and action can be of any types.
+
+        2.initialArg: The value from which the initial state is calculated. It can be a value of any type. How the initial state is calculated from it depends on the next init argument.
+
+        3.init(optional): The initializer function that specifies how the initial state is calculated. If it’s not specified, the initial state is set to initialArg. Otherwise, the initial state is set to the result of calling init(initialArg).
+
+useReducer returns an array with exactly two values:
+
+    1. The current state. During the first render, it’s set to init(initialArg) or initialArg (if there’s no init).
+    2. The dispatch function that lets you update the state to a different value and trigger a re-render.
+
+
+ex: 
+    import { useReducer } from 'react';
+
+    function reducer(state, action) {
+    if (action.type === 'incremented_age') {
+        return {
+        age: state.age + 1
+        };
+    }
+    throw Error('Unknown action.');
+    }
+
+    export default function Counter() {
+    const [state, dispatch] = useReducer(reducer, { age: 42 });
+
+    return (
+        <>
+        <button onClick={() => {
+            dispatch({ type: 'incremented_age' })
+        }}>
+            Increment age
+        </button>
+        <p>Hello! You are {state.age}.</p>
+        </>
+    );
+    }
